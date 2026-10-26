@@ -1,0 +1,18 @@
+# FW 本体（Realtek の配布物。MIT ではないので同梱しない）
+firmware/
+*.bin
+!rtl8812bu/tables/*.py
+
+# 捕捉データ（他人のネットワークのフレームを含む）
+captures/
+*.pcap
+*.pcapng
+*.usbmon
+usbmon*.txt
+
+# 出力・ログ
+*.log
+*.jsonl
+__pycache__/
+*.pyc
+.DS_Store
