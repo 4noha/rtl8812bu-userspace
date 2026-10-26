@@ -29,6 +29,25 @@ import usbmon_bin as ub  # noqa: E402
 BURST_GAP_US = 300_000
 
 
+def main_burst_range(recs: list) -> tuple[int, int]:
+    """書き込みが連続している最大の区間 [開始, 終了] を返す（時刻は usec）。"""
+    writes = [r for r in recs if r.is_reg_write]
+    groups: list[list] = []
+    cur: list = []
+    prev = None
+    for r in writes:
+        if prev is not None and r.time_us - prev > BURST_GAP_US:
+            if cur:
+                groups.append(cur)
+            cur = []
+        cur.append(r)
+        prev = r.time_us
+    if cur:
+        groups.append(cur)
+    best = max(groups, key=len)
+    return best[0].time_us, best[-1].time_us
+
+
 def burst_writes(path: str) -> list:
     """捕捉から、最も多くの書き込みを含む連続した塊を取り出す。"""
     recs = ub.load(path)
@@ -59,7 +78,11 @@ def main() -> None:
     os.makedirs(args.out, exist_ok=True)
     down_rows = [(r.reg, len(r.data), r.value) for r in burst_writes(args.down)]
 
-    ops, _ = gen_init.build(ub.load(args.up))   # (kind, [phase, ...]) の列
+    up_recs = ub.load(args.up)
+    start, end = main_burst_range(up_recs)
+    # 主要な塊の外（数百 ms 後に周期的に出る背景書き込み）は表に入れない
+    core = [r for r in up_recs if start <= r.time_us <= end]
+    ops, _ = gen_init.build(core)   # (kind, [phase, ...]) の列
 
     path = os.path.join(args.out, "monitor_seq.py")
     with open(path, "w") as f:
@@ -88,11 +111,14 @@ def main() -> None:
                 f.write(f"    ('fw', {v[0]}, {v[1]}, '{v[2]}'),\n")
             elif kind == "dl":
                 f.write("    ('dl',),\n")
+            elif kind == "bulk":
+                f.write(f"    ('bulk', '{v[0]}'),\n")
             elif kind == "gap":
                 f.write(f"    ('gap', {v[0]}),\n")
         f.write("]\n")
 
     print(f"DOWN: {len(down_rows)} writes")
+    print(f"UP:   区間 {(end - start) / 1e6:.1f}s / {len(core)} records")
     print(f"UP:   {len(ops)} ops "
           f"({sum(1 for k, _ in ops if k == 'w')} writes, "
           f"{sum(1 for k, _ in ops if k == 'fw')} fw pages)")

@@ -74,6 +74,10 @@ def replay(chip, body: bytes, log=None, max_phase: int = 99,
                         f"(観測 0x{expected:x} / 実機 0x{got:x})"
                     )
 
+        elif kind == "bulk":
+            chip.bulk_out(bytes.fromhex(op[2]))
+            continue
+
         elif kind == "fw":
             _, _, page_idx, payload_len, header_hex = op
             dl.send_page(page_idx, payload_len, bytes.fromhex(header_hex))
@@ -138,6 +142,8 @@ def replay_monitor(chip, body: bytes, log=None, check_reads: bool = False) -> di
                 mismatches += 1
         elif kind == "dl":
             dl.reset()
+        elif kind == "bulk":
+            chip.bulk_out(bytes.fromhex(op[1]))
         elif kind == "fw":
             dl.send_page(op[1], op[2], bytes.fromhex(op[3]))
             pages += 1

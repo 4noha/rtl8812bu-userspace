@@ -33,8 +33,10 @@ sudo kill $CPID
 ```bash
 # 20 秒ぶん取る
 sudo python3 tools/umon.py /dev/usbmon1 /tmp/cap.bin 20 &
-sudo modprobe -r rtw88_8822bu; sleep 1; sudo modprobe rtw88_8822bu
-sleep 4; sudo ip link set wlan0 up; sleep 8
+sleep 1; sudo modprobe rtw88_8822bu
+sleep 4; sudo ip link set wlan0 up
+# 20 秒待つ（書き込みが止まってから終える。切れた捕捉は表も切れる）
+wait
 sudo pkill -f umon.py            # ← 自分の ssh コマンド行に当たらないよう注意
 ```
 
@@ -60,6 +62,37 @@ for ch in 1 6 11 36 44 48 149 165; do
   wait
 done
 ```
+
+## 3.5 モニタモード切替（モニタ表用）
+
+`down`（マネージド）→ `set type monitor` → `up` を 1 手順ずつ捕捉する。
+**`up` は 8 秒近くかかる**ので、窓は 20 秒取り、書き込みが止まったことを確認する。
+
+```bash
+IF=wlan0
+sudo ip link set $IF down; sudo iw dev $IF set type managed
+sudo ip link set $IF up; sleep 4
+
+sudo python3 tools/umon.py /dev/usbmon1 /tmp/mon/down.bin 4 &
+sleep 1; sudo ip link set $IF down; wait
+
+sudo python3 tools/umon.py /dev/usbmon1 /tmp/mon/monitor.bin 4 &
+sleep 1; sudo iw dev $IF set type monitor; wait      # 転送は 0 件になる
+
+sudo python3 tools/umon.py /dev/usbmon1 /tmp/mon/up.bin 20 &
+sleep 1; sudo ip link set $IF up; wait
+
+# 抜く前に安全な状態へ戻す（モニタのまま QEMU から外すと固着しやすい）
+sudo iw dev $IF set channel 6
+sudo ip link set $IF down; sudo iw dev $IF set type managed
+```
+
+```bash
+python3 tools/gen_monitor.py /tmp/mon/down.bin /tmp/mon/up.bin --out rtl8812bu/tables
+```
+
+`gen_monitor.py` は「書き込みが連続している最大の区間」だけを表にする
+（その後 2 秒ごとに続く背景の書き込みは入れない）。
 
 ## 4. RX のレイアウト確認（tcpdump と同時に取る）
 

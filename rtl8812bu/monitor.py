@@ -38,6 +38,8 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="rtl8812bu.monitor")
     ap.add_argument("--fw", help="FW ファイル（rtw8822b_fw.bin）")
     ap.add_argument("--ch", type=int, default=6, help="チャネル")
+    ap.add_argument("--channels", help="複数チャネルを巡回（例: 1,6,11,36,44,48,149,165）")
+    ap.add_argument("--dwell", type=float, default=3.0, help="巡回時の 1 チャネルあたり秒数")
     ap.add_argument("--secs", type=float, default=10.0, help="受信時間（0 で Ctrl-C まで）")
     ap.add_argument("--jsonl", help="受信フレームを JSON Lines で保存")
     ap.add_argument("--list", action="store_true", help="利用可能なチャネルを表示")
@@ -85,19 +87,49 @@ def main(argv: list[str] | None = None) -> int:
 
         t0 = time.time()
         deadline = None if args.secs <= 0 else t0 + args.secs
+
+        def emit(frame: bytes, ch: int | None) -> None:
+            info_f = ieee80211.parse(frame)
+            if out:
+                rec = {**info_f, "ts": round(time.time(), 6)}
+                if ch is not None:
+                    rec["rx_ch"] = ch
+                out.write(json.dumps(rec, ensure_ascii=False, default=str) + "\n")
+            if not args.quiet:
+                tag = f"ch{ch:<4d}" if ch is not None else "      "
+                print(f"{time.time() - t0:8.3f} {tag} {ieee80211.describe(info_f)}",
+                      flush=True)
+
         try:
-            while not (deadline and time.time() > deadline):
-                try:
-                    frame = receiver.queue.get(timeout=0.2)
-                except queue.Empty:
-                    continue
-                info_f = ieee80211.parse(frame)
-                if out:
-                    out.write(json.dumps({**info_f, "ts": round(time.time(), 6)},
-                                         ensure_ascii=False, default=str) + "\n")
-                if not args.quiet:
-                    print(f"{time.time() - t0:8.3f} {ieee80211.describe(info_f)}",
-                          flush=True)
+            if args.channels:
+                plan = [int(c) for c in args.channels.split(",") if c.strip()]
+                summary: dict[int, dict] = {}
+                for ch in plan:
+                    chan.set_channel(chip, ch, log=log)
+                    stats = summary.setdefault(ch, {"frames": 0, "ssid": set()})
+                    end = time.time() + args.dwell
+                    while time.time() < end:
+                        try:
+                            frame = receiver.queue.get(timeout=0.15)
+                        except queue.Empty:
+                            continue
+                        stats["frames"] += 1
+                        info_f = ieee80211.parse(frame)
+                        if "ssid" in info_f and info_f["name"] in ("beacon", "probe-resp"):
+                            stats["ssid"].add(info_f["ssid"])
+                        emit(frame, ch)
+                log("[sweep] 結果:")
+                for ch in plan:
+                    st = summary[ch]
+                    ssids = ", ".join(sorted(st["ssid"])) or "-"
+                    log(f"  ch{ch:<4d} frames={st['frames']:<5d} SSID: {ssids}")
+            else:
+                while not (deadline and time.time() > deadline):
+                    try:
+                        frame = receiver.queue.get(timeout=0.2)
+                    except queue.Empty:
+                        continue
+                    emit(frame, None)
         except KeyboardInterrupt:
             pass
     finally:

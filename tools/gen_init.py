@@ -18,6 +18,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import os
+import struct
 import sys
 import time
 
@@ -29,6 +30,19 @@ GAP_SPLIT_US = 1_000_000
 
 # 通知用の待ちを入れる閾値（観測上これ以上空いていたら実装でも待つ）
 GAP_EMIT_US = 20_000
+
+
+def is_fw_page(data: bytes) -> bool:
+    """FW ページ転送かどうか。
+
+    観測: FW ページのヘッダは [0:2]=ペイロード長, [2:4]=0x0030, [4:8]=0x00001000。
+    80 バイトの H2C 転送も [0:2] が長さと一致してしまうので、[2:4] で見分ける。
+    """
+    if len(data) < 48:
+        return False
+    payload_len = len(data) - 48
+    return (data[2] == 0x30 and data[3] == 0x00
+            and struct.unpack_from("<H", data, 0)[0] == payload_len)
 
 
 def build(records: list[ub.URec]):
@@ -56,12 +70,15 @@ def build(records: list[ub.URec]):
         elif r.is_reg_read and r.data:
             # 読み出しも記録する（再生時に実機の値と比較して状態のずれを検出できる）
             ops.append(("r", [phase, r.reg, len(r.data), r.value]))
-        elif r.is_bulk_out and len(r.data) >= 48:
+        elif r.is_bulk_out and is_fw_page(r.data):
             # 先頭 48 バイトは転送ごとのヘッダ（長さ + 固定パターン）
             hdr = r.data[:48]
             payload_len = len(r.data) - 48
             ops.append(("fw", [phase, page_in_dl, payload_len, hdr.hex()]))
             page_in_dl += 1
+        elif r.is_bulk_out and r.data:
+            # FW 以外のバルク OUT（80 バイトの H2C など）はそのまま再生する
+            ops.append(("bulk", [phase, r.data.hex()]))
     return ops, phase + 1
 
 
@@ -96,6 +113,7 @@ def main() -> None:
         f.write("# ('w',   phase, reg, width, value)  レジスタ書き込み\n")
         f.write("# ('r',   phase, reg, width, value)  レジスタ読み出し（観測値）\n")
         f.write("# ('fw',  phase, page_idx, payload_len, header_hex48)\n")
+        f.write("# ('bulk', phase, hex)  FW 以外のバルク OUT\n")
         f.write("# ('gap', phase, ms)\n")
         f.write("OPS = [\n")
         for kind, v in ops:
@@ -105,6 +123,8 @@ def main() -> None:
                 f.write(f"    ('w', {v[0]}, 0x{v[1]:04x}, {v[2]}, 0x{v[3]:0{2 * v[2]}x}),\n")
             elif kind == "r":
                 f.write(f"    ('r', {v[0]}, 0x{v[1]:04x}, {v[2]}, 0x{v[3]:0{2 * v[2]}x}),\n")
+            elif kind == "bulk":
+                f.write(f"    ('bulk', '{v[1]}'),\n")
             elif kind == "fw":
                 f.write(f"    ('fw', {v[0]}, {v[1]}, {v[2]}, '{v[3]}'),\n")
             else:

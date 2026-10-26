@@ -8,9 +8,9 @@ USB バス上で観測した転送だけを入力として再構成していま�
 - 対象: macOS / Linux / その他 libusb が動く環境
 - 目的: Wi-Fi の観測（モニタモード受信）と、その上に載るツールの土台
 
-> 現状、**初期化とファームウェアの起動（`MCUFW_CTRL=0xc078`）まで実機で確認済み**。
-> モニタモード切替とチャネル設定も実装済みで、実機での受信確認が次の 1 歩です。
-> 経緯と残件は [`docs/status.md`](docs/status.md)。
+> 現状、**モニタモードでの受信まで実機で動作**しています（macOS + RTL8812BU）。
+> 2.4GHz / 5GHz のチャネル巡回で、ビーコンから SSID を復元できることを確認済み。
+> 計測結果と残件は [`docs/status.md`](docs/status.md)。
 
 ---
 
@@ -47,7 +47,10 @@ python3 -m rtl8812bu.monitor --list
 # FW を指定してモニタ受信（FW は自分で用意する。同梱しない）
 python3 -m rtl8812bu.monitor --fw /path/to/rtw8822b_fw.bin --ch 6 --secs 15
 
-# 受信フレームを JSON Lines で保存
+# チャネル巡回（2.4GHz と 5GHz を混ぜられる）
+python3 -m rtl8812bu.monitor --fw ... --channels 1,6,11,36,44,48,149,165 --dwell 3
+
+# 受信フレームを JSON Lines で保存（--jsonl は巡回にも使える）
 python3 -m rtl8812bu.monitor --fw ... --ch 36 --secs 0 --jsonl /tmp/frames.jsonl
 ```
 
@@ -58,6 +61,18 @@ MIT ではないためこのリポジトリには入れていません）。既�
 `sudo` は通常不要です（macOS では、カーネルドライバに掴まれていない USB デバイスを
 一般ユーザーのプロセスが IOKit 経由で開けるため）。他プロセスが掴んでいる場合のみ
 root が必要になります。
+
+## 実測結果（macOS, 2026-10-27）
+
+`--channels 1,6,11,36,44,48 --dwell 3` の 18 秒で **1,098 フレーム**を受信。
+
+| 項目 | 実測 |
+|---|---|
+| フレーム種別 | beacon 260 / qos-data 199 / cts 155 / ba 125 / rts 107 / data 91 / ack 58 / action 49 |
+| チャネル別 | ch11 352, ch48 323, ch1 243, ch36 92, ch44 61, ch6 27 |
+| 復元した SSID | TP-Link_2B0C, TP-Link_2B0C_MLO, IPC_331A, aterm-b45b20-a, Buffalo-G-0950-WPA3 ほか |
+| ビーコンの IE チャネルと設定チャネルの一致 | **233 / 233**（チャネル表の妥当性確認） |
+| ユニーク BSSID | 12 |
 
 ## 構成
 

@@ -2,15 +2,16 @@
 
 観測元: full2.bin
 SHA256: a9ba2c21db7d67d778ca77c5a65e899a54187a0431ea932ca8558fb162e2e8ff
-生成: 2026-10-27 07:20:29
+生成: 2026-10-27 08:25:40
 レコード数: 14318 / 書き込み 5466 / FW ページ 80 / 区間 2
-注記: VM: 単一 probe (modprobe) + ip link up。FW DL は 2 回（'dl' で区切る）。読み出し値も記録。
+注記: VM: 単一 probe + ip link up。FW DL は 2 回。読み出し値も記録。
 """
 
 # ('dl',  phase)  FW ダウンロード開始（ここで送信位置がリセットされる）
 # ('w',   phase, reg, width, value)  レジスタ書き込み
 # ('r',   phase, reg, width, value)  レジスタ読み出し（観測値）
 # ('fw',  phase, page_idx, payload_len, header_hex48)
+# ('bulk', phase, hex)  FW 以外のバルク OUT
 # ('gap', phase, ms)
 OPS = [
     ('r', 0, 0x00f0, 4, 0x0c493d35),
