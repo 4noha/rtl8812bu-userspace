@@ -37,7 +37,7 @@ def build(records: list[ub.URec]):
     phases: list[int] = []
     phase = 0
     prev_t = None
-    fw_index = 0
+    page_in_dl = 0
 
     for r in records:
         if prev_t is not None and r.time_us - prev_t > GAP_SPLIT_US:
@@ -48,6 +48,10 @@ def build(records: list[ub.URec]):
         prev_t = r.time_us
 
         if r.is_reg_write:
+            # 0x0080 に 0x0001（2 バイト）を書くのが FW ダウンロードの開始合図
+            if r.reg == 0x0080 and r.value == 0x0001 and len(r.data) == 2:
+                ops.append(("dl", [phase]))
+                page_in_dl = 0
             ops.append(("w", [phase, r.reg, len(r.data), r.value]))
         elif r.is_reg_read and r.data:
             # 読み出しも記録する（再生時に実機の値と比較して状態のずれを検出できる）
@@ -56,8 +60,8 @@ def build(records: list[ub.URec]):
             # 先頭 48 バイトは転送ごとのヘッダ（長さ + 固定パターン）
             hdr = r.data[:48]
             payload_len = len(r.data) - 48
-            ops.append(("fw", [phase, fw_index, payload_len, hdr.hex()]))
-            fw_index += 1
+            ops.append(("fw", [phase, page_in_dl, payload_len, hdr.hex()]))
+            page_in_dl += 1
     return ops, phase + 1
 
 
@@ -88,13 +92,16 @@ def main() -> None:
         if args.note:
             f.write(f"注記: {args.note}\n")
         f.write('"""\n\n')
+        f.write("# ('dl',  phase)  FW ダウンロード開始（ここで送信位置がリセットされる）\n")
         f.write("# ('w',   phase, reg, width, value)  レジスタ書き込み\n")
         f.write("# ('r',   phase, reg, width, value)  レジスタ読み出し（観測値）\n")
         f.write("# ('fw',  phase, page_idx, payload_len, header_hex48)\n")
         f.write("# ('gap', phase, ms)\n")
         f.write("OPS = [\n")
         for kind, v in ops:
-            if kind == "w":
+            if kind == "dl":
+                f.write(f"    ('dl', {v[0]}),\n")
+            elif kind == "w":
                 f.write(f"    ('w', {v[0]}, 0x{v[1]:04x}, {v[2]}, 0x{v[3]:0{2 * v[2]}x}),\n")
             elif kind == "r":
                 f.write(f"    ('r', {v[0]}, 0x{v[1]:04x}, {v[2]}, 0x{v[3]:0{2 * v[2]}x}),\n")

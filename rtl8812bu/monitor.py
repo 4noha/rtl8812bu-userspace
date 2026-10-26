@@ -77,6 +77,9 @@ def main(argv: list[str] | None = None) -> int:
         res = init.replay(chip, body, log=log, verify=not args.no_verify)
         log(f"[init] {res}")
 
+        mon = init.replay_monitor(chip, body, log=log)
+        log(f"[monitor] {mon}")
+
         chan.set_channel(chip, args.ch, log=log)
         receiver.start()
 

@@ -23,7 +23,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(HERE), "tools"))
 import usbmon            # noqa: E402
 import usbmon_bin        # noqa: E402
 from rtl8812bu import ieee80211, rx  # noqa: E402
-from rtl8812bu.tables import chan_table, fwdl_pages, init_seq  # noqa: E402
+from rtl8812bu.tables import chan_table, fwdl_pages, init_seq, monitor_seq  # noqa: E402
 
 FAILED: list[str] = []
 
@@ -135,6 +135,15 @@ def test_tables() -> None:
     check("表: 読み出し値の幅が妥当",
           all(o[3] in (1, 2, 4) for o in init_seq.OPS if o[0] in ("w", "r")))
 
+    check("表: FW ダウンロードの区切りが 2 個",
+          sum(1 for o in init_seq.OPS if o[0] == "dl") == 2)
+    check("表: 各ダウンロードのページ番号が 0 から連番",
+          pages_start_at_zero(init_seq.OPS))
+    check("表: モニタ切替の DOWN/UP がある",
+          len(monitor_seq.DOWN) > 0 and any(o[0] == "fw" for o in monitor_seq.UP))
+    check("表: モニタ切替の UP にも 1 回分の FW がある",
+          sum(1 for o in monitor_seq.UP if o[0] == "fw") == len(pages) // 2)
+
     check("表: チャネルが 8 個", len(chan_table.CHANNELS) == 8)
     ok = True
     for ch, rows in chan_table.CHANNELS.items():
@@ -142,6 +151,19 @@ def test_tables() -> None:
             if width not in (1, 2, 4) or not (0 <= reg <= 0xFFFF) or value >= (1 << (8 * width)):
                 ok = False
     check("表: チャネル表の幅と値域", ok)
+
+
+def pages_start_at_zero(ops) -> bool:
+    """'dl' の直後のページ番号が 0 で、その後 +1 ずつ増えていること。"""
+    expect = None
+    for op in ops:
+        if op[0] == "dl":
+            expect = 0
+        elif op[0] == "fw":
+            if expect is None or op[2] != expect:
+                return False
+            expect += 1
+    return True
 
 
 def main() -> int:

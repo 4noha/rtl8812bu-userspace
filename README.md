@@ -8,8 +8,9 @@ USB バス上で観測した転送だけを入力として再構成していま�
 - 対象: macOS / Linux / その他 libusb が動く環境
 - 目的: Wi-Fi の観測（モニタモード受信）と、その上に載るツールの土台
 
-> 現状、**初期化の再生までは通りますが、ファームウェアの起動完了ビットが立たず
-> 受信はまだ動きません**。詳しい証拠と次の手順は [`docs/status.md`](docs/status.md)。
+> 現状、**初期化とファームウェアの起動（`MCUFW_CTRL=0xc078`）まで実機で確認済み**。
+> モニタモード切替とチャネル設定も実装済みで、実機での受信確認が次の 1 歩です。
+> 経緯と残件は [`docs/status.md`](docs/status.md)。
 
 ---
 
@@ -20,6 +21,7 @@ USB バス上で観測した転送だけを入力として再構成していま�
 | `rtl8812bu/tables/init_seq.py` | usbmon（Linux の rtw88 が動いている間の転送） | 5466 件の書き込み + 1611 件の期待読み出し値 |
 | `rtl8812bu/tables/fwdl_pages.py` | 同上（バルク OUT） | FW 転送 1 回分 ×2 のヘッダ 48 バイトとペイロード長 |
 | `rtl8812bu/tables/chan_table.py` | usbmon（モニタモードでチャネルを切り替えた捕捉） | 8 チャネル分の書き込み列 |
+| `rtl8812bu/tables/monitor_seq.py` | usbmon（down → monitor → up の捕捉） | モニタモード切替の書き込み列（FW 再ダウンロード含む） |
 
 生成器は `tools/` にあり、いずれも「観測 → 表」の機械変換だけを行います。
 由来と検証方法は [`docs/provenance.md`](docs/provenance.md)。
@@ -63,7 +65,7 @@ root が必要になります。
 rtl8812bu/
   usb.py        転送層（pyusb）。レジスタ読み書き、バルク入出力、FW 起動確認
   fw.py         FW の読み込みと転送列の組み立て（観測されたヘッダを再生）
-  init.py       初期化列の再生（書き込み・読み出し照合・FW ページ送信）
+  init.py       初期化列とモニタ切替の再生（読み出し照合・FW ページ送信）
   chan.py       チャネル切替（観測された書き込み列の再生）
   rx.py         バルク IN の解析（56 バイト前置き + フレーム）
   ieee80211.py  フレームパーサ（802.11 仕様に基づく独自実装）
@@ -75,6 +77,7 @@ tools/
   umon.py        Linux 上でバイナリ捕捉を書き出す（root）
   gen_init.py    捕捉 → init_seq.py / fwdl_pages.py
   gen_chan.py    捕捉 → chan_table.py
+  gen_monitor.py 捕捉 → monitor_seq.py
   diff_trace.py  2 つの捕捉の書き込み列を比較
 tests/
   test_offline.py  実機不要の自己テスト

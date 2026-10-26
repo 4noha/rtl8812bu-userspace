@@ -19,6 +19,7 @@ import time
 from . import fw as fwmod
 from .tables import fwdl_pages
 from .tables import init_seq
+from .tables import monitor_seq
 
 
 class InitError(RuntimeError):
@@ -44,6 +45,10 @@ def replay(chip, body: bytes, log=None, max_phase: int = 99,
         kind, phase = op[0], op[1]
         if phase > max_phase:
             break
+
+        if kind == "dl":
+            dl.reset()
+            continue
 
         if kind == "w":
             _, _, reg, width, value = op
@@ -103,3 +108,47 @@ def replay(chip, body: bytes, log=None, max_phase: int = 99,
                 "ことがあります（docs/status.md 参照）。"
             )
     return result
+
+
+def replay_monitor(chip, body: bytes, log=None, check_reads: bool = False) -> dict:
+    """マネージド（up）からモニタモード（up）へ切り替える。
+
+    観測: `ip link set down`（12 書き込み）→ `iw set type monitor`（USB 転送なし）
+    → `ip link set up`（FW ダウンロードを含む 1683 書き込み）。
+    """
+    log = log or (lambda *_: None)
+    dl = fwmod.Downloader(chip, body, fwdl_pages.PAGES)
+
+    for reg, width, value in monitor_seq.DOWN:
+        chip.write(reg, value, width)
+
+    writes = reads = pages = 0
+    mismatches = 0
+    for op in monitor_seq.UP:
+        kind = op[0]
+        if kind == "w":
+            chip.write(op[1], op[3], op[2])
+            writes += 1
+        elif kind == "r":
+            if not check_reads:
+                continue
+            got = chip.read(op[1], op[2])
+            reads += 1
+            if got != op[3]:
+                mismatches += 1
+        elif kind == "dl":
+            dl.reset()
+        elif kind == "fw":
+            dl.send_page(op[1], op[2], bytes.fromhex(op[3]))
+            pages += 1
+        elif kind == "gap":
+            if op[1] >= 20:
+                time.sleep(op[1] / 1000.0)
+
+    ready = chip.wait_fw_ready(2.0)
+    log(f"[monitor] モニタモードへ切替: {writes} writes / {pages} FW pages / "
+        f"fw_ready={ready} MCUFW_CTRL=0x{chip.read(0x0080, 2):04x}")
+    if not ready:
+        raise InitError("モニタモード切替後に FW が起動していません。")
+    return {"writes": writes, "reads": reads, "fw_pages": pages,
+            "read_mismatches": mismatches, "fw_ready": ready}

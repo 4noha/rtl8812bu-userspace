@@ -74,9 +74,12 @@ class Downloader:
         self.index = 0
         self.log = log or (lambda *_: None)
 
+    def reset(self) -> None:
+        """新しいダウンロードの開始（送信位置を先頭に戻す）。"""
+        self.offset = 0
+        self.index = 0
+
     def send_page(self, page_idx: int, payload_len: int, header: bytes) -> None:
-        if page_idx == 0:
-            self.offset = 0
         payload = self.stream[self.offset:self.offset + payload_len]
         if len(payload) < payload_len:
             payload = payload + b"\x00" * (payload_len - len(payload))
