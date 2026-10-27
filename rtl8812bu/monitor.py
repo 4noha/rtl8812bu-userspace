@@ -134,6 +134,7 @@ def main(argv: list[str] | None = None) -> int:
             pass
     finally:
         receiver.stop()
+        init.shutdown(chip, log=log)   # モニタのまま放置すると固着することがある
         if out:
             out.close()
         chip.close()

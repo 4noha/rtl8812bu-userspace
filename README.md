@@ -98,6 +98,7 @@ tests/
   test_offline.py  実機不要の自己テスト
 docs/
   provenance.md  由来の記録
+  ch44-investigation.md  ch44 の受信が少ない件の調査
   status.md      現状とブロッカー、次の手順
   capture.md     捕捉の取り方（Linux / root Android）
 ```

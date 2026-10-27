@@ -158,3 +158,23 @@ def replay_monitor(chip, body: bytes, log=None, check_reads: bool = False) -> di
         raise InitError("モニタモード切替後に FW が起動していません。")
     return {"writes": writes, "reads": reads, "fw_pages": pages,
             "read_mismatches": mismatches, "fw_ready": ready}
+
+
+def shutdown(chip, log=None) -> bool:
+    """チップを安全な状態（モニタ停止相当）に戻す。
+
+    観測: `ip link set down` は 12 個の書き込みで、受信と DMA を止める。
+    これを再生せずにモニタモードのまま放っておくと、チップが固着することがある
+    （読みも書きもタイムアウトし、USB の再列挙では戻らない）。
+
+    戻り値: 成功したら True。すでに固着している場合は False。
+    """
+    log = log or (lambda *_: None)
+    try:
+        for reg, width, value in monitor_seq.DOWN:
+            chip.write(reg, value, width)
+        log("[shutdown] モニタ停止の書き込みを再生しました")
+        return True
+    except Exception as exc:      # 固着しているとここに来る
+        log(f"[shutdown] 停止に失敗（{exc}）。抜き差しが必要かもしれません")
+        return False
