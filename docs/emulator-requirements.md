@@ -291,3 +291,52 @@ python3 tools/serial_sniff.py /dev/cu.usbmodemXXXX 30
 
 `tools/esp32-sniffer` + `tools/serial_sniff.py` で、**修正のたびに 2.4GHz の
 実電波をその場で確認**できる。beacon が出れば SSID と BSSID が表示される。
+
+## 10. 参照（Linux + hostapd）の AP 開始列を捕捉して差分を取った
+
+VM の Linux で `hostapd` を AP モードで動かし、**AP 開始時に何を書くか**を usbmon で
+捕捉した（`/tmp/hapd.bin`、26 秒）。
+
+### 参照が AP 開始時にやっていること（抜粋・16 進）
+
+```
+14.96 W 0x05a8 <- 0x01
+14.96 W 0x0204 <- 0x87cc          ← ビーコンページ + BCN_VALID
+14.97 W 0x0101 <- 0x07            ← REG_CR 上位バイト（AP モード）
+14.97 BULK OUT 256B               ← beacon 本体（48B ヘッダ + 208B、SSID を含む）
+14.97 W 0x0204 <- 0x87cc
+14.97 W 0x0101 <- 0x06
+14.98 BULK OUT 156B               ← probe-resp テンプレート
+15.00 W 0x0500 <- 0x002f3226      ← EDCA VO
+15.01 W 0x0504 <- 0x005e4328      ← EDCA VI
+15.02 W 0x0508 <- 0x0000a42b      ← EDCA BE
+15.03 W 0x050c <- 0x0000a44f      ← EDCA BK
+14.99 W 0x0420 <- 0x00701f80      ← FWHW_TXQ_CTRL
+15.04 W 0x0608 <- 0xf410400e
+15.04 BULK OUT 74B                ← H2C
+15.26/15.28 BULK OUT 150B ×2      ← probe-resp（SSID を含む）
+```
+
+### こちらの実装との差分
+
+| 項目 | 参照 | こちら |
+|---|---|---|
+| beacon のバルク転送 | あり（256B） | あり（同等） |
+| probe-resp テンプレートの投入 | あり（156B/150B） | **なし**（ソフトで応答） |
+| **EDCA 下位バイト**（0x0500/04/08/0c） | あり（0x26/0x28/0x2b/0x4f） | **なし**（TXOP 側だけ書いていた） |
+| FWHW_TXQ_CTRL（0x0420） | 0x00701f80 | 一部のみ |
+
+EDCA の ECWmin/ECWmax/AIFS が無いと MAC がバックオフできず、送信が一切出ない可能性が高い。
+
+### 試したこと（結果）
+
+- 上記の EDCA 書き込みを `mac_init_bu.py`（初期化）に入れた → **初期化が失敗し
+  CR=0xeaeaeaea（0xEA 状態）**。チップはプロセス終了後に復帰する。
+- したがって**初期化ではなく AP 開始時**（参照と同じタイミング）に書く必要がある。
+
+### 次の手順
+
+1. `ap_wpa2.py` / `ap_wps_full.py` の AP 開始処理（`hw_beacon` の直前）に
+   EDCA 4 本と 0x0420 を追加
+2. C3 で beacon が出るか確認（`python3 tools/serial_sniff.py /dev/cu.usbmodem11201 15`）
+3. 出れば probe-resp テンプレート（156B/150B）の投入も検討
