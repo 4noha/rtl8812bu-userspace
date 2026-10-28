@@ -85,6 +85,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--no-verify", action="store_true", help="FW 起動確認を省略")
     ap.add_argument("--write-delay-ms", type=float, default=0.0,
                     help="レジスタ書き込みの間隔（ms）。VM 観測では約 1.4ms 空いていた")
+    ap.add_argument("--settle-ms", type=float, default=50.0,
+                    help="時計系レジスタ(0x0020)を書く前の待ち（ms）。0 で無効")
     ap.add_argument("--fast-start", action="store_true",
                     help="FW 稼働中なら初期化を省略する（実験的。既定は毎回初期化）")
     ap.add_argument("--check-reads", action="store_true",
@@ -147,9 +149,10 @@ def main(argv: list[str] | None = None) -> int:
                               delay_s=args.write_delay_ms / 1000.0)
         log(f"[init] {res}")
 
+        settle = {0x0020: args.settle_ms / 1000.0} if args.settle_ms > 0 else {}
         mon = init.replay_monitor(chip, body, log=log,
                                   delay_s=args.write_delay_ms / 1000.0,
-                                  skip=RISKY_WRITES)
+                                  skip=RISKY_WRITES, settle_s=settle)
         log(f"[monitor] {mon}")
 
         if not args.channels:

@@ -41,12 +41,18 @@ class GuardedWriter:
     ここでは書き込み直前に現在値を読み、違っていれば差分だけを適用する。
     """
 
-    def __init__(self, chip, log=None, delay_s: float = 0.0, skip=frozenset()):
+    # 時計・PLL 系とみられるレジスタ。書く前に少し待つ（観測: ここで固着した）。
+    SETTLE_DEFAULT = {0x0020: 0.050}
+
+    def __init__(self, chip, log=None, delay_s: float = 0.0, skip=frozenset(),
+                 settle_s: dict[int, float] | None = None):
         self.chip = chip
         self.log = log or (lambda *_: None)
         self.delay_s = delay_s
         self.skip = set(skip)          # (reg, value) の組で指定した書き込みを避ける
         self.skipped = 0
+        self.settle_s = dict(self.SETTLE_DEFAULT if settle_s is None else settle_s)
+        self.settled = 0
         self.last_read: dict[int, int] = {}
         self.pending: tuple[int, int] | None = None      # (value, width)
         self.last_target: tuple[int, int, int] | None = None  # (captured_new, width, actual)
@@ -84,6 +90,11 @@ class GuardedWriter:
                          f"reg=0x{reg:04x} 捕捉時=0x{old:0{2 * width}x} "
                          f"実機=0x{live:0{2 * width}x} 書き込み=0x{value:0{2 * width}x}")
                 return
+
+        settle = self.settle_s.get(reg)
+        if settle:
+            time.sleep(settle)         # PLL/時計が落ち着くのを待つ
+            self.settled += 1
 
         if (reg, value) in self.skip:
             self.skipped += 1
@@ -209,7 +220,8 @@ def replay(chip, body: bytes, log=None, max_phase: int = 99,
 
 
 def replay_monitor(chip, body: bytes, log=None, check_reads: bool = False,
-                   delay_s: float = 0.0, skip=frozenset()) -> dict:
+                   delay_s: float = 0.0, skip=frozenset(),
+                   settle_s: dict[int, float] | None = None) -> dict:
     """マネージド（up）からモニタモード（up）へ切り替える。
 
     観測: `ip link set down`（12 書き込み）→ `iw set type monitor`（USB 転送なし）
@@ -223,7 +235,7 @@ def replay_monitor(chip, body: bytes, log=None, check_reads: bool = False,
 
     writes = reads = pages = 0
     mismatches = 0
-    gw = GuardedWriter(chip, log, delay_s=delay_s, skip=skip)
+    gw = GuardedWriter(chip, log, delay_s=delay_s, skip=skip, settle_s=settle_s)
     for op in monitor_seq.UP:
         kind = op[0]
         if kind == "r":
