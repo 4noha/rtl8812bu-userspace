@@ -41,9 +41,12 @@ class GuardedWriter:
     ここでは書き込み直前に現在値を読み、違っていれば差分だけを適用する。
     """
 
-    def __init__(self, chip, log=None):
+    def __init__(self, chip, log=None, delay_s: float = 0.0, skip=frozenset()):
         self.chip = chip
         self.log = log or (lambda *_: None)
+        self.delay_s = delay_s
+        self.skip = set(skip)          # (reg, value) の組で指定した書き込みを避ける
+        self.skipped = 0
         self.last_read: dict[int, int] = {}
         self.pending: tuple[int, int] | None = None      # (value, width)
         self.last_target: tuple[int, int, int] | None = None  # (captured_new, width, actual)
@@ -68,19 +71,29 @@ class GuardedWriter:
             old = self.pending[0]
             live = self.chip.read(reg, width)
             if live != old:
-                diff = old ^ value
-                target = (live & ~diff) | (value & diff)
+                # ミラーだけ実機の値に合わせ、書き込む値は捕捉した絶対値のまま。
+                # （差分適用にすると、捕捉時と状態が違うぶん必要なビットが落ちる）
                 self.chip.write(SEC_REG, live, width)
-                self.chip.write(reg, target, width)
-                self.last_target = (value, width, target)
+                if self.delay_s:
+                    time.sleep(self.delay_s)
+                self.chip.write(reg, value, width)
+                self.last_target = (value, width, value)
                 self.pending = None
                 self.adapted += 1
-                self.log(f"[init] 保護付き書き込みを現状に合わせました "
+                self.log(f"[init] ミラーを実機値に合わせました "
                          f"reg=0x{reg:04x} 捕捉時=0x{old:0{2 * width}x} "
-                         f"実機=0x{live:0{2 * width}x} -> 0x{target:0{2 * width}x}")
+                         f"実機=0x{live:0{2 * width}x} 書き込み=0x{value:0{2 * width}x}")
                 return
 
+        if (reg, value) in self.skip:
+            self.skipped += 1
+            self.log(f"[init] 既知の危険な書き込みを回避しました reg=0x{reg:04x} <- 0x{value:0{2 * width}x}")
+            self.pending = None
+            self.last_target = None
+            return
         self.chip.write(reg, value, width)
+        if self.delay_s:
+            time.sleep(self.delay_s)
         self.pending = None
         self.last_target = None
 
@@ -95,7 +108,8 @@ class ReadMismatch(InitError):
 
 def replay(chip, body: bytes, log=None, max_phase: int = 99,
            verify: bool = True, check_reads: bool = False,
-           strict_reads: bool = False, max_reports: int = 12) -> dict:
+           strict_reads: bool = False, max_reports: int = 12,
+           delay_s: float = 0.0) -> dict:
     """観測された初期化列を順に再生する。"""
     log = log or (lambda *_: None)
     dl = fwmod.Downloader(chip, body, fwdl_pages.PAGES, log=log)
@@ -104,7 +118,7 @@ def replay(chip, body: bytes, log=None, max_phase: int = 99,
     writes = reads = pages = 0
     mismatches: list[tuple[int, int, int, int]] = []
 
-    gw = GuardedWriter(chip, log)
+    gw = GuardedWriter(chip, log, delay_s=delay_s)
     last = "開始前"
     for op in init_seq.OPS:
         kind, phase = op[0], op[1]
@@ -194,7 +208,8 @@ def replay(chip, body: bytes, log=None, max_phase: int = 99,
     return result
 
 
-def replay_monitor(chip, body: bytes, log=None, check_reads: bool = False) -> dict:
+def replay_monitor(chip, body: bytes, log=None, check_reads: bool = False,
+                   delay_s: float = 0.0, skip=frozenset()) -> dict:
     """マネージド（up）からモニタモード（up）へ切り替える。
 
     観測: `ip link set down`（12 書き込み）→ `iw set type monitor`（USB 転送なし）
@@ -208,7 +223,7 @@ def replay_monitor(chip, body: bytes, log=None, check_reads: bool = False) -> di
 
     writes = reads = pages = 0
     mismatches = 0
-    gw = GuardedWriter(chip, log)
+    gw = GuardedWriter(chip, log, delay_s=delay_s, skip=skip)
     for op in monitor_seq.UP:
         kind = op[0]
         if kind == "r":

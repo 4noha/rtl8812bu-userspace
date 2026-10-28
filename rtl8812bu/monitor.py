@@ -21,6 +21,12 @@ from .usb import Chip, ChipError
 # 40MHz は受信量が多く、モニタ停止時の後始末が重い。安全弁として滞在時間に上限を置く。
 SAFE_MAX_SECONDS_40 = 30.0
 
+# 実測で「書いた直後からチップが無応答になる」箇所。
+# 0x0020 はハードが自分で 0xe5 にしている値を 0xed に上書きする書き込みで、
+# これを行った回だけ固着した（モニタ切替の 61 番目）。ビット 3 だけの違いなので
+# 省略しても致命的ではないと判断し、既定で避ける。
+RISKY_WRITES = frozenset({(0x0020, 0xED)})
+
 DEFAULT_FW_PATHS = [
     os.environ.get("RTL8812BU_FW", ""),
     "/lib/firmware/rtw88/rtw8822b_fw.bin",
@@ -79,6 +85,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--list", action="store_true", help="利用可能なチャネルを表示")
     ap.add_argument("--no-reset", action="store_true", help="USB リセットを省略")
     ap.add_argument("--no-verify", action="store_true", help="FW 起動確認を省略")
+    ap.add_argument("--write-delay-ms", type=float, default=0.0,
+                    help="レジスタ書き込みの間隔（ms）。VM 観測では約 1.4ms 空いていた")
     ap.add_argument("--full-init", action="store_true",
                     help="FW が稼働中でも初期化をやり直す（既定は省略して高速路）")
     ap.add_argument("--check-reads", action="store_true",
@@ -137,10 +145,13 @@ def main(argv: list[str] | None = None) -> int:
             res = {"skipped": True}
         else:
             res = init.replay(chip, body, log=log, verify=not args.no_verify,
-                              check_reads=args.check_reads)
+                              check_reads=args.check_reads,
+                              delay_s=args.write_delay_ms / 1000.0)
         log(f"[init] {res}")
 
-        mon = init.replay_monitor(chip, body, log=log)
+        mon = init.replay_monitor(chip, body, log=log,
+                                  delay_s=args.write_delay_ms / 1000.0,
+                                  skip=RISKY_WRITES)
         log(f"[monitor] {mon}")
 
         if not args.channels:

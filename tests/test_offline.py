@@ -214,7 +214,7 @@ def test_guarded_writer() -> None:
     check("保護付き書き込み: 不一致時は現状に合わせる", gw.adapted == 1)
     check("保護付き書き込み: ミラーに実機値を書く", chip.log[1] == (SEC_REG, 1, 0xC4),
           f"{chip.log}")
-    check("保護付き書き込み: 変わったビットだけ反映", chip.regs[0x0020] == 0xE5,
+    check("保護付き書き込み: 値は捕捉した絶対値", chip.regs[0x0020] == 0xE5,
           f"got {chip.regs[0x0020]:#x}")
 
     # 保護でない 0x4e0 書き込み（キー列）は素通し
