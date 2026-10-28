@@ -21,6 +21,7 @@
  *   - 制御フレームは既定で捨てる（管理フレームのみ）。必要なら FILTER を変える。
  */
 
+#include <Arduino.h>
 #include <WiFi.h>
 #include "esp_wifi.h"
 
@@ -60,5 +61,22 @@ void setup() {
 }
 
 void loop() {
-  delay(1000);
+  // シリアルからのコマンド: "c<ch>" でチャネル変更、"i" で情報表示
+  if (Serial.available()) {
+    String cmd = Serial.readStringUntil('\n');
+    cmd.trim();
+    if (cmd.startsWith("c") || cmd.startsWith("C")) {
+      int ch = cmd.substring(1).toInt();
+      if (ch >= 1 && ch <= 14) {
+        esp_wifi_set_channel((uint8_t)ch, WIFI_SECOND_CHAN_NONE);
+        Serial.printf("# ch=%d\n", ch);
+      }
+    } else if (cmd == "i") {
+      uint8_t prim = 0;
+      wifi_second_chan_t sec;
+      esp_wifi_get_channel(&prim, &sec);
+      Serial.printf("# info ch=%u\n", prim);
+    }
+  }
+  delay(20);
 }
