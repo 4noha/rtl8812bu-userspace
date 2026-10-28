@@ -22,6 +22,7 @@ USB バス上で観測した転送だけを入力として再構成していま�
 | `rtl8812bu/tables/fwdl_pages.py` | 同上（バルク OUT） | FW 転送 1 回分 ×2 のヘッダ 48 バイトとペイロード長 |
 | `rtl8812bu/tables/chan_table.py` | usbmon（モニタモードでチャネルを切り替えた捕捉） | 9 チャネル分の書き込み列 |
 | `rtl8812bu/tables/monitor_seq.py` | usbmon（down → monitor → up の捕捉） | モニタモード切替の書き込み列（FW 再ダウンロード含む） |
+| `rtl8812bu/tables/chan_table40.py` | usbmon（40MHz で 36/40/44/48 へ切り替え） | 40MHz の書き込み列（4 チャネル） |
 
 生成器は `tools/` にあり、いずれも「観測 → 表」の機械変換だけを行います。
 由来と検証方法は [`docs/provenance.md`](docs/provenance.md)。
@@ -50,6 +51,10 @@ python3 -m rtl8812bu.monitor --fw /path/to/rtw8822b_fw.bin --ch 6 --secs 15
 # チャネル巡回（2.4GHz と 5GHz を混ぜられる）
 python3 -m rtl8812bu.monitor --fw ... --channels 1,6,11,36,44,48,149,165 --dwell 3
 
+# 40MHz（倍速）で受ける。36/40/44/48 の 4 チャネルのみ（36+40=center38, 44+48=center46）
+python3 -m rtl8812bu.monitor --fw ... --ch 44 --width 40
+python3 -m rtl8812bu.monitor --fw ... --channels 36,44 --width 40 --dwell 6
+
 # 受信フレームを JSON Lines で保存（--jsonl は巡回にも使える）
 python3 -m rtl8812bu.monitor --fw ... --ch 36 --secs 0 --jsonl /tmp/frames.jsonl
 ```
@@ -72,6 +77,7 @@ root が必要になります。
 | チャネル別 | ch11 352, ch48 323, ch1 243, ch36 92, ch44 61, ch6 27 |
 | 復元した SSID | TP-Link_2B0C, TP-Link_2B0C_MLO, IPC_331A, aterm-b45b20-a, Buffalo-G-0950-WPA3 ほか |
 | ch44 の再測定 | 10 秒で 93 ビーコン（`DIRECT-Kira-UN-TD8S`）。Linux ドライバと同等 → [`docs/ch44-investigation.md`](docs/ch44-investigation.md) |
+| **40MHz（倍速）** | ch44/40MHz で 10 秒 1,779 フレーム・beacon 266（DIRECT-Kira 87 + ch48 側 TP-Link 113）。center 46 で 44+48 をカバーできている |
 | ビーコンの IE チャネルと設定チャネルの一致 | **233 / 233**（チャネル表の妥当性確認） |
 | ユニーク BSSID | 12 |
 

@@ -38,6 +38,8 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="rtl8812bu.monitor")
     ap.add_argument("--fw", help="FW ファイル（rtw8822b_fw.bin）")
     ap.add_argument("--ch", type=int, default=6, help="チャネル")
+    ap.add_argument("--width", default="20", choices=chan.WIDTHS,
+                    help="帯域幅（20 / 40MHz）")
     ap.add_argument("--channels", help="複数チャネルを巡回（例: 1,6,11,36,44,48,149,165）")
     ap.add_argument("--dwell", type=float, default=3.0, help="巡回時の 1 チャネルあたり秒数")
     ap.add_argument("--secs", type=float, default=10.0, help="受信時間（0 で Ctrl-C まで）")
@@ -49,7 +51,8 @@ def main(argv: list[str] | None = None) -> int:
     args = ap.parse_args(argv)
 
     if args.list:
-        print("利用可能なチャネル:", ", ".join(str(c) for c in chan.available()))
+        for w in chan.WIDTHS:
+            print(f"{w:>2s}MHz:", ", ".join(str(c) for c in chan.available(w)))
         return 0
 
     log = (lambda *_: None) if args.quiet else (lambda msg: print(msg, file=sys.stderr))
@@ -82,7 +85,8 @@ def main(argv: list[str] | None = None) -> int:
         mon = init.replay_monitor(chip, body, log=log)
         log(f"[monitor] {mon}")
 
-        chan.set_channel(chip, args.ch, log=log)
+        if not args.channels:
+            chan.set_channel(chip, args.ch, width=args.width, log=log)
         receiver.start()
 
         t0 = time.time()
@@ -103,9 +107,13 @@ def main(argv: list[str] | None = None) -> int:
         try:
             if args.channels:
                 plan = [int(c) for c in args.channels.split(",") if c.strip()]
+                for c in plan:
+                    if c not in chan.available(args.width):
+                        print(f"エラー: ch{c} は {args.width}MHz では未観測です", file=sys.stderr)
+                        return 2
                 summary: dict[int, dict] = {}
                 for ch in plan:
-                    chan.set_channel(chip, ch, log=log)
+                    chan.set_channel(chip, ch, width=args.width, log=log)
                     stats = summary.setdefault(ch, {"frames": 0, "ssid": set()})
                     end = time.time() + args.dwell
                     while time.time() < end:

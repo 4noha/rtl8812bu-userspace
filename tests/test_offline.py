@@ -23,7 +23,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(HERE), "tools"))
 import usbmon            # noqa: E402
 import usbmon_bin        # noqa: E402
 from rtl8812bu import ieee80211, rx  # noqa: E402
-from rtl8812bu.tables import chan_table, fwdl_pages, init_seq, monitor_seq  # noqa: E402
+from rtl8812bu.tables import (chan_table, chan_table40, fwdl_pages,  # noqa: E402
+                              init_seq, monitor_seq)
 
 FAILED: list[str] = []
 
@@ -154,6 +155,14 @@ def test_tables() -> None:
             if width not in (1, 2, 4) or not (0 <= reg <= 0xFFFF) or value >= (1 << (8 * width)):
                 ok = False
     check("表: チャネル表の幅と値域", ok)
+
+    check("表40: 36/40/44/48 がある", {36, 40, 44, 48} <= set(chan_table40.CHANNELS_40))
+    ok40 = True
+    for ch, rows in chan_table40.CHANNELS_40.items():
+        for reg, width, value in rows:
+            if width not in (1, 2, 4) or not (0 <= reg <= 0xFFFF) or value >= (1 << (8 * width)):
+                ok40 = False
+    check("表40: 幅と値域", ok40)
 
 
 def pages_start_at_zero(ops) -> bool:

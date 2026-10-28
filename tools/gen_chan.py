@@ -26,8 +26,10 @@ import time
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import usbmon_bin as ub  # noqa: E402
 
-# 切替シーケンスの内部に現れる無通信区間（最大でも数百 ms）より十分大きい値。
-BURST_GAP_US = 500_000
+# 切替シーケンスの内部にも 1 秒級の無通信区間が現れる（RF/BB の切替待ち）。
+# 一方、切替が終わったあとは 2 秒前後あいて周期的な背景書き込みが 1 件だけ出る。
+# その間を切り分けるため 1.5 秒を境界にする。
+BURST_GAP_US = 1_500_000
 
 
 def burst(writes: list) -> list:
@@ -51,6 +53,9 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("dir")
     ap.add_argument("--out", default="rtl8812bu/tables")
+    ap.add_argument("--module", default="chan_table", help="出力モジュール名（拡張子なし）")
+    ap.add_argument("--var", default="CHANNELS", help="出力する辞書の名前")
+    ap.add_argument("--width", default="20", help="この表が対象とする帯域幅（表示用）")
     args = ap.parse_args()
 
     files = sorted(glob.glob(os.path.join(args.dir, "ch*.bin")),
@@ -68,16 +73,16 @@ def main() -> None:
         print(f"  ch{ch:<4d} {len(rows):4d} writes  (capture {len(recs)} records)")
 
     os.makedirs(args.out, exist_ok=True)
-    path = os.path.join(args.out, "chan_table.py")
+    path = os.path.join(args.out, args.module + ".py")
     with open(path, "w") as f:
         f.write('"""自動生成 — 手で編集しない（tools/gen_chan.py）。\n\n')
-        f.write("各チャネルへ切り替えたときに観測された書き込み列（基準チャネルからの遷移）。\n")
+        f.write(f"帯域幅 {args.width} MHz。各チャネルへ切り替えたときに観測された書き込み列。\n")
         f.write("観測元の SHA256（先頭 16 桁）:\n")
         for ch, d in sorted(digests.items()):
             f.write(f"  ch{ch}: {d}\n")
         f.write(f"生成: {time.strftime('%Y-%m-%d %H:%M:%S')}\n")
         f.write('"""\n\n')
-        f.write("CHANNELS = {\n")
+        f.write(f"{args.var} = {{\n")
         for ch, rows in sorted(table.items()):
             f.write(f"    {ch}: [  # {len(rows)} writes\n")
             for reg, width, val in rows:

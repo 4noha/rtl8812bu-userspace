@@ -174,6 +174,12 @@ def shutdown(chip, log=None) -> bool:
         for reg, width, value in monitor_seq.DOWN:
             chip.write(reg, value, width)
         log("[shutdown] モニタ停止の書き込みを再生しました")
+        # 受信を止めたあと USB をリセットしておく（放置時の固着を避けるため）
+        try:
+            chip.reset()
+            log("[shutdown] USB をリセットしました")
+        except Exception as exc:
+            log(f"[shutdown] USB リセットは失敗（{exc}）")
         return True
     except Exception as exc:      # 固着しているとここに来る
         log(f"[shutdown] 停止に失敗（{exc}）。抜き差しが必要かもしれません")

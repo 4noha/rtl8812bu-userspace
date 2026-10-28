@@ -94,6 +94,28 @@ python3 tools/gen_monitor.py /tmp/mon/down.bin /tmp/mon/up.bin --out rtl8812bu/t
 `gen_monitor.py` は「書き込みが連続している最大の区間」だけを表にする
 （その後 2 秒ごとに続く背景の書き込みは入れない）。
 
+## 3.6 帯域幅（40MHz）の捕捉
+
+幅ごとに別ディレクトリで取る。基準は 20MHz の ch36 に固定すると遷移元が揃う。
+
+```bash
+IF=wlan0
+mkdir -p /tmp/chan40
+for pair in "36 HT40+" "40 HT40-" "44 HT40+" "48 HT40-"; do
+  set -- $pair; ch=$1; w=$2
+  sudo iw dev $IF set channel 36 HT20; sleep 1
+  sudo python3 tools/umon.py /dev/usbmon1 /tmp/chan40/ch$ch.bin 5 &
+  sleep 0.5; sudo iw dev $IF set channel $ch $w; wait
+done
+```
+
+```bash
+python3 tools/gen_chan.py /tmp/chan40 --out rtl8812bu/tables \
+    --module chan_table40 --var CHANNELS_40 --width 40
+```
+
+中心周波数は 36/44 が HT40+（center 38 / 46）、40/48 が HT40-（center 38 / 46）。
+
 ## 4. RX のレイアウト確認（tcpdump と同時に取る）
 
 usbmon のバルク IN と、カーネルが解釈したフレームを突き合わせる。
