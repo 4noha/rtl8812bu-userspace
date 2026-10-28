@@ -18,11 +18,41 @@ import time
 from . import chan, fw, ieee80211, init, rx
 from .usb import Chip, ChipError
 
+# 40MHz は受信量が多く、モニタ停止時の後始末が重い。安全弁として滞在時間に上限を置く。
+SAFE_MAX_SECONDS_40 = 30.0
+
 DEFAULT_FW_PATHS = [
     os.environ.get("RTL8812BU_FW", ""),
     "/lib/firmware/rtw88/rtw8822b_fw.bin",
     "firmware/rtw8822b_fw.bin",
 ]
+
+
+def apply_safety_limit(width: str, secs: float, dwell: float, n_channels: int,
+                       max_secs: float = 0.0) -> tuple[float, float, str | None]:
+    """帯域幅に応じた安全弁。単発の秒数と巡回の滞在秒数を返す。
+
+    戻り値: (secs, dwell, 適用した上限の説明 or None)
+    上限は 40MHz のときだけ働く（--max-secs で明示指定もできる）。
+    """
+    cap = max_secs if max_secs and max_secs > 0 else (
+        SAFE_MAX_SECONDS_40 if str(width) == "40" else None
+    )
+    if cap is None:
+        return secs, dwell, None
+    clamped = False
+    if n_channels <= 1:
+        if secs <= 0 or secs > cap:
+            secs = cap
+            clamped = True
+    else:
+        cap_dwell = cap / max(1, n_channels)
+        if dwell > cap_dwell:
+            dwell = cap_dwell
+            clamped = True
+    note = (f"{width}MHz は合計 {cap:.0f} 秒で打ち切ります（--max-secs で変更可）"
+            if clamped else None)
+    return secs, dwell, note
 
 
 def _find_fw(explicit: str | None) -> str:
@@ -42,6 +72,8 @@ def main(argv: list[str] | None = None) -> int:
                     help="帯域幅（20 / 40MHz）")
     ap.add_argument("--channels", help="複数チャネルを巡回（例: 1,6,11,36,44,48,149,165）")
     ap.add_argument("--dwell", type=float, default=3.0, help="巡回時の 1 チャネルあたり秒数")
+    ap.add_argument("--max-secs", type=float, default=0.0,
+                    help="受信の上限秒数（0 で既定: 40MHz は 30 秒、20MHz は無制限）")
     ap.add_argument("--secs", type=float, default=10.0, help="受信時間（0 で Ctrl-C まで）")
     ap.add_argument("--jsonl", help="受信フレームを JSON Lines で保存")
     ap.add_argument("--list", action="store_true", help="利用可能なチャネルを表示")
@@ -56,6 +88,12 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     log = (lambda *_: None) if args.quiet else (lambda msg: print(msg, file=sys.stderr))
+
+    n_ch = len([c for c in (args.channels or "").split(",") if c.strip()]) or 1
+    secs, dwell, safety_note = apply_safety_limit(args.width, args.secs, args.dwell, n_ch,
+                                                 args.max_secs)
+    if safety_note:
+        print(f"[safety] {safety_note}", file=sys.stderr)
 
     fw_path = _find_fw(args.fw)
     try:
@@ -90,7 +128,7 @@ def main(argv: list[str] | None = None) -> int:
         receiver.start()
 
         t0 = time.time()
-        deadline = None if args.secs <= 0 else t0 + args.secs
+        deadline = None if secs <= 0 else t0 + secs
 
         def emit(frame: bytes, ch: int | None) -> None:
             info_f = ieee80211.parse(frame)
@@ -115,7 +153,7 @@ def main(argv: list[str] | None = None) -> int:
                 for ch in plan:
                     chan.set_channel(chip, ch, width=args.width, log=log)
                     stats = summary.setdefault(ch, {"frames": 0, "ssid": set()})
-                    end = time.time() + args.dwell
+                    end = time.time() + dwell
                     while time.time() < end:
                         try:
                             frame = receiver.queue.get(timeout=0.15)

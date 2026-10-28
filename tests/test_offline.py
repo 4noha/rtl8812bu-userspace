@@ -23,6 +23,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(HERE), "tools"))
 import usbmon            # noqa: E402
 import usbmon_bin        # noqa: E402
 from rtl8812bu import ieee80211, rx  # noqa: E402
+from rtl8812bu.monitor import apply_safety_limit  # noqa: E402
 from rtl8812bu.tables import (chan_table, chan_table40, fwdl_pages,  # noqa: E402
                               init_seq, monitor_seq)
 
@@ -178,6 +179,32 @@ def pages_start_at_zero(ops) -> bool:
     return True
 
 
+def test_safety_limit() -> None:
+    # 20MHz は無制限
+    secs, dwell, note = apply_safety_limit("20", 0, 3, 1)
+    check("安全弁: 20MHz は無制限", secs == 0 and note is None)
+    secs, dwell, note = apply_safety_limit("20", 999, 3, 4)
+    check("安全弁: 20MHz は秒数を変えない", secs == 999 and dwell == 3 and note is None)
+
+    # 40MHz は 30 秒上限
+    secs, dwell, note = apply_safety_limit("40", 0, 3, 1)
+    check("安全弁: 40MHz の無限指定は 30 秒", secs == 30 and note is not None)
+    secs, dwell, note = apply_safety_limit("40", 600, 3, 1)
+    check("安全弁: 40MHz の長い指定は 30 秒", secs == 30)
+    secs, dwell, note = apply_safety_limit("40", 5, 3, 1)
+    check("安全弁: 上限内はそのまま", secs == 5 and note is None)
+
+    # 巡回は合計で 30 秒
+    secs, dwell, note = apply_safety_limit("40", 0, 10, 4)
+    check("安全弁: 巡回は合計 30 秒に収まる", abs(dwell * 4 - 30) < 0.01)
+    secs, dwell, note = apply_safety_limit("40", 0, 2, 4)
+    check("安全弁: 巡回が上限内なら変えない", dwell == 2)
+
+    # 明示指定は優先
+    secs, dwell, note = apply_safety_limit("40", 0, 3, 1, max_secs=5)
+    check("安全弁: --max-secs が優先", secs == 5)
+
+
 def main() -> int:
     print("usbmon テキストパーサ")
     test_text_parser()
@@ -187,6 +214,8 @@ def main() -> int:
     test_rx_split()
     print("802.11 パーサ")
     test_ieee80211()
+    print("安全弁")
+    test_safety_limit()
     print("生成テーブル")
     test_tables()
 

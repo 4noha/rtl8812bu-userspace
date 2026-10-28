@@ -55,6 +55,9 @@ python3 -m rtl8812bu.monitor --fw ... --channels 1,6,11,36,44,48,149,165 --dwell
 python3 -m rtl8812bu.monitor --fw ... --ch 44 --width 40
 python3 -m rtl8812bu.monitor --fw ... --channels 36,44 --width 40 --dwell 6
 
+# 40MHz は安全弁で合計 30 秒に制限される（--max-secs で変更、0 で既定に戻る）
+python3 -m rtl8812bu.monitor --fw ... --ch 44 --width 40 --max-secs 10
+
 # 受信フレームを JSON Lines で保存（--jsonl は巡回にも使える）
 python3 -m rtl8812bu.monitor --fw ... --ch 36 --secs 0 --jsonl /tmp/frames.jsonl
 ```
@@ -118,6 +121,17 @@ python3 tests/test_offline.py
 
 実機も FW も不要です（合成データでパーサ・表の整合性を確認します）。
 実機の捕捉は同梱していません（他人のネットワークのフレームを含むため）。
+
+## 帯域幅と安全弁
+
+| 帯域幅 | チャネル | 受信量（ch44/10s 実測） | 既定の上限 |
+|---|---|---|---|
+| 20MHz（既定） | 1,6,11,36,40,44,48,149,165 | 680 フレーム | なし |
+| 40MHz | 36,40,44,48 | 1,779 フレーム | **合計 30 秒**（`--max-secs` で変更） |
+
+40MHz は受信量が約 2.6 倍で、モニタ停止時の後始末が重い（チップが固着した観測がある）。
+そのため 40MHz では受信時間に上限をかけている。上限に当たると
+`[safety] 40MHz は合計 30 秒で打ち切ります` と stderr に出る。
 
 ## 設計上の注意
 
