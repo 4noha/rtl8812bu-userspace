@@ -652,3 +652,36 @@ auth を 1/2 Mbps で送らせて受信できるかを見る案。**モニター
 - GPL 側: `restore_rx.py` → AP で TX 正常（C3 で beacon 195 件確認）
 - モニターは AP を認識して auth を送る（ただし AP が受信できない）
 - モニターが探索をやめると検証できないため、次回はモニター ON の時間帯に実施
+
+## 19. assoc 後は ADDBA Request が来る（2026-10-29 追加観測）
+
+2.4GHz のレート広告を実機相当（1,2,5.5,11 basic + 6,9,12,18）にしたところ、
+モニターは **auth → assoc まで成功**するようになった。その直後に観測されるのは
+EAPOL ではなく **Block Ack の ADDBA Request** である。
+
+観測したフレーム（モニター → AP、FCS を除く body）:
+
+```
+type=0 sub=13 len=37   body = 03 00 01 02 08 00 00 00 00
+                                    ^cat=3(BlockAck) ^action=0(ADDBA Req)
+                                       ^dialog=1  ^params=0x0802 ^timeout=0
+```
+
+- ADDBA Request に応答しないと、モニターは **最大 11 回再送** →
+  disassoc (`sub=10`) → deauth (`sub=12`) → 再スキャン、を繰り返す
+- ESP32-C3 で同時観測すると 55 秒間に action 1045 件 / auth 19 件。
+  この「action の再送嵐」が上記ループの実体
+- assoc 応答が rates IE だけ（HT IE 無し）だと beacon（HT あり）と不整合になる。
+  HT Cap(45)/HT Op(61)/ExtCap(127) を返すよう直した
+
+### 含意（エミュレータに必要なもの）
+
+1. **ADDBA Response を返す**（status=DECLINE でもよい。DECLINE なら BAck 生成は不要）
+2. assoc 応答の IE を beacon と揃える
+3. HT を広告しない選択肢（11g の AP として振る舞う）も用意しておくと切り分けが速い
+
+### 注意（観測環境）
+
+同一アダプタを 2 プロセスで開くと制御転送がタイムアウトし、
+**USB の抜き差しでしか復旧しない**状態になる（`0x0080` が読めなくなる）。
+初期化と AP 起動は排他して行うこと。
