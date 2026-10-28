@@ -21,11 +21,9 @@ from .usb import Chip, ChipError
 # 40MHz は受信量が多く、モニタ停止時の後始末が重い。安全弁として滞在時間に上限を置く。
 SAFE_MAX_SECONDS_40 = 30.0
 
-# 実測で「書いた直後からチップが無応答になる」箇所。
-# 0x0020 はハードが自分で 0xe5 にしている値を 0xed に上書きする書き込みで、
-# これを行った回だけ固着した（モニタ切替の 61 番目）。ビット 3 だけの違いなので
-# 省略しても致命的ではないと判断し、既定で避ける。
-RISKY_WRITES = frozenset({(0x0020, 0xED)})
+# モニタ切替の 0x0020 <- 0xed は実測で固着点だったが、省略すると受信が止まる
+# （RX に必要な時計設定）。よって既定では回避しない。調査記録は docs/status.md。
+RISKY_WRITES: frozenset = frozenset()
 
 DEFAULT_FW_PATHS = [
     os.environ.get("RTL8812BU_FW", ""),
@@ -87,8 +85,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--no-verify", action="store_true", help="FW 起動確認を省略")
     ap.add_argument("--write-delay-ms", type=float, default=0.0,
                     help="レジスタ書き込みの間隔（ms）。VM 観測では約 1.4ms 空いていた")
-    ap.add_argument("--full-init", action="store_true",
-                    help="FW が稼働中でも初期化をやり直す（既定は省略して高速路）")
+    ap.add_argument("--fast-start", action="store_true",
+                    help="FW 稼働中なら初期化を省略する（実験的。既定は毎回初期化）")
     ap.add_argument("--check-reads", action="store_true",
                     help="初期化中に観測値との読み出し照合を行う（診断用・転送が増える）")
     ap.add_argument("--quiet", action="store_true")
@@ -138,10 +136,10 @@ def main(argv: list[str] | None = None) -> int:
             log("[usb] リセット")
             chip.reset()
         fw_already_up = (pf["mcufw_ctrl"] & 0xC000) == 0xC000
-        if fw_already_up and not args.full_init:
+        if fw_already_up and args.fast_start:
             # FW が動いている個体に 2 回目のダウンロードを重ねると不安定になるため、
             # 初期化（probe+start）を省略してモニタ切替だけ行う。
-            log("[init] FW が稼働中のため初期化を省略（--full-init で強制）")
+            log("[init] FW が稼働中のため初期化を省略（--fast-start）")
             res = {"skipped": True}
         else:
             res = init.replay(chip, body, log=log, verify=not args.no_verify,
