@@ -25,6 +25,31 @@ from .tables import monitor_seq
 
 SEC_REG = 0x04E0   # 保護付き書き込みのミラー（観測: 書き込み先の現在値が入る）
 
+# 読むたびに値が変わる「ストリーム」のレジスタ。ポーリングしてはいけない。
+# 観測: 0x0030 は 1,025 回の読み出しで 1,024 種類の値（efuse の読み出し）。
+POLL_EXCLUDE = frozenset({0x0030})
+
+POLL_TIMEOUT_S = 0.050   # 期待値になるまで待つ上限
+POLL_INTERVAL_S = 0.002
+
+
+def poll_read(chip, reg: int, width: int, expected: int,
+              timeout_s: float = POLL_TIMEOUT_S) -> tuple[int, int, float]:
+    """期待値になるまで読む（ドライバの「状態ビットを待つ」動作の再現）。
+
+    戻り値: (最後の値, 試行回数, 待ち時間秒)
+    """
+    t0 = time.time()
+    tries = 0
+    while True:
+        tries += 1
+        got = chip.read(reg, width)
+        if got == expected:
+            return got, tries, time.time() - t0
+        if time.time() - t0 >= timeout_s:
+            return got, tries, time.time() - t0
+        time.sleep(POLL_INTERVAL_S)
+
 
 class GuardedWriter:
     """観測された書き込み列を、保護付き書き込み（RMW）を理解して再生する。
@@ -120,13 +145,16 @@ class ReadMismatch(InitError):
 def replay(chip, body: bytes, log=None, max_phase: int = 99,
            verify: bool = True, check_reads: bool = False,
            strict_reads: bool = False, max_reports: int = 12,
-           delay_s: float = 0.0) -> dict:
+           delay_s: float = 0.0, poll_reads: bool = True,
+           poll_timeout_s: float = POLL_TIMEOUT_S) -> dict:
     """観測された初期化列を順に再生する。"""
     log = log or (lambda *_: None)
     dl = fwmod.Downloader(chip, body, fwdl_pages.PAGES, log=log)
 
     t0 = time.time()
     writes = reads = pages = 0
+    waited_total = 0.0
+    poll_waits = 0
     mismatches: list[tuple[int, int, int, int]] = []
 
     gw = GuardedWriter(chip, log, delay_s=delay_s)
@@ -157,17 +185,23 @@ def replay(chip, body: bytes, log=None, max_phase: int = 99,
         elif kind == "r":
             _, _, reg, width, expected = op
             gw.note_read(reg, expected)      # 保護付き書き込みの判定に必要
-            if not check_reads:
+            if reg in POLL_EXCLUDE:
+                continue
+            if not poll_reads:
                 continue
             last = f"read reg=0x{reg:04x} ({width}B)"
             try:
-                got = chip.read(reg, width)
+                got, tries, waited = poll_read(chip, reg, width, expected,
+                                               poll_timeout_s)
             except Exception as exc:
                 raise InitError(
                     f"初期化の読み出し（{reads + 1} 回目、{last}）で失敗しました: {exc}\n"
                     "  USB を抜き差ししてから再実行してください。"
                 ) from exc
             reads += 1
+            waited_total += waited
+            if waited > 0.005:
+                poll_waits += 1
             if got != expected:
                 mismatches.append((reads, reg, expected, got))
                 if len(mismatches) <= max_reports:
@@ -197,6 +231,8 @@ def replay(chip, body: bytes, log=None, max_phase: int = 99,
     result = {
         "writes": writes,
         "reads": reads,
+        "poll_waits": poll_waits,
+        "waited_s": round(waited_total, 2),
         "read_mismatches": len(mismatches),
         "fw_pages": pages,
         "seconds": round(elapsed, 2),
@@ -221,7 +257,9 @@ def replay(chip, body: bytes, log=None, max_phase: int = 99,
 
 def replay_monitor(chip, body: bytes, log=None, check_reads: bool = False,
                    delay_s: float = 0.0, skip=frozenset(),
-                   settle_s: dict[int, float] | None = None) -> dict:
+                   settle_s: dict[int, float] | None = None,
+                   poll_reads: bool = True,
+                   poll_timeout_s: float = POLL_TIMEOUT_S) -> dict:
     """マネージド（up）からモニタモード（up）へ切り替える。
 
     観測: `ip link set down`（12 書き込み）→ `iw set type monitor`（USB 転送なし）
@@ -235,11 +273,23 @@ def replay_monitor(chip, body: bytes, log=None, check_reads: bool = False,
 
     writes = reads = pages = 0
     mismatches = 0
+    waited_total = 0.0
+    poll_waits = 0
     gw = GuardedWriter(chip, log, delay_s=delay_s, skip=skip, settle_s=settle_s)
     for op in monitor_seq.UP:
         kind = op[0]
         if kind == "r":
-            gw.note_read(op[1], op[3])
+            reg, width, expected = op[1], op[2], op[3]
+            gw.note_read(reg, expected)
+            if poll_reads and reg not in POLL_EXCLUDE:
+                got, tries, waited = poll_read(chip, reg, width, expected,
+                                               poll_timeout_s)
+                reads += 1
+                waited_total += waited
+                if waited > 0.005:
+                    poll_waits += 1
+                if got != expected:
+                    mismatches += 1
             continue
         if kind == "w":
             try:
@@ -275,7 +325,8 @@ def replay_monitor(chip, body: bytes, log=None, check_reads: bool = False,
     if not ready:
         raise InitError("モニタモード切替後に FW が起動していません。")
     return {"writes": writes, "reads": reads, "fw_pages": pages,
-            "read_mismatches": mismatches, "fw_ready": ready}
+            "read_mismatches": mismatches, "poll_waits": poll_waits,
+            "waited_s": round(waited_total, 2), "fw_ready": ready}
 
 
 def shutdown(chip, log=None) -> bool:

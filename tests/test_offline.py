@@ -23,7 +23,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(HERE), "tools"))
 import usbmon            # noqa: E402
 import usbmon_bin        # noqa: E402
 from rtl8812bu import ieee80211, rx  # noqa: E402
-from rtl8812bu.init import SEC_REG, GuardedWriter  # noqa: E402
+from rtl8812bu.init import SEC_REG, GuardedWriter, poll_read  # noqa: E402
 from rtl8812bu.monitor import apply_safety_limit  # noqa: E402
 from rtl8812bu.tables import (chan_table, chan_table40, fwdl_pages,  # noqa: E402
                               init_seq, monitor_seq)
@@ -194,6 +194,24 @@ class _FakeChip:
             self.regs[reg] = value
 
 
+def test_poll_read() -> None:
+    class C:
+        def __init__(self, seq):
+            self.seq = list(seq)
+            self.i = 0
+
+        def read(self, reg, width):
+            v = self.seq[min(self.i, len(self.seq) - 1)]
+            self.i += 1
+            return v
+
+    got, tries, _ = poll_read(C([0x00, 0x00, 0x78]), 0x0080, 2, 0x78, timeout_s=0.5)
+    check("ポーリング: 期待値まで待つ", got == 0x78 and tries == 3)
+
+    got, tries, waited = poll_read(C([0x00]), 0x0080, 2, 0x78, timeout_s=0.02)
+    check("ポーリング: 一致しなければ打ち切る", got == 0x00 and waited >= 0.015)
+
+
 def test_guarded_writer() -> None:
     # 実機の値が捕捉時と同じ → 捕捉どおりに書く（余計な操作なし）
     chip = _FakeChip({0x0020: 0xC0})
@@ -260,6 +278,8 @@ def main() -> int:
     test_rx_split()
     print("802.11 パーサ")
     test_ieee80211()
+    print("読み出しのポーリング")
+    test_poll_read()
     print("保護付き書き込み")
     test_guarded_writer()
     print("安全弁")
