@@ -375,3 +375,48 @@ verify: CR=0xeaeaeaea RCR=0xeaeaeaea RXFLTMAP0=0xeaea RXDMA_MODE=0xea ...
 2. `ap_wpa2.py` を単体で動かし、`verify: CR=` が正常（0xebefff 等）になるか確認
 3. 正常になったら、AP 開始時の EDCA 追加（`ap_wpa2.py` の TODO）を実装
 4. C3 で beacon を確認（`python3 tools/serial_sniff.py /dev/cu.usbmodem11201 15`）
+
+## 12. 突破（2026-10-28 深夜）: モニターが認証を送るところまで到達
+
+### 12-1. 送信が出なかった本当の原因
+
+前節までの「TX が死んでいる」は**誤診**だった。`ap_wpa2.py` / `ap_wps_full.py` は
+**自分で FW をダウンロードしない**（`mac_init` は FW 稼働中を前提）。
+ランチャーが先に `restore_rx.py` を実行していたため、単体起動では FW が無く、
+`MCUFW_CTRL=0x0001`（FW 未ロード）のまま初期化して `CR=0xEA` になっていた。
+
+**正しい手順**: `restore_rx.py` → `ap_wpa2.py` / `ap_wps_full.py`。
+この手順なら C3 で **beacon 221 件 / probe-resp 196 件** を確認（TX 正常）。
+
+### 12-2. モニターが認証を送るようになった
+
+決め手は **beacon/probe-resp の IE を実機準拠にしたこと**。
+
+| IE | 実機 | 修正前のこちら | 修正後 |
+|---|---|---|---|
+| Supported Rates | 8（CCK+OFDM） | 4（CCK のみ） | 8 |
+| HT Capabilities (45, 26B) | あり | **なし** | あり |
+| HT Operation (61, 22B) | あり | **なし** | あり |
+| Extended Capabilities (127) | あり | **なし** | あり |
+| P2P IE | **なし** | あり | なし |
+| WPS | あり | あり | あり |
+
+修正後、C3 が **モニター → 私たちの AP への auth（Open System, seq=1）を 8 件観測**。
+モニターは AP を認識し、接続を試みている。
+
+### 12-3. 残る問題
+
+AP 側のログには auth が現れない（`[MON]` は probe-req のみ 264 件）。
+＝ **AP がモニターの auth フレームを受信できていない**。
+
+考えられる原因:
+1. **2.4GHz の OFDM 受信**（probe は 1Mbps の CCK、auth はより高い OFDM レートの可能性）
+2. RX フィルタ／RX 集約の設定
+3. 送信中（beacon）と受信のタイミング競合
+
+### 12-4. 次の手順
+
+1. C3 のスニファに**レート表示**を追加し、auth が何 Mbps で送られているかを確認
+   （CCK なら原因は 2.4GHz OFDM 受信ではない）
+2. AP 側の RX 設定（フィルタ・集約）を Linux の捕捉と比較
+3. 受信できるようになれば auth-resp → assoc → WPS と進む
