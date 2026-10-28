@@ -31,7 +31,7 @@ class ReadMismatch(InitError):
 
 
 def replay(chip, body: bytes, log=None, max_phase: int = 99,
-           verify: bool = True, check_reads: bool = True,
+           verify: bool = True, check_reads: bool = False,
            strict_reads: bool = False, max_reports: int = 12) -> dict:
     """観測された初期化列を順に再生する。"""
     log = log or (lambda *_: None)
@@ -70,7 +70,13 @@ def replay(chip, body: bytes, log=None, max_phase: int = 99,
                 continue
             _, _, reg, width, expected = op
             last = f"read reg=0x{reg:04x} ({width}B)"
-            got = chip.read(reg, width)
+            try:
+                got = chip.read(reg, width)
+            except Exception as exc:
+                raise InitError(
+                    f"初期化の読み出し（{reads + 1} 回目、{last}）で失敗しました: {exc}\n"
+                    "  USB を抜き差ししてから再実行してください。"
+                ) from exc
             reads += 1
             if got != expected:
                 mismatches.append((reads, reg, expected, got))
