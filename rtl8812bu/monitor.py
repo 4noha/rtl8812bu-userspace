@@ -89,8 +89,8 @@ def main(argv: list[str] | None = None) -> int:
                     help="時計系レジスタ(0x0020)を書く前の待ち（ms）。既定 0（実験用）")
     ap.add_argument("--fast-start", action="store_true",
                     help="FW 稼働中なら初期化を省略する（実験的。既定は毎回初期化）")
-    ap.add_argument("--no-poll-reads", action="store_true",
-                    help="観測された読み出しのポーリングを行わない（既定は行う）")
+    ap.add_argument("--poll-reads", action="store_true",
+                    help="観測された読み出しを期待値まで待つ（実験用。既定 off）")
     ap.add_argument("--poll-timeout-ms", type=float, default=50.0,
                     help="読み出しが期待値になるまでの待ち上限（ms）")
     ap.add_argument("--check-reads", action="store_true",
@@ -151,7 +151,7 @@ def main(argv: list[str] | None = None) -> int:
             res = init.replay(chip, body, log=log, verify=not args.no_verify,
                               check_reads=args.check_reads,
                               delay_s=args.write_delay_ms / 1000.0,
-                              poll_reads=not args.no_poll_reads,
+                              poll_reads=args.poll_reads,
                               poll_timeout_s=args.poll_timeout_ms / 1000.0)
         log(f"[init] {res}")
 
@@ -159,7 +159,7 @@ def main(argv: list[str] | None = None) -> int:
         mon = init.replay_monitor(chip, body, log=log,
                                   delay_s=args.write_delay_ms / 1000.0,
                                   skip=RISKY_WRITES, settle_s=settle,
-                                  poll_reads=not args.no_poll_reads,
+                                  poll_reads=args.poll_reads,
                                   poll_timeout_s=args.poll_timeout_ms / 1000.0)
         log(f"[monitor] {mon}")
 
