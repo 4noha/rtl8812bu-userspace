@@ -33,12 +33,17 @@ def frames_from_line(line: str) -> dict | None:
     if not line or line.startswith("#"):
         return None
     parts = line.split()
-    if len(parts) != 3:
+    if len(parts) == 3:          # 旧形式: ch rssi hex
+        sig_mode = rate = None
+        hexpart = parts[2]
+    elif len(parts) == 5:        # 新形式: ch rssi sig_mode rate hex
+        sig_mode, rate, hexpart = int(parts[2]), int(parts[3], 16), parts[4]
+    else:
         return None
     try:
         ch = int(parts[0])
         rssi = int(parts[1])
-        raw = bytes.fromhex(parts[2])
+        raw = bytes.fromhex(hexpart)
     except ValueError:
         return None
     if len(raw) < 28:
@@ -47,6 +52,9 @@ def frames_from_line(line: str) -> dict | None:
     info = ieee80211.parse(frame)
     info["rx_ch"] = ch
     info["rssi"] = rssi
+    if sig_mode is not None:
+        info["sig_mode"] = sig_mode
+        info["rate"] = rate
     info["ts"] = time.time()
     return info
 

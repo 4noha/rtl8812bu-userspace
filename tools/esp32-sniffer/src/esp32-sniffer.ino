@@ -38,7 +38,11 @@ static void sniff_cb(void *buf, wifi_promiscuous_pkt_type_t type) {
   if (DROP_CONTROL && ftype == 1) return;
   if (ftype == 3) return;              // 拡張タイプは対象外
 
-  Serial.printf("%u %d ", (unsigned)p->rx_ctrl.channel, (int)p->rx_ctrl.rssi);
+  // ch rssi sig_mode rate hex...
+  //   sig_mode: 0 = 802.11b (CCK/DSSS), 1 = OFDM
+  //   rate    : PHY レート番号（OFDM は 0x0c=6M, 0x18=12M, 0x30=24M など）
+  Serial.printf("%u %d %u %02x ", (unsigned)p->rx_ctrl.channel, (int)p->rx_ctrl.rssi,
+                (unsigned)p->rx_ctrl.sig_mode, (unsigned)(p->rx_ctrl.rate & 0xFF));
   for (int i = 0; i < len; i++) Serial.printf("%02x", f[i]);
   Serial.println();
 }
