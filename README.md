@@ -20,7 +20,7 @@ USB バス上で観測した転送だけを入力として再構成していま�
 |---|---|---|
 | `rtl8812bu/tables/init_seq.py` | usbmon（Linux の rtw88 が動いている間の転送） | 5466 件の書き込み + 1611 件の期待読み出し値 |
 | `rtl8812bu/tables/fwdl_pages.py` | 同上（バルク OUT） | FW 転送 1 回分 ×2 のヘッダ 48 バイトとペイロード長 |
-| `rtl8812bu/tables/chan_table.py` | usbmon（モニタモードでチャネルを切り替えた捕捉） | 8 チャネル分の書き込み列 |
+| `rtl8812bu/tables/chan_table.py` | usbmon（モニタモードでチャネルを切り替えた捕捉） | 9 チャネル分の書き込み列 |
 | `rtl8812bu/tables/monitor_seq.py` | usbmon（down → monitor → up の捕捉） | モニタモード切替の書き込み列（FW 再ダウンロード含む） |
 
 生成器は `tools/` にあり、いずれも「観測 → 表」の機械変換だけを行います。
@@ -71,6 +71,7 @@ root が必要になります。
 | フレーム種別 | beacon 260 / qos-data 199 / cts 155 / ba 125 / rts 107 / data 91 / ack 58 / action 49 |
 | チャネル別 | ch11 352, ch48 323, ch1 243, ch36 92, ch44 61, ch6 27 |
 | 復元した SSID | TP-Link_2B0C, TP-Link_2B0C_MLO, IPC_331A, aterm-b45b20-a, Buffalo-G-0950-WPA3 ほか |
+| ch44 の再測定 | 10 秒で 93 ビーコン（`DIRECT-Kira-UN-TD8S`）。Linux ドライバと同等 → [`docs/ch44-investigation.md`](docs/ch44-investigation.md) |
 | ビーコンの IE チャネルと設定チャネルの一致 | **233 / 233**（チャネル表の妥当性確認） |
 | ユニーク BSSID | 12 |
 

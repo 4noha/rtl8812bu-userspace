@@ -144,7 +144,10 @@ def test_tables() -> None:
     check("表: モニタ切替の UP にも 1 回分の FW がある",
           sum(1 for o in monitor_seq.UP if o[0] == "fw") == len(pages) // 2)
 
-    check("表: チャネルが 8 個", len(chan_table.CHANNELS) == 8)
+    check("表: 2.4GHz と 5GHz の主要チャネルがある",
+          {1, 6, 11, 36, 44, 48, 149, 165} <= set(chan_table.CHANNELS))
+    check("表: モニターの設定候補 36/40/44/48 を網羅",
+          {36, 40, 44, 48} <= set(chan_table.CHANNELS))
     ok = True
     for ch, rows in chan_table.CHANNELS.items():
         for reg, width, value in rows:
