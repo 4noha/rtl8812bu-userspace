@@ -110,6 +110,14 @@ def main(argv: list[str] | None = None) -> int:
         print(f"エラー: {exc}", file=sys.stderr)
         return 3
     log(f"[usb] {chip.describe()}")
+    try:
+        pf = chip.preflight()
+    except ChipError as exc:
+        print(f"エラー: {exc}", file=sys.stderr)
+        chip.close()
+        return 4
+    log(f"[usb] preflight: MCUFW_CTRL=0x{pf['mcufw_ctrl']:08x} "
+        f"SYS_FUNC_EN=0x{pf['sys_func_en']:02x} SYS_CFG=0x{pf['sys_cfg']:02x}")
 
     out = open(args.jsonl, "w") if args.jsonl else None
     receiver = rx.Receiver(chip, log=log)

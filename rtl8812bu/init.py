@@ -41,6 +41,7 @@ def replay(chip, body: bytes, log=None, max_phase: int = 99,
     writes = reads = pages = 0
     mismatches: list[tuple[int, int, int, int]] = []
 
+    last = "開始前"
     for op in init_seq.OPS:
         kind, phase = op[0], op[1]
         if phase > max_phase:
@@ -52,15 +53,23 @@ def replay(chip, body: bytes, log=None, max_phase: int = 99,
 
         if kind == "w":
             _, _, reg, width, value = op
-            chip.write(reg, value, width)
+            last = f"reg=0x{reg:04x} <- 0x{value:0{2 * width}x} ({width}B)"
+            try:
+                chip.write(reg, value, width)
+            except Exception as exc:
+                raise InitError(
+                    f"初期化の {writes} 書き込み目で失敗しました（{last}）: {exc}\n"
+                    "  USB を抜き差ししてから再実行してください。"
+                ) from exc
             writes += 1
-            if writes % 1000 == 0:
+            if writes % 500 == 0:
                 log(f"[init] {writes} writes ({time.time() - t0:.1f}s)")
 
         elif kind == "r":
             if not check_reads:
                 continue
             _, _, reg, width, expected = op
+            last = f"read reg=0x{reg:04x} ({width}B)"
             got = chip.read(reg, width)
             reads += 1
             if got != expected:

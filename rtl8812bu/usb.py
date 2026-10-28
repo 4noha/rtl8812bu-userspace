@@ -64,6 +64,8 @@ class Chip:
                 f"インタフェースを取得できません（{exc}）。"
                 "他プロセスが掴んでいる場合は root 権限か再挿抜が必要です"
             ) from exc
+        # 挿した直後は電源投入シーケンスが落ち着くまで少し待つ
+        time.sleep(0.2)
 
     def reset(self) -> None:
         """USB ポートをリセットして既定状態に戻す。"""
@@ -107,6 +109,25 @@ class Chip:
                                    timeout=timeout_ms or self.timeout_ms))
 
     # ------------------------------------------------------------ 状態確認
+    def preflight(self) -> dict:
+        """長い初期化の前に、チップが応答するか確かめる。
+
+        読めない場合は「固着している」と判断して早く止める（途中まで書いて
+        放置すると復旧が面倒になるため）。
+        """
+        try:
+            info = {
+                "mcufw_ctrl": self.read(0x0080, 4),
+                "sys_func_en": self.read(0x0002, 1),
+                "sys_cfg": self.read(0x0000, 1),
+            }
+        except usb.core.USBError as exc:
+            raise ChipError(
+                f"チップが応答しません（{exc}）。\n"
+                "  初期化を始める前に止めました。USB を抜き差ししてから再実行してください。"
+            ) from exc
+        return info
+
     def fw_ready(self) -> bool:
         """MCUFW_CTRL（0x0080）の上位ビットで FW 起動完了を判定する。
 
