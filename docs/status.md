@@ -21,7 +21,7 @@
 |---|---|
 | 受信フレーム | 1,098（beacon 260 / qos-data 199 / cts 155 / ba 125 / rts 107 / data 91 / ack 58 / action 49） |
 | チャネル別 | ch11 352 / ch48 323 / ch1 243 / ch36 92 / ch44 61 / ch6 27 |
-| 復元 SSID | TP-Link_2B0C, TP-Link_2B0C_MLO, IPC_331A, aterm-b45b20-a, Buffalo-G-0950-WPA3 ほか |
+| 復元 SSID | 近隣AP-B, 近隣AP-B(MLO), 近隣AP-D, 近隣AP-A(5G), 近隣AP-C ほか |
 | ユニーク BSSID | 12 |
 
 ログは `--jsonl` で全フィールド（IE、DS/FromDS、seq、protected 等）が取れる。

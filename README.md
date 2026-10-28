@@ -78,9 +78,9 @@ root が必要になります。
 |---|---|
 | フレーム種別 | beacon 260 / qos-data 199 / cts 155 / ba 125 / rts 107 / data 91 / ack 58 / action 49 |
 | チャネル別 | ch11 352, ch48 323, ch1 243, ch36 92, ch44 61, ch6 27 |
-| 復元した SSID | TP-Link_2B0C, TP-Link_2B0C_MLO, IPC_331A, aterm-b45b20-a, Buffalo-G-0950-WPA3 ほか |
-| ch44 の再測定 | 10 秒で 93 ビーコン（`DIRECT-Kira-UN-TD8S`）。Linux ドライバと同等 → [`docs/ch44-investigation.md`](docs/ch44-investigation.md) |
-| **40MHz（倍速）** | ch44/40MHz で 10 秒 1,779 フレーム・beacon 266（DIRECT-Kira 87 + ch48 側 TP-Link 113）。center 46 で 44+48 をカバーできている |
+| 復元した SSID | 近隣AP-B, 近隣AP-B(MLO), 近隣AP-D, 近隣AP-A(5G), 近隣AP-C ほか |
+| ch44 の再測定 | 10 秒で 93 ビーコン（`チューナーAP(SSID非公開)`）。Linux ドライバと同等 → [`docs/ch44-investigation.md`](docs/ch44-investigation.md) |
+| **40MHz（倍速）** | ch44/40MHz で 10 秒 1,779 フレーム・beacon 266（チューナーAP 87 + ch48 側の近隣AP 113）。center 46 で 44+48 をカバーできている |
 | ビーコンの IE チャネルと設定チャネルの一致 | **233 / 233**（チャネル表の妥当性確認） |
 | ユニーク BSSID | 12 |
 
