@@ -340,3 +340,38 @@ EDCA の ECWmin/ECWmax/AIFS が無いと MAC がバックオフできず、送�
    EDCA 4 本と 0x0420 を追加
 2. C3 で beacon が出るか確認（`python3 tools/serial_sniff.py /dev/cu.usbmodem11201 15`）
 3. 出れば probe-resp テンプレート（156B/150B）の投入も検討
+
+## 11. 現在の状態（2026-10-28 深夜・引き継ぎ）
+
+### デバイスは健全
+
+同じ個体でクリーンルーム実装（`rtl8812bu.monitor`）は動作する（8 秒で 254 フレーム）。
+USB の読み書きも正常（`preflight` が通り、初期化・受信できる）。
+
+### 送信側（GPL スタック）の初期化が失敗している
+
+`ap_wpa2.py` / `ap_wps_full.py` の初期化で、`mac_init` 直後の検証が
+
+```
+verify: CR=0xeaeaeaea RCR=0xeaeaeaea RXFLTMAP0=0xeaea RXDMA_MODE=0xea ...
+```
+
+＝ 全レジスタが 0xEA を返す（チップが停止状態）。
+本日 15:5x 時点では `CR=0xebefff` で成功していたため、**その後のどこかで
+初期化が通らなくなった**。N=1 の切り分けでは、初期化コード自体は未変更
+（EDCA の追加は巻き戻し済み・未検証 TODO として残置）。
+
+### 疑うべき順
+
+1. **チップの履歴依存**（FW 稼働中／冷えた状態での初期化の違い）。
+   クリーンルーム側でも「FW 稼働中の再初期化は不安定」を確認している。
+2. `mac_init_bu.py` の初期化順序の前提が、現在のチップ状態と噛み合っていない。
+3. ハードの劣化（今日は数百回の初期化と数回の固着を繰り返した）。
+   → クリーンルームが通るので、まず 1〜2 を疑うのが妥当。
+
+### 再開時の手順
+
+1. 抜き差し（冷えた状態 0x00600001 にする）
+2. `ap_wpa2.py` を単体で動かし、`verify: CR=` が正常（0xebefff 等）になるか確認
+3. 正常になったら、AP 開始時の EDCA 追加（`ap_wpa2.py` の TODO）を実装
+4. C3 で beacon を確認（`python3 tools/serial_sniff.py /dev/cu.usbmodem11201 15`）
