@@ -109,6 +109,7 @@ tests/
 docs/
   provenance.md  由来の記録
   ch44-investigation.md  ch44 の受信が少ない件の調査
+  monitor-search-behaviour.md モニター（クライアント）の探索挙動（WPS Enrollee）
   status.md      現状とブロッカー、次の手順
   capture.md     捕捉の取り方（Linux / root Android）
 ```
