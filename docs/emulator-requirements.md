@@ -118,65 +118,44 @@ AP 側はプローブ応答を送る実装だが、モニターが次の段階�
 「AP のビーコン/プローブ応答が正しく出ているか」を直接確認できる。
 1 台の場合は、AP 側に送信フレームのダンプを仕込むのが最短。
 
-## 6. 実機の WPS IE と、こちらの差分（2026-10-28 追加調査）
+## 6. 実機の WPS IE（7,266 個を集計して確定）
 
-実機チューナーの捕捉（過去に取得済みの pcap）から WPS IE を採取し、
-送信側の実装が生成する IE と比べた。**属性の長さが仕様と違う箇所**が見つかった。
+実機チューナーの捕捉から WPS IE を全数集計した結果。**フレーム種別ごとに構成が違う。**
 
-### 実機ビーコンの WPS IE（24 バイト）
+### WPS 属性の正しい意味（重要な訂正）
 
-| 属性 | 長さ | 値 |
+| 属性 | 意味 | 長さ |
 |---|---|---|
-| 0x104a Version | 1 | `10` |
-| 0x1044 WPS State | **1** | `02`（configured） |
-| 0x1049 Vendor Ext | 6 | `00372a` `000120`（WFA OUI + 版） |
+| 0x1044 | **WPS State** | **1** |
+| 0x103B | **RF Bands**（0x01=2.4G / 0x02=5G / 0x03=両方） | **1** |
+| 0x103C | **Response Type**（0x03=AP） | 1 |
+| 0x1008 | Config Methods | 2 |
+| 0x1041 | Selected Registrar | 1 |
+| 0x1012 | Device Password ID（0x0004=PushButton） | 2 |
 
-### 実機ビーコンの WPS IE（49 バイト・Selected Registrar 有効時）
+（以前この文書で 0x103B を「Response Type」と書いていたのは誤り。実機の probe-resp に
+入っているのは RF Bands で、Response Type はビーコンの一形態にのみ現れる。）
 
-| 属性 | 長さ | 値 |
+### 実機の構成（出現数つき）
+
+| フレーム | 属性数 | 構成 | 出現 |
+|---|---:|---|---:|
+| ビーコン（基本） | 3 | Version, State, VendorExt(6) | 6,209 |
+| ビーコン（PBC 待ち） | 6 | + SelReg, DevPwdID=0004, 0x1053 | 935 |
+| ビーコン（別形態） | 4 | Version, State, **ResponseType=03**, VendorExt | 84 |
+| probe-resp（基本） | 12 | Version, State, **RFBands=03**, UUID-E, Manufacturer=`Panasonic`, Model=`UN-TD8S`, ModelNo=`0`, Serial=`0`, UUID-R, DeviceName=`UN-TD8S`, ConfigMethods=2108, VendorExt | 23 |
+| probe-resp（PBC 待ち） | 15 | 上記 + SelReg, DevPwdID=0004, 0x1053 | 15 |
+
+UUID-E（0x1047）は機器固有のため**公開しない**。AP は自分自身の固定値を持てばよい。
+
+### 送信側で見つかった不具合（2026-10-28 修正）
+
+| ファイル | 不具合 | 状態 |
 |---|---|---|
-| 0x104a Version | 1 | `10` |
-| 0x1044 WPS State | 1 | `02` |
-| 0x1041 Selected Registrar | 1 | `01` |
-| 0x1012 Device Password ID | 2 | `0004`（**PushButton**） |
-| 0x1053 | 2 | `2788` |
-| 0x1049 Vendor Ext | 14 | `00372a` `0001200106ffffffffffff` |
+| `ap_wps_full.py` | `0x1044` と `0x103B` を **2 バイト**で送っていた（仕様は 1 バイト）。Config Methods / Model No / Serial / UUID-R / Vendor Ext も欠落 | 修正済み |
+| `ap_p2p.py` | 同じ 2 バイト誤り | 修正済み |
+| `ap_wps_monitor.py` | 同じ 2 バイト誤り | 修正済み |
+| `ap_wps_full.py` の UUID-E | モニターの UUID を流用していた（役割が逆） | AP 自身の固定値に変更 |
 
-### 実機の probe-resp の WPS IE（112 / 137 バイト）
-
-| 属性 | 長さ | 値 |
-|---|---|---|
-| 0x104a Version | 1 | `10` |
-| 0x1044 WPS State | 1 | `02` |
-| 0x103b Response Type | **1** | **`03`（AP）** |
-| 0x1047 UUID-E | 16 | （機器固有。**公開しない**。任意の値でよい） |
-| 0x1021 Manufacturer | 9 | `Panasonic` |
-| 0x1023 Model | 7 | `UN-TD8S` |
-| 0x1024 Model Number | 1 | `30`（"0"） |
-| 0x1042 Serial Number | 1 | `30` |
-| 0x1054 UUID-R | 8 | `00080050f2040002` |
-| 0x1011 Device Name | 7 | `UN-TD8S` |
-| 0x1008 **Config Methods** | 2 | **`2108`** |
-| 0x1049 Vendor Ext | 6 / 14 | `00372a000120`（+ `0106ffffffffffff`） |
-
-137 バイト版は、これに `0x1041 Selected Registrar=01`、`0x1012 Device Password ID=0004`、
-`0x1053=2788` が加わる（＝PBC 待ち受け中）。
-
-### こちらの AP との差分（そのままでは通らない可能性が高い）
-
-| 項目 | 実機 | こちら | 影響 |
-|---|---|---|---|
-| 0x1044 WPS State の長さ | **1** | **2**（`0002`） | 属性長が仕様違反。厳密な実装は弾く |
-| 0x103b Response Type | **1**（`03`=AP） | **2**（`0001`） | 同上。値も AP ではない |
-| 0x1008 Config Methods | あり（`2108`） | **無し** | PBC の申告が欠落 |
-| 0x1024 / 0x1042 / 0x1054 | あり | **無し** | 端末情報が欠落 |
-| 0x1049 Vendor Ext | あり | **無し** | WPS の版情報が欠落 |
-| UUID-E | 実機固有 | **モニターの UUID を流用** | 役割が逆（AP は自分自身の UUID を持つべき） |
-
-### 修正方針（送信側）
-
-1. `0x1044` は **長さ 1・値 `02`**、`0x103b` は **長さ 1・値 `03`** にする（最優先）
-2. `0x1008 = 2108`、`0x1024 = "0"`、`0x1042 = "0"`、`0x1054 = 00080050f2040002`、
-   `0x1049 = 00372a000120` を追加
-3. UUID-E は AP 自身の固定値（16 バイト）を用意する（モニターの値を流用しない）
-4. ビーコンは 24 バイト版、probe-resp は 112 バイト版を基本にする
+属性長が 1 バイト違うと、以降の属性がすべてずれて IE 全体が不正になる。
+「プローブには応答するが認証に来ない」挙動と整合する。
