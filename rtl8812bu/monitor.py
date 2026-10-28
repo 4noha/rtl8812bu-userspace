@@ -79,6 +79,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--list", action="store_true", help="利用可能なチャネルを表示")
     ap.add_argument("--no-reset", action="store_true", help="USB リセットを省略")
     ap.add_argument("--no-verify", action="store_true", help="FW 起動確認を省略")
+    ap.add_argument("--full-init", action="store_true",
+                    help="FW が稼働中でも初期化をやり直す（既定は省略して高速路）")
     ap.add_argument("--check-reads", action="store_true",
                     help="初期化中に観測値との読み出し照合を行う（診断用・転送が増える）")
     ap.add_argument("--quiet", action="store_true")
@@ -127,8 +129,15 @@ def main(argv: list[str] | None = None) -> int:
         if not args.no_reset:
             log("[usb] リセット")
             chip.reset()
-        res = init.replay(chip, body, log=log, verify=not args.no_verify,
-                          check_reads=args.check_reads)
+        fw_already_up = (pf["mcufw_ctrl"] & 0xC000) == 0xC000
+        if fw_already_up and not args.full_init:
+            # FW が動いている個体に 2 回目のダウンロードを重ねると不安定になるため、
+            # 初期化（probe+start）を省略してモニタ切替だけ行う。
+            log("[init] FW が稼働中のため初期化を省略（--full-init で強制）")
+            res = {"skipped": True}
+        else:
+            res = init.replay(chip, body, log=log, verify=not args.no_verify,
+                              check_reads=args.check_reads)
         log(f"[init] {res}")
 
         mon = init.replay_monitor(chip, body, log=log)

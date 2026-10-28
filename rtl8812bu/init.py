@@ -146,7 +146,14 @@ def replay_monitor(chip, body: bytes, log=None, check_reads: bool = False) -> di
     for op in monitor_seq.UP:
         kind = op[0]
         if kind == "w":
-            chip.write(op[1], op[3], op[2])
+            try:
+                chip.write(op[1], op[3], op[2])
+            except Exception as exc:
+                raise InitError(
+                    f"モニタ切替の {writes} 書き込み目で失敗しました"
+                    f"（reg=0x{op[1]:04x} <- 0x{op[3]:0{2 * op[2]}x}）: {exc}\n"
+                    "  USB を抜き差ししてから再実行してください。"
+                ) from exc
             writes += 1
         elif kind == "r":
             if not check_reads:
