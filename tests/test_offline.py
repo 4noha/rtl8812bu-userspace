@@ -23,6 +23,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(HERE), "tools"))
 import usbmon            # noqa: E402
 import usbmon_bin        # noqa: E402
 from rtl8812bu import ieee80211, rx  # noqa: E402
+from rtl8812bu.init import SEC_REG, GuardedWriter  # noqa: E402
 from rtl8812bu.monitor import apply_safety_limit  # noqa: E402
 from rtl8812bu.tables import (chan_table, chan_table40, fwdl_pages,  # noqa: E402
                               init_seq, monitor_seq)
@@ -179,6 +180,51 @@ def pages_start_at_zero(ops) -> bool:
     return True
 
 
+class _FakeChip:
+    def __init__(self, regs):
+        self.regs = dict(regs)
+        self.log = []
+
+    def read(self, reg, width):
+        return self.regs.get(reg, 0)
+
+    def write(self, reg, value, width):
+        self.log.append((reg, width, value))
+        if reg != SEC_REG:
+            self.regs[reg] = value
+
+
+def test_guarded_writer() -> None:
+    # 実機の値が捕捉時と同じ → 捕捉どおりに書く（余計な操作なし）
+    chip = _FakeChip({0x0020: 0xC0})
+    gw = GuardedWriter(chip)
+    gw.note_read(0x0020, 0xC0)
+    gw.write(SEC_REG, 1, 0xC0)
+    gw.write(0x0020, 1, 0xE5)
+    gw.write(SEC_REG, 1, 0xE5)
+    check("保護付き書き込み: 一致時はそのまま", gw.adapted == 0 and len(chip.log) == 3)
+
+    # 実機の値が違う → 現在値でミラーを合わせ、差分だけ適用
+    chip = _FakeChip({0x0020: 0xC4})
+    gw = GuardedWriter(chip)
+    gw.note_read(0x0020, 0xC0)
+    gw.write(SEC_REG, 1, 0xC0)
+    gw.write(0x0020, 1, 0xE5)
+    gw.write(SEC_REG, 1, 0xE5)
+    check("保護付き書き込み: 不一致時は現状に合わせる", gw.adapted == 1)
+    check("保護付き書き込み: ミラーに実機値を書く", chip.log[1] == (SEC_REG, 1, 0xC4),
+          f"{chip.log}")
+    check("保護付き書き込み: 変わったビットだけ反映", chip.regs[0x0020] == 0xE5,
+          f"got {chip.regs[0x0020]:#x}")
+
+    # 保護でない 0x4e0 書き込み（キー列）は素通し
+    chip = _FakeChip({})
+    gw = GuardedWriter(chip)
+    gw.write(SEC_REG, 1, 0x35)
+    gw.write(0x001C, 1, 0x00)
+    check("保護でない 0x4e0 書き込みは素通し", gw.adapted == 0 and len(chip.log) == 2)
+
+
 def test_safety_limit() -> None:
     # 20MHz は無制限
     secs, dwell, note = apply_safety_limit("20", 0, 3, 1)
@@ -214,6 +260,8 @@ def main() -> int:
     test_rx_split()
     print("802.11 パーサ")
     test_ieee80211()
+    print("保護付き書き込み")
+    test_guarded_writer()
     print("安全弁")
     test_safety_limit()
     print("生成テーブル")

@@ -22,6 +22,69 @@ from .tables import init_seq
 from .tables import monitor_seq
 
 
+
+SEC_REG = 0x04E0   # 保護付き書き込みのミラー（観測: 書き込み先の現在値が入る）
+
+
+class GuardedWriter:
+    """観測された書き込み列を、保護付き書き込み（RMW）を理解して再生する。
+
+    観測されたパターン:
+
+        R  <reg>        -> old          （現在値を読む）
+        W  0x04e0       <- old          （「今の値はこれ」とチップに伝える）
+        W  <reg>        <- new          （新しい値）
+        W  0x04e0       <- new          （ミラーを更新）
+
+    この「old」は捕捉した瞬間の値なので、実機の状態が違うと噛み合わず、
+    チップが無応答になる（0x04e0 経由の書き込みがタイムアウトする）。
+    ここでは書き込み直前に現在値を読み、違っていれば差分だけを適用する。
+    """
+
+    def __init__(self, chip, log=None):
+        self.chip = chip
+        self.log = log or (lambda *_: None)
+        self.last_read: dict[int, int] = {}
+        self.pending: tuple[int, int] | None = None      # (value, width)
+        self.last_target: tuple[int, int, int] | None = None  # (captured_new, width, actual)
+        self.adapted = 0
+
+    def note_read(self, reg: int, value: int) -> None:
+        self.last_read[reg] = value
+
+    def write(self, reg: int, width: int, value: int) -> None:
+        if reg == SEC_REG:
+            if (self.last_target and self.last_target[0] == value
+                    and self.last_target[1] == width):
+                self.chip.write(reg, self.last_target[2], width)
+            else:
+                self.chip.write(reg, value, width)
+            self.pending = (value, width)
+            self.last_target = None
+            return
+
+        if (self.pending and self.pending[1] == width
+                and self.last_read.get(reg) == self.pending[0]):
+            old = self.pending[0]
+            live = self.chip.read(reg, width)
+            if live != old:
+                diff = old ^ value
+                target = (live & ~diff) | (value & diff)
+                self.chip.write(SEC_REG, live, width)
+                self.chip.write(reg, target, width)
+                self.last_target = (value, width, target)
+                self.pending = None
+                self.adapted += 1
+                self.log(f"[init] 保護付き書き込みを現状に合わせました "
+                         f"reg=0x{reg:04x} 捕捉時=0x{old:0{2 * width}x} "
+                         f"実機=0x{live:0{2 * width}x} -> 0x{target:0{2 * width}x}")
+                return
+
+        self.chip.write(reg, value, width)
+        self.pending = None
+        self.last_target = None
+
+
 class InitError(RuntimeError):
     pass
 
@@ -41,6 +104,7 @@ def replay(chip, body: bytes, log=None, max_phase: int = 99,
     writes = reads = pages = 0
     mismatches: list[tuple[int, int, int, int]] = []
 
+    gw = GuardedWriter(chip, log)
     last = "開始前"
     for op in init_seq.OPS:
         kind, phase = op[0], op[1]
@@ -55,7 +119,7 @@ def replay(chip, body: bytes, log=None, max_phase: int = 99,
             _, _, reg, width, value = op
             last = f"reg=0x{reg:04x} <- 0x{value:0{2 * width}x} ({width}B)"
             try:
-                chip.write(reg, value, width)
+                gw.write(reg, width, value)
             except Exception as exc:
                 raise InitError(
                     f"初期化の {writes} 書き込み目で失敗しました（{last}）: {exc}\n"
@@ -66,9 +130,10 @@ def replay(chip, body: bytes, log=None, max_phase: int = 99,
                 log(f"[init] {writes} writes ({time.time() - t0:.1f}s)")
 
         elif kind == "r":
+            _, _, reg, width, expected = op
+            gw.note_read(reg, expected)      # 保護付き書き込みの判定に必要
             if not check_reads:
                 continue
-            _, _, reg, width, expected = op
             last = f"read reg=0x{reg:04x} ({width}B)"
             try:
                 got = chip.read(reg, width)
@@ -143,11 +208,15 @@ def replay_monitor(chip, body: bytes, log=None, check_reads: bool = False) -> di
 
     writes = reads = pages = 0
     mismatches = 0
+    gw = GuardedWriter(chip, log)
     for op in monitor_seq.UP:
         kind = op[0]
+        if kind == "r":
+            gw.note_read(op[1], op[3])
+            continue
         if kind == "w":
             try:
-                chip.write(op[1], op[3], op[2])
+                gw.write(op[1], op[2], op[3])
             except Exception as exc:
                 raise InitError(
                     f"モニタ切替の {writes} 書き込み目で失敗しました"
@@ -155,7 +224,7 @@ def replay_monitor(chip, body: bytes, log=None, check_reads: bool = False) -> di
                     "  USB を抜き差ししてから再実行してください。"
                 ) from exc
             writes += 1
-        elif kind == "r":
+        elif False:
             if not check_reads:
                 continue
             got = chip.read(op[1], op[2])
