@@ -329,7 +329,7 @@ def replay_monitor(chip, body: bytes, log=None, check_reads: bool = False,
             "waited_s": round(waited_total, 2), "fw_ready": ready}
 
 
-def shutdown(chip, log=None) -> bool:
+def shutdown(chip, log=None, usb_reset: bool = False) -> bool:
     """チップを安全な状態（モニタ停止相当）に戻す。
 
     観測: `ip link set down` は 12 個の書き込みで、受信と DMA を止める。
@@ -343,12 +343,22 @@ def shutdown(chip, log=None) -> bool:
         for reg, width, value in monitor_seq.DOWN:
             chip.write(reg, value, width)
         log("[shutdown] モニタ停止の書き込みを再生しました")
-        # 受信を止めたあと USB をリセットしておく（放置時の固着を避けるため）
+        # 書き込みが通るかを実際に確認する（読み出しだけでは判断できない）
         try:
-            chip.reset()
-            log("[shutdown] USB をリセットしました")
+            cur = chip.read(0x0005, 1)
+            chip.write(0x0005, cur, 1)
+            log(f"[shutdown] 書き込み確認 OK (0x0005 <- 0x{cur:02x})")
         except Exception as exc:
-            log(f"[shutdown] USB リセットは失敗（{exc}）")
+            log(f"[shutdown] 書き込み確認で失敗（{exc}）")
+            return False
+        # USB リセットは既定で行わない。リセット後に書き込みが
+        # タイムアウトする状態になることを実測したため（--shutdown-reset で有効化）。
+        if usb_reset:
+            try:
+                chip.reset()
+                log("[shutdown] USB をリセットしました")
+            except Exception as exc:
+                log(f"[shutdown] USB リセットは失敗（{exc}）")
         return True
     except Exception as exc:      # 固着しているとここに来る
         log(f"[shutdown] 停止に失敗（{exc}）。抜き差しが必要かもしれません")

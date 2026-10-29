@@ -23,6 +23,8 @@ SAFE_MAX_SECONDS_40 = 30.0
 
 # モニタ切替の 0x0020 <- 0xed は実測で固着点だったが、省略すると受信が止まる
 # （RX に必要な時計設定）。よって既定では回避しない。調査記録は docs/status.md。
+STATE_FILE = "/tmp/rtl8812bu.monitor.state"   # モニタ設定済みの目印
+
 RISKY_WRITES: frozenset = frozenset()
 
 DEFAULT_FW_PATHS = [
@@ -82,11 +84,17 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--jsonl", help="受信フレームを JSON Lines で保存")
     ap.add_argument("--list", action="store_true", help="利用可能なチャネルを表示")
     ap.add_argument("--no-reset", action="store_true", help="USB リセットを省略")
+    ap.add_argument("--shutdown", action="store_true",
+                    help="終了時にモニタを停止する（既定はモニタのまま維持）")
+    ap.add_argument("--shutdown-reset", action="store_true",
+                    help="終了時に USB リセットする（既定はしない）")
     ap.add_argument("--no-verify", action="store_true", help="FW 起動確認を省略")
     ap.add_argument("--write-delay-ms", type=float, default=0.0,
                     help="レジスタ書き込みの間隔（ms）。VM 観測では約 1.4ms 空いていた")
     ap.add_argument("--settle-ms", type=float, default=0.0,
                     help="時計系レジスタ(0x0020)を書く前の待ち（ms）。既定 0（実験用）")
+    ap.add_argument("--no-fast-start", action="store_true",
+                    help="FW 稼働中でも初期化をやり直す（既定は自動で省略）")
     ap.add_argument("--fast-start", action="store_true",
                     help="FW 稼働中なら初期化を省略する（実験的。既定は毎回初期化）")
     ap.add_argument("--poll-reads", action="store_true",
@@ -141,8 +149,24 @@ def main(argv: list[str] | None = None) -> int:
         if not args.no_reset:
             log("[usb] リセット")
             chip.reset()
+        cold = (pf["mcufw_ctrl"] & 0xFFFF0000) == 0x00600000 and (pf["mcufw_ctrl"] & 0xFFFF) == 0x0001
         fw_already_up = (pf["mcufw_ctrl"] & 0xC000) == 0xC000
-        if fw_already_up and args.fast_start:
+        # 既定: FW が稼働中なら初期化（FW 再ダウンロード）を省略する。
+        # 温まった個体に 2 回目のダウンロードを重ねると、途中の書き込みが
+        # タイムアウトして USB 抜き差しが必要になる（実測）。
+        # 2 回目以降にモニタ切替をやり直すと、書き込みがタイムアウトして
+        # USB 抜き差しが必要になる（実測）。状態ファイルで「設定済み」を覚えておき、
+        # 抜き差し（= MCUFW_CTRL が cold 値）で無効化する。
+        state_ok = False
+        try:
+            state = json.load(open(STATE_FILE))
+            state_ok = bool(state.get("monitor")) and not cold
+        except Exception:
+            state_ok = False
+        if state_ok:
+            log("[init] モニタモード設定済み（前回の状態を引き継ぎ、切替を省略）")
+            res = {"skipped": "monitor-already"}
+        elif fw_already_up and not args.no_fast_start:
             # FW が動いている個体に 2 回目のダウンロードを重ねると不安定になるため、
             # 初期化（probe+start）を省略してモニタ切替だけ行う。
             log("[init] FW が稼働中のため初期化を省略（--fast-start）")
@@ -156,12 +180,19 @@ def main(argv: list[str] | None = None) -> int:
         log(f"[init] {res}")
 
         settle = {0x0020: args.settle_ms / 1000.0} if args.settle_ms > 0 else {}
-        mon = init.replay_monitor(chip, body, log=log,
-                                  delay_s=args.write_delay_ms / 1000.0,
-                                  skip=RISKY_WRITES, settle_s=settle,
-                                  poll_reads=args.poll_reads,
-                                  poll_timeout_s=args.poll_timeout_ms / 1000.0)
+        if state_ok:
+            mon = {"skipped": "monitor-already"}
+        else:
+            mon = init.replay_monitor(chip, body, log=log,
+                                      delay_s=args.write_delay_ms / 1000.0,
+                                      skip=RISKY_WRITES, settle_s=settle,
+                                      poll_reads=args.poll_reads,
+                                      poll_timeout_s=args.poll_timeout_ms / 1000.0)
         log(f"[monitor] {mon}")
+        try:
+            json.dump({"monitor": True}, open(STATE_FILE, "w"))
+        except Exception:
+            pass
 
         if not args.channels:
             chan.set_channel(chip, args.ch, width=args.width, log=log)
@@ -220,7 +251,15 @@ def main(argv: list[str] | None = None) -> int:
             pass
     finally:
         receiver.stop()
-        init.shutdown(chip, log=log)   # モニタのまま放置すると固着することがある
+        # 既定では USB リセットしない（リセット後に書き込み不能になるため）
+        if args.shutdown:
+            # 停止すると次の実行で切替をやり直すことになり固まりやすいので、
+            # 既定ではモニタのまま維持する（状態ファイルも残す）。
+            init.shutdown(chip, log=log, usb_reset=args.shutdown_reset)
+            try:
+                os.unlink(STATE_FILE)
+            except Exception:
+                pass
         if out:
             out.close()
         chip.close()

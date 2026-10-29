@@ -55,13 +55,14 @@ void setup() {
   delay(100);
 
   wifi_promiscuous_filter_t filt;
-  filt.filter_mask = WIFI_PROMIS_FILTER_MASK_MGMT;
+  // 管理 + データ（EAPOL はデータフレームなので DATA 必須）
+  filt.filter_mask = WIFI_PROMIS_FILTER_MASK_MGMT | WIFI_PROMIS_FILTER_MASK_DATA;
   esp_wifi_set_promiscuous_filter(&filt);
   esp_wifi_set_promiscuous_rx_cb(&sniff_cb);
   esp_wifi_set_channel(CHANNEL, WIFI_SECOND_CHAN_NONE);
   esp_wifi_set_promiscuous(true);
 
-  Serial.printf("# ready ch=%u (mgmt only)\n", CHANNEL);
+  Serial.printf("# ready ch=%u (mgmt+data)\n", CHANNEL);
 }
 
 void loop() {
