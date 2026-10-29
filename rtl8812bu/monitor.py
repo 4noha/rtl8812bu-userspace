@@ -158,15 +158,29 @@ def main(argv: list[str] | None = None) -> int:
         # USB 抜き差しが必要になる（実測）。状態ファイルで「設定済み」を覚えておき、
         # 抜き差し（= MCUFW_CTRL が cold 値）で無効化する。
         state_ok = False
+        state_rx = False
         try:
             state = json.load(open(STATE_FILE))
             state_ok = bool(state.get("monitor")) and not cold
         except Exception:
             state_ok = False
         if state_ok:
+            # 状態ファイルだけでは不十分: 他のツール（GPL 側の restore_rx 等）が
+            # チップを初期化し直すとモニタ設定は消えている。RCR がモニタ値か確認する。
+            try:
+                rcr = chip.read(0x0608, 4)
+            except Exception:
+                rcr = -1
+            # モニタモードの RCR は 0xf410400e（切替直後）/ 0xf410400f（ch 設定後）。
+            # AP モードは 0xf400220e なので区別できる。
+            state_rx = rcr in (0xF410400E, 0xF410400F)
+            if not state_rx:
+                log(f"[init] 状態ファイルはあるが RCR=0x{rcr & 0xFFFFFFFF:08x}（モニタ値でない）→ 切替をやり直す")
+                state_ok = False
+        if state_ok:
             log("[init] モニタモード設定済み（前回の状態を引き継ぎ、切替を省略）")
             res = {"skipped": "monitor-already"}
-        elif fw_already_up and not args.no_fast_start:
+        elif fw_already_up and not args.no_fast_start and state_rx:
             # FW が動いている個体に 2 回目のダウンロードを重ねると不安定になるため、
             # 初期化（probe+start）を省略してモニタ切替だけ行う。
             log("[init] FW が稼働中のため初期化を省略（--fast-start）")
@@ -205,6 +219,8 @@ def main(argv: list[str] | None = None) -> int:
             info_f = ieee80211.parse(frame)
             if out:
                 rec = {**info_f, "ts": round(time.time(), 6)}
+                # 復号（WPA2 オフライン解析）用に生フレームを残す
+                rec["hex"] = frame.hex()
                 if ch is not None:
                     rec["rx_ch"] = ch
                 out.write(json.dumps(rec, ensure_ascii=False, default=str) + "\n")

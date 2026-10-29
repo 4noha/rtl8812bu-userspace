@@ -56,13 +56,15 @@ void setup() {
 
   wifi_promiscuous_filter_t filt;
   // 管理 + データ（EAPOL はデータフレームなので DATA 必須）
-  filt.filter_mask = WIFI_PROMIS_FILTER_MASK_MGMT | WIFI_PROMIS_FILTER_MASK_DATA;
+  // 管理 + データ + 制御（ACK を見て「相手が受け取ったか」を判定する）
+  filt.filter_mask = WIFI_PROMIS_FILTER_MASK_MGMT | WIFI_PROMIS_FILTER_MASK_DATA |
+                     WIFI_PROMIS_FILTER_MASK_CTRL;
   esp_wifi_set_promiscuous_filter(&filt);
   esp_wifi_set_promiscuous_rx_cb(&sniff_cb);
   esp_wifi_set_channel(CHANNEL, WIFI_SECOND_CHAN_NONE);
   esp_wifi_set_promiscuous(true);
 
-  Serial.printf("# ready ch=%u (mgmt+data)\n", CHANNEL);
+  Serial.printf("# ready ch=%u (mgmt+data+ctrl)\n", CHANNEL);
 }
 
 void loop() {

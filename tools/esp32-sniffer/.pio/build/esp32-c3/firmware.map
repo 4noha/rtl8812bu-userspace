@@ -35858,858 +35858,856 @@ END GROUP
                                          0x26 (size before relaxing)
  *fill*         0x000000003c091512        0x2 
  .rodata._Z5setupv.str1.4
-                0x000000003c091514       0x1b .pio/build/esp32-c3/src/esp32-sniffer.ino.cpp.o
- *fill*         0x000000003c09152f        0x1 
+                0x000000003c091514       0x20 .pio/build/esp32-c3/src/esp32-sniffer.ino.cpp.o
  .rodata._ZL8sniff_cbPv27wifi_promiscuous_pkt_type_t.str1.4
-                0x000000003c091530       0x15 .pio/build/esp32-c3/src/esp32-sniffer.ino.cpp.o
- *fill*         0x000000003c091545        0x3 
- .rodata        0x000000003c091548       0x10 .pio/build/esp32-c3/lib10d/libWiFi.a(WiFi.cpp.o)
+                0x000000003c091534       0x15 .pio/build/esp32-c3/src/esp32-sniffer.ino.cpp.o
+ *fill*         0x000000003c091549        0x3 
+ .rodata        0x000000003c09154c       0x10 .pio/build/esp32-c3/lib10d/libWiFi.a(WiFi.cpp.o)
  .rodata._ZN9WiFiClass9printDiagER5Print.str1.4
-                0x000000003c091558       0x3c .pio/build/esp32-c3/lib10d/libWiFi.a(WiFi.cpp.o)
+                0x000000003c09155c       0x3c .pio/build/esp32-c3/lib10d/libWiFi.a(WiFi.cpp.o)
  .rodata.str1.4
-                0x000000003c091594        0xb .pio/build/esp32-c3/lib10d/libWiFi.a(WiFi.cpp.o)
+                0x000000003c091598        0xb .pio/build/esp32-c3/lib10d/libWiFi.a(WiFi.cpp.o)
                                          0x17 (size before relaxing)
- *fill*         0x000000003c09159f        0x1 
+ *fill*         0x000000003c0915a3        0x1 
  .rodata._Z9tcpipInitv.str1.4
-                0x000000003c0915a0        0xf .pio/build/esp32-c3/lib10d/libWiFi.a(WiFiGeneric.cpp.o)
- *fill*         0x000000003c0915af        0x1 
+                0x000000003c0915a4        0xf .pio/build/esp32-c3/lib10d/libWiFi.a(WiFiGeneric.cpp.o)
+ *fill*         0x000000003c0915b3        0x1 
  .rodata._ZL22get_esp_netif_hostnamev.part.0.str1.4
-                0x000000003c0915b0       0x1b .pio/build/esp32-c3/lib10d/libWiFi.a(WiFiGeneric.cpp.o)
- *fill*         0x000000003c0915cb        0x1 
+                0x000000003c0915b4       0x1b .pio/build/esp32-c3/lib10d/libWiFi.a(WiFiGeneric.cpp.o)
+ *fill*         0x000000003c0915cf        0x1 
  .rodata._ZTV5HWCDC
-                0x000000003c0915cc       0x38 .pio/build/esp32-c3/libFrameworkArduino.a(HWCDC.cpp.o)
-                0x000000003c0915cc                vtable for HWCDC
+                0x000000003c0915d0       0x38 .pio/build/esp32-c3/libFrameworkArduino.a(HWCDC.cpp.o)
+                0x000000003c0915d0                vtable for HWCDC
  .rodata.str1.4
-                0x000000003c091604       0x2e .pio/build/esp32-c3/libFrameworkArduino.a(HWCDC.cpp.o)
- *fill*         0x000000003c091632        0x2 
+                0x000000003c091608       0x2e .pio/build/esp32-c3/libFrameworkArduino.a(HWCDC.cpp.o)
+ *fill*         0x000000003c091636        0x2 
  .rodata._ZTV9IPAddress
-                0x000000003c091634       0x14 .pio/build/esp32-c3/libFrameworkArduino.a(IPAddress.cpp.o)
-                0x000000003c091634                vtable for IPAddress
+                0x000000003c091638       0x14 .pio/build/esp32-c3/libFrameworkArduino.a(IPAddress.cpp.o)
+                0x000000003c091638                vtable for IPAddress
  .rodata._ZNK9IPAddress8toStringEv.str1.4
-                0x000000003c091648        0xc .pio/build/esp32-c3/libFrameworkArduino.a(IPAddress.cpp.o)
+                0x000000003c09164c        0xc .pio/build/esp32-c3/libFrameworkArduino.a(IPAddress.cpp.o)
  .rodata._ZN5Print7printlnEv.str1.4
-                0x000000003c091654        0xc .pio/build/esp32-c3/libFrameworkArduino.a(Print.cpp.o)
+                0x000000003c091658        0xc .pio/build/esp32-c3/libFrameworkArduino.a(Print.cpp.o)
                                           0x3 (size before relaxing)
  .rodata._ZN6Stream10parseFloatEc.cst4
-                0x000000003c091654        0x8 .pio/build/esp32-c3/libFrameworkArduino.a(Stream.cpp.o)
+                0x000000003c091658        0x8 .pio/build/esp32-c3/libFrameworkArduino.a(Stream.cpp.o)
  .rodata._ZN6Stream10readStringEv.str1.4
-                0x000000003c09165c        0xc .pio/build/esp32-c3/libFrameworkArduino.a(Stream.cpp.o)
+                0x000000003c091660        0xc .pio/build/esp32-c3/libFrameworkArduino.a(Stream.cpp.o)
                                           0x1 (size before relaxing)
  .rodata._ZNK6String9substringEjj.str1.4
-                0x000000003c09165c        0x1 .pio/build/esp32-c3/libFrameworkArduino.a(WString.cpp.o)
+                0x000000003c091660        0x1 .pio/build/esp32-c3/libFrameworkArduino.a(WString.cpp.o)
  .rodata.initArduino.str1.4
-                0x000000003c09165c        0x2 .pio/build/esp32-c3/libFrameworkArduino.a(esp32-hal-misc.c.o)
- *fill*         0x000000003c09165e        0x2 
+                0x000000003c091660        0x2 .pio/build/esp32-c3/libFrameworkArduino.a(esp32-hal-misc.c.o)
+ *fill*         0x000000003c091662        0x2 
  .rodata.neopixelWrite.cst4
-                0x000000003c091660        0x4 .pio/build/esp32-c3/libFrameworkArduino.a(esp32-hal-rgb-led.c.o)
+                0x000000003c091664        0x4 .pio/build/esp32-c3/libFrameworkArduino.a(esp32-hal-rgb-led.c.o)
  .rodata.rmtSetTick.cst4
-                0x000000003c091664        0x8 .pio/build/esp32-c3/libFrameworkArduino.a(esp32-hal-rmt.c.o)
+                0x000000003c091668        0x8 .pio/build/esp32-c3/libFrameworkArduino.a(esp32-hal-rmt.c.o)
  .rodata.app_main.str1.4
-                0x000000003c09166c        0x9 .pio/build/esp32-c3/libFrameworkArduino.a(main.cpp.o)
- *fill*         0x000000003c091675        0x3 
+                0x000000003c091670        0x9 .pio/build/esp32-c3/libFrameworkArduino.a(main.cpp.o)
+ *fill*         0x000000003c091679        0x3 
  .rodata.__func__.5009
-                0x000000003c091678        0xf /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c091687        0x1 
+                0x000000003c09167c        0xf /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c09168b        0x1 
  .rodata.__func__.5014
-                0x000000003c091688       0x18 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+                0x000000003c09168c       0x18 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
  .rodata.__func__.5020
-                0x000000003c0916a0       0x1b /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c0916bb        0x1 
+                0x000000003c0916a4       0x1b /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c0916bf        0x1 
  .rodata.__func__.5027
-                0x000000003c0916bc       0x16 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c0916d2        0x2 
+                0x000000003c0916c0       0x16 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c0916d6        0x2 
  .rodata.__func__.5035
-                0x000000003c0916d4       0x17 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c0916eb        0x1 
+                0x000000003c0916d8       0x17 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c0916ef        0x1 
  .rodata.__func__.5054
-                0x000000003c0916ec       0x16 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c091702        0x2 
+                0x000000003c0916f0       0x16 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c091706        0x2 
  .rodata.__func__.5062
-                0x000000003c091704       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c091717        0x1 
+                0x000000003c091708       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c09171b        0x1 
  .rodata.__func__.5074
-                0x000000003c091718       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c09172a        0x2 
+                0x000000003c09171c       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c09172e        0x2 
  .rodata.__func__.5082
-                0x000000003c09172c       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c09173e        0x2 
+                0x000000003c091730       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c091742        0x2 
  .rodata.__func__.5088
-                0x000000003c091740       0x15 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c091755        0x3 
+                0x000000003c091744       0x15 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c091759        0x3 
  .rodata.__func__.5098
-                0x000000003c091758       0x15 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c09176d        0x3 
+                0x000000003c09175c       0x15 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c091771        0x3 
  .rodata.__func__.5128
-                0x000000003c091770       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c091782        0x2 
+                0x000000003c091774       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c091786        0x2 
  .rodata.__func__.5142
-                0x000000003c091784       0x19 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c09179d        0x3 
+                0x000000003c091788       0x19 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c0917a1        0x3 
  .rodata.__func__.5147
-                0x000000003c0917a0       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c0917b2        0x2 
+                0x000000003c0917a4       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c0917b6        0x2 
  .rodata.__func__.5191
-                0x000000003c0917b4       0x10 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+                0x000000003c0917b8       0x10 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
  .rodata.__func__.5206
-                0x000000003c0917c4       0x17 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c0917db        0x1 
+                0x000000003c0917c8       0x17 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c0917df        0x1 
  .rodata.__func__.5215
-                0x000000003c0917dc       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c0917ef        0x1 
+                0x000000003c0917e0       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c0917f3        0x1 
  .rodata.__func__.5260
-                0x000000003c0917f0       0x17 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c091807        0x1 
+                0x000000003c0917f4       0x17 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c09180b        0x1 
  .rodata.__func__.5269
-                0x000000003c091808       0x1e /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c091826        0x2 
+                0x000000003c09180c       0x1e /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c09182a        0x2 
  .rodata.__func__.5277
-                0x000000003c091828       0x16 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c09183e        0x2 
+                0x000000003c09182c       0x16 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c091842        0x2 
  .rodata.__func__.5284
-                0x000000003c091840       0x1d /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c09185d        0x3 
+                0x000000003c091844       0x1d /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c091861        0x3 
  .rodata.__func__.5289
-                0x000000003c091860       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c091872        0x2 
+                0x000000003c091864       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c091876        0x2 
  .rodata.__func__.5299
-                0x000000003c091874       0x1a /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c09188e        0x2 
+                0x000000003c091878       0x1a /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c091892        0x2 
  .rodata.__func__.5332
-                0x000000003c091890       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c0918a3        0x1 
+                0x000000003c091894       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c0918a7        0x1 
  .rodata.prvAcquireItemNoSplit.str1.4
-                0x000000003c0918a4       0xcc /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+                0x000000003c0918a8       0xcc /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
  .rodata.prvGetFreeSize.str1.4
-                0x000000003c091970       0x1f /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c09198f        0x1 
+                0x000000003c091974       0x1f /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c091993        0x1 
  .rodata.prvGetItemByteBuf.str1.4
-                0x000000003c091990      0x14f /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c091adf        0x1 
+                0x000000003c091994      0x14f /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c091ae3        0x1 
  .rodata.prvGetItemDefault.str1.4
-                0x000000003c091ae0      0x186 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c091c66        0x2 
+                0x000000003c091ae4      0x186 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c091c6a        0x2 
  .rodata.prvReceiveGeneric.str1.4
-                0x000000003c091c68       0x35 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c091c9d        0x3 
+                0x000000003c091c6c       0x35 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c091ca1        0x3 
  .rodata.prvReturnItemByteBuf.str1.4
-                0x000000003c091ca0       0x57 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c091cf7        0x1 
+                0x000000003c091ca4       0x57 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c091cfb        0x1 
  .rodata.prvReturnItemDefault.str1.4
-                0x000000003c091cf8      0x165 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c091e5d        0x3 
+                0x000000003c091cfc      0x165 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c091e61        0x3 
  .rodata.prvSendItemDoneNoSplit.str1.4
-                0x000000003c091e60       0x7e /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c091ede        0x2 
+                0x000000003c091e64       0x7e /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c091ee2        0x2 
  .rodata.xRingbufferCreate.str1.4
-                0x000000003c091ee0       0x2f /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c091f0f        0x1 
+                0x000000003c091ee4       0x2f /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c091f13        0x1 
  .rodata.xRingbufferReceiveUpTo.str1.4
-                0x000000003c091f10       0x38 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+                0x000000003c091f14       0x38 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
  .rodata.xRingbufferSend.str1.4
-                0x000000003c091f48       0x28 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+                0x000000003c091f4c       0x28 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
  .rodata.xRingbufferSendAcquire.str1.4
-                0x000000003c091f70       0x95 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c092005        0x3 
+                0x000000003c091f74       0x95 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c092009        0x3 
  .rodata.xRingbufferSendComplete.str1.4
-                0x000000003c092008       0x16 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
- *fill*         0x000000003c09201e        0x2 
+                0x000000003c09200c       0x16 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_ringbuf.a(ringbuf.c.obj)
+ *fill*         0x000000003c092022        0x2 
  .rodata.__FUNCTION__.6092
-                0x000000003c092020        0xf /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
- *fill*         0x000000003c09202f        0x1 
+                0x000000003c092024        0xf /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+ *fill*         0x000000003c092033        0x1 
  .rodata.__FUNCTION__.6096
-                0x000000003c092030       0x10 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+                0x000000003c092034       0x10 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
  .rodata.__FUNCTION__.6100
-                0x000000003c092040       0x11 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
- *fill*         0x000000003c092051        0x3 
+                0x000000003c092044       0x11 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+ *fill*         0x000000003c092055        0x3 
  .rodata.__FUNCTION__.6104
-                0x000000003c092054       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
- *fill*         0x000000003c092066        0x2 
+                0x000000003c092058       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+ *fill*         0x000000003c09206a        0x2 
  .rodata.__FUNCTION__.6109
-                0x000000003c092068       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
- *fill*         0x000000003c09207b        0x1 
+                0x000000003c09206c       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+ *fill*         0x000000003c09207f        0x1 
  .rodata.__FUNCTION__.6114
-                0x000000003c09207c       0x19 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
- *fill*         0x000000003c092095        0x3 
+                0x000000003c092080       0x19 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+ *fill*         0x000000003c092099        0x3 
  .rodata.__FUNCTION__.6118
-                0x000000003c092098       0x11 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
- *fill*         0x000000003c0920a9        0x3 
+                0x000000003c09209c       0x11 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+ *fill*         0x000000003c0920ad        0x3 
  .rodata.__FUNCTION__.6122
-                0x000000003c0920ac       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
- *fill*         0x000000003c0920be        0x2 
+                0x000000003c0920b0       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+ *fill*         0x000000003c0920c2        0x2 
  .rodata.__FUNCTION__.6126
-                0x000000003c0920c0       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
- *fill*         0x000000003c0920d3        0x1 
+                0x000000003c0920c4       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+ *fill*         0x000000003c0920d7        0x1 
  .rodata.__FUNCTION__.6130
-                0x000000003c0920d4       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
- *fill*         0x000000003c0920e6        0x2 
+                0x000000003c0920d8       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+ *fill*         0x000000003c0920ea        0x2 
  .rodata.__FUNCTION__.6134
-                0x000000003c0920e8       0x14 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+                0x000000003c0920ec       0x14 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
  .rodata.__FUNCTION__.6138
-                0x000000003c0920fc       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
- *fill*         0x000000003c09210f        0x1 
+                0x000000003c092100       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+ *fill*         0x000000003c092113        0x1 
  .rodata.__FUNCTION__.6142
-                0x000000003c092110       0x10 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+                0x000000003c092114       0x10 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
  .rodata.__FUNCTION__.6146
-                0x000000003c092120        0xf /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
- *fill*         0x000000003c09212f        0x1 
+                0x000000003c092124        0xf /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+ *fill*         0x000000003c092133        0x1 
  .rodata.__FUNCTION__.6151
-                0x000000003c092130        0xf /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
- *fill*         0x000000003c09213f        0x1 
+                0x000000003c092134        0xf /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+ *fill*         0x000000003c092143        0x1 
  .rodata.__FUNCTION__.6171
-                0x000000003c092140       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
- *fill*         0x000000003c092153        0x1 
+                0x000000003c092144       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+ *fill*         0x000000003c092157        0x1 
  .rodata.__FUNCTION__.6296
-                0x000000003c092154       0x15 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
- *fill*         0x000000003c092169        0x3 
+                0x000000003c092158       0x15 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+ *fill*         0x000000003c09216d        0x3 
  .rodata.__FUNCTION__.6300
-                0x000000003c09216c       0x16 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
- *fill*         0x000000003c092182        0x2 
+                0x000000003c092170       0x16 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+ *fill*         0x000000003c092186        0x2 
  .rodata.__FUNCTION__.6304
-                0x000000003c092184       0x17 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
- *fill*         0x000000003c09219b        0x1 
+                0x000000003c092188       0x17 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+ *fill*         0x000000003c09219f        0x1 
  .rodata.__FUNCTION__.6308
-                0x000000003c09219c       0x18 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+                0x000000003c0921a0       0x18 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
  .rodata.__FUNCTION__.6329
-                0x000000003c0921b4       0x19 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
- *fill*         0x000000003c0921cd        0x3 
+                0x000000003c0921b8       0x19 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+ *fill*         0x000000003c0921d1        0x3 
  .rodata.__FUNCTION__.6335
-                0x000000003c0921d0       0x19 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
- *fill*         0x000000003c0921e9        0x3 
+                0x000000003c0921d4       0x19 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+ *fill*         0x000000003c0921ed        0x3 
  .rodata.__FUNCTION__.6346
-                0x000000003c0921ec       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
- *fill*         0x000000003c0921fe        0x2 
+                0x000000003c0921f0       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+ *fill*         0x000000003c092202        0x2 
  .rodata.__FUNCTION__.6350
-                0x000000003c092200       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
- *fill*         0x000000003c092213        0x1 
+                0x000000003c092204       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+ *fill*         0x000000003c092217        0x1 
  .rodata.__func__.6184
-                0x000000003c092214        0xc /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+                0x000000003c092218        0xc /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
  .rodata.gpio_config.str1.4
-                0x000000003c092220       0x5e /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
- *fill*         0x000000003c09227e        0x2 
+                0x000000003c092224       0x5e /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+ *fill*         0x000000003c092282        0x2 
  .rodata.gpio_input_enable.str1.4
-                0x000000003c092280       0x33 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
- *fill*         0x000000003c0922b3        0x1 
+                0x000000003c092284       0x33 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+ *fill*         0x000000003c0922b7        0x1 
  .rodata.gpio_output_enable.str1.4
-                0x000000003c0922b4       0x1b /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
- *fill*         0x000000003c0922cf        0x1 
+                0x000000003c0922b8       0x1b /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+ *fill*         0x000000003c0922d3        0x1 
  .rodata.gpio_set_intr_type.str1.4
-                0x000000003c0922d0       0x1a /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
- *fill*         0x000000003c0922ea        0x2 
+                0x000000003c0922d4       0x1a /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+ *fill*         0x000000003c0922ee        0x2 
  .rodata.gpio_set_pull_mode.str1.4
-                0x000000003c0922ec       0x15 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
- *fill*         0x000000003c092301        0x3 
+                0x000000003c0922f0       0x15 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(gpio.c.obj)
+ *fill*         0x000000003c092305        0x3 
  .rodata.__FUNCTION__.7305
-                0x000000003c092304       0x10 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
+                0x000000003c092308       0x10 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
  .rodata.__FUNCTION__.7353
-                0x000000003c092314        0xd /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
- *fill*         0x000000003c092321        0x3 
+                0x000000003c092318        0xd /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
+ *fill*         0x000000003c092325        0x3 
  .rodata.__FUNCTION__.7357
-                0x000000003c092324        0xc /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
+                0x000000003c092328        0xc /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
  .rodata.__FUNCTION__.7380
-                0x000000003c092330       0x15 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
- *fill*         0x000000003c092345        0x3 
+                0x000000003c092334       0x15 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
+ *fill*         0x000000003c092349        0x3 
  .rodata.__FUNCTION__.7390
-                0x000000003c092348       0x15 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
- *fill*         0x000000003c09235d        0x3 
+                0x000000003c09234c       0x15 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
+ *fill*         0x000000003c092361        0x3 
  .rodata.__FUNCTION__.7406
-                0x000000003c092360       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
- *fill*         0x000000003c092373        0x1 
+                0x000000003c092364       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
+ *fill*         0x000000003c092377        0x1 
  .rodata.__FUNCTION__.7462
-                0x000000003c092374       0x17 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
- *fill*         0x000000003c09238b        0x1 
+                0x000000003c092378       0x17 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
+ *fill*         0x000000003c09238f        0x1 
  .rodata.__FUNCTION__.7470
-                0x000000003c09238c        0xd /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
- *fill*         0x000000003c092399        0x3 
+                0x000000003c092390        0xd /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
+ *fill*         0x000000003c09239d        0x3 
  .rodata.__FUNCTION__.7492
-                0x000000003c09239c       0x14 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
+                0x000000003c0923a0       0x14 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
  .rodata.__FUNCTION__.7507
-                0x000000003c0923b0        0xb /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
- *fill*         0x000000003c0923bb        0x1 
+                0x000000003c0923b4        0xb /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
+ *fill*         0x000000003c0923bf        0x1 
  .rodata.__FUNCTION__.7530
-                0x000000003c0923bc       0x11 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
- *fill*         0x000000003c0923cd        0x3 
+                0x000000003c0923c0       0x11 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
+ *fill*         0x000000003c0923d1        0x3 
  .rodata.__FUNCTION__.7601
-                0x000000003c0923d0       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
- *fill*         0x000000003c0923e3        0x1 
+                0x000000003c0923d4       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
+ *fill*         0x000000003c0923e7        0x1 
  .rodata.__FUNCTION__.7609
-                0x000000003c0923e4       0x10 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
+                0x000000003c0923e8       0x10 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
  .rodata.rmt_config.str1.4
-                0x000000003c0923f4       0xc1 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
- *fill*         0x000000003c0924b5        0x3 
+                0x000000003c0923f8       0xc1 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
+ *fill*         0x000000003c0924b9        0x3 
  .rodata.rmt_driver_install.str1.4
-                0x000000003c0924b8       0x40 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
+                0x000000003c0924bc       0x40 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
  .rodata.rmt_fill_tx_items.str1.4
-                0x000000003c0924f8       0x50 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
+                0x000000003c0924fc       0x50 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
  .rodata.rmt_get_clk_div.str1.4
-                0x000000003c092548       0x24 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
+                0x000000003c09254c       0x24 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
  .rodata.rmt_isr_register.str1.4
-                0x000000003c09256c       0x4e /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
- *fill*         0x000000003c0925ba        0x2 
+                0x000000003c092570       0x4e /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
+ *fill*         0x000000003c0925be        0x2 
  .rodata.rmt_set_clk_div.str1.4
-                0x000000003c0925bc       0x24 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
+                0x000000003c0925c0       0x24 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
  .rodata.rmt_set_gpio.str1.4
-                0x000000003c0925e0       0x47 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
- *fill*         0x000000003c092627        0x1 
+                0x000000003c0925e4       0x47 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
+ *fill*         0x000000003c09262b        0x1 
  .rodata.rmt_set_mem_block_num.str1.4
-                0x000000003c092628       0x2a /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
- *fill*         0x000000003c092652        0x2 
+                0x000000003c09262c       0x2a /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
+ *fill*         0x000000003c092656        0x2 
  .rodata.rmt_set_memory_owner.str1.4
-                0x000000003c092654       0x26 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
- *fill*         0x000000003c09267a        0x2 
+                0x000000003c092658       0x26 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
+ *fill*         0x000000003c09267e        0x2 
  .rodata.rmt_set_rx_thr_intr_en.str1.4
-                0x000000003c09267c       0x27 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
- *fill*         0x000000003c0926a3        0x1 
+                0x000000003c092680       0x27 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
+ *fill*         0x000000003c0926a7        0x1 
  .rodata.rmt_set_source_clk.str1.4
-                0x000000003c0926a4       0x24 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
+                0x000000003c0926a8       0x24 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
  .rodata.rmt_write_items.str1.4
-                0x000000003c0926c8       0x23 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
- *fill*         0x000000003c0926eb        0x1 
+                0x000000003c0926cc       0x23 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
+ *fill*         0x000000003c0926ef        0x1 
  .rodata.str1.4
-                0x000000003c0926ec       0x6b /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
- *fill*         0x000000003c092757        0x1 
+                0x000000003c0926f0       0x6b /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rmt.c.obj)
+ *fill*         0x000000003c09275b        0x1 
  .rodata.__FUNCTION__.7318
-                0x000000003c092758       0x15 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
- *fill*         0x000000003c09276d        0x3 
+                0x000000003c09275c       0x15 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
+ *fill*         0x000000003c092771        0x3 
  .rodata.__FUNCTION__.7323
-                0x000000003c092770       0x15 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
- *fill*         0x000000003c092785        0x3 
+                0x000000003c092774       0x15 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
+ *fill*         0x000000003c092789        0x3 
  .rodata.__FUNCTION__.7328
-                0x000000003c092788       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
- *fill*         0x000000003c09279b        0x1 
+                0x000000003c09278c       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
+ *fill*         0x000000003c09279f        0x1 
  .rodata.__FUNCTION__.7333
-                0x000000003c09279c       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
- *fill*         0x000000003c0927af        0x1 
+                0x000000003c0927a0       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
+ *fill*         0x000000003c0927b3        0x1 
  .rodata.__FUNCTION__.7338
-                0x000000003c0927b0       0x10 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
+                0x000000003c0927b4       0x10 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
  .rodata.__FUNCTION__.7343
-                0x000000003c0927c0       0x10 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
+                0x000000003c0927c4       0x10 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
  .rodata.__FUNCTION__.7348
-                0x000000003c0927d0       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
- *fill*         0x000000003c0927e2        0x2 
+                0x000000003c0927d4       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
+ *fill*         0x000000003c0927e6        0x2 
  .rodata.__FUNCTION__.7353
-                0x000000003c0927e4       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
- *fill*         0x000000003c0927f6        0x2 
+                0x000000003c0927e8       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
+ *fill*         0x000000003c0927fa        0x2 
  .rodata.__FUNCTION__.7392
-                0x000000003c0927f8       0x18 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
+                0x000000003c0927fc       0x18 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
  .rodata.__FUNCTION__.7572
-                0x000000003c092810       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
- *fill*         0x000000003c092822        0x2 
+                0x000000003c092814       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
+ *fill*         0x000000003c092826        0x2 
  .rodata.__FUNCTION__.7639
-                0x000000003c092824       0x1b /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
- *fill*         0x000000003c09283f        0x1 
+                0x000000003c092828       0x1b /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
+ *fill*         0x000000003c092843        0x1 
  .rodata.__FUNCTION__.7650
-                0x000000003c092840       0x11 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
- *fill*         0x000000003c092851        0x3 
+                0x000000003c092844       0x11 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
+ *fill*         0x000000003c092855        0x3 
  .rodata.__func__.7577
-                0x000000003c092854       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
- *fill*         0x000000003c092866        0x2 
+                0x000000003c092858       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
+ *fill*         0x000000003c09286a        0x2 
  .rodata.uart_flush_input.str1.4
-                0x000000003c092868       0x22 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
- *fill*         0x000000003c09288a        0x2 
+                0x000000003c09286c       0x22 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
+ *fill*         0x000000003c09288e        0x2 
  .rodata.uart_pattern_pop_pos.str1.4
-                0x000000003c09288c       0x26 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
- *fill*         0x000000003c0928b2        0x2 
+                0x000000003c092890       0x26 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
+ *fill*         0x000000003c0928b6        0x2 
  .rodata.uart_reenable_intr_mask.constprop.10.str1.4
-                0x000000003c0928b4       0x2b /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
- *fill*         0x000000003c0928df        0x1 
+                0x000000003c0928b8       0x2b /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
+ *fill*         0x000000003c0928e3        0x1 
  .rodata.uart_set_stop_bits.str1.4
-                0x000000003c0928e0       0x23 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
- *fill*         0x000000003c092903        0x1 
+                0x000000003c0928e4       0x23 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
+ *fill*         0x000000003c092907        0x1 
  .rodata.uart_set_word_length.str1.4
-                0x000000003c092904       0x23 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
- *fill*         0x000000003c092927        0x1 
+                0x000000003c092908       0x23 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
+ *fill*         0x000000003c09292b        0x1 
  .rodata.uart_wait_tx_done.str1.4
-                0x000000003c092928       0x8a /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
- *fill*         0x000000003c0929b2        0x2 
+                0x000000003c09292c       0x8a /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(uart.c.obj)
+ *fill*         0x000000003c0929b6        0x2 
  .rodata.dac_offset
-                0x000000003c0929b4       0x78 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rtc_tempsensor.c.obj)
-                0x000000003c0929b4                dac_offset
+                0x000000003c0929b8       0x78 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(rtc_tempsensor.c.obj)
+                0x000000003c0929b8                dac_offset
  .rodata.__func__.4311
-                0x000000003c092a2c       0x15 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(periph_ctrl.c.obj)
- *fill*         0x000000003c092a41        0x3 
+                0x000000003c092a30       0x15 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(periph_ctrl.c.obj)
+ *fill*         0x000000003c092a45        0x3 
  .rodata.__func__.4315
-                0x000000003c092a44       0x16 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(periph_ctrl.c.obj)
- *fill*         0x000000003c092a5a        0x2 
+                0x000000003c092a48       0x16 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(periph_ctrl.c.obj)
+ *fill*         0x000000003c092a5e        0x2 
  .rodata.__func__.4319
-                0x000000003c092a5c       0x14 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(periph_ctrl.c.obj)
+                0x000000003c092a60       0x14 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(periph_ctrl.c.obj)
  .rodata.periph_module_enable.str1.4
-                0x000000003c092a70       0x41 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(periph_ctrl.c.obj)
- *fill*         0x000000003c092ab1        0x3 
+                0x000000003c092a74       0x41 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libdriver.a(periph_ctrl.c.obj)
+ *fill*         0x000000003c092ab5        0x3 
  .rodata.__func__.5696
-                0x000000003c092ab4       0x20 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libapp_update.a(esp_ota_ops.c.obj)
+                0x000000003c092ab8       0x20 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libapp_update.a(esp_ota_ops.c.obj)
  .rodata.__func__.5739
-                0x000000003c092ad4       0x1e /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libapp_update.a(esp_ota_ops.c.obj)
- *fill*         0x000000003c092af2        0x2 
+                0x000000003c092ad8       0x1e /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libapp_update.a(esp_ota_ops.c.obj)
+ *fill*         0x000000003c092af6        0x2 
  .rodata.esp_ota_current_ota_is_workable.str1.4
-                0x000000003c092af4       0x78 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libapp_update.a(esp_ota_ops.c.obj)
+                0x000000003c092af8       0x78 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libapp_update.a(esp_ota_ops.c.obj)
  .rodata.esp_ota_get_app_partition_count.str1.4
-                0x000000003c092b6c       0x46 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libapp_update.a(esp_ota_ops.c.obj)
- *fill*         0x000000003c092bb2        0x2 
+                0x000000003c092b70       0x46 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libapp_update.a(esp_ota_ops.c.obj)
+ *fill*         0x000000003c092bb6        0x2 
  .rodata.esp_ota_get_running_partition.str1.4
-                0x000000003c092bb4       0x5f /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libapp_update.a(esp_ota_ops.c.obj)
- *fill*         0x000000003c092c13        0x1 
+                0x000000003c092bb8       0x5f /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libapp_update.a(esp_ota_ops.c.obj)
+ *fill*         0x000000003c092c17        0x1 
  .rodata.read_otadata.str1.4
-                0x000000003c092c14       0x56 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libapp_update.a(esp_ota_ops.c.obj)
- *fill*         0x000000003c092c6a        0x2 
+                0x000000003c092c18       0x56 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libapp_update.a(esp_ota_ops.c.obj)
+ *fill*         0x000000003c092c6e        0x2 
  .rodata.bootloader_common_check_chip_validity.str1.4
-                0x000000003c092c6c       0xc6 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libbootloader_support.a(bootloader_common_loader.c.obj)
- *fill*         0x000000003c092d32        0x2 
+                0x000000003c092c70       0xc6 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libbootloader_support.a(bootloader_common_loader.c.obj)
+ *fill*         0x000000003c092d36        0x2 
  .rodata.__func__.5088
-                0x000000003c092d34       0x28 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libbootloader_support.a(bootloader_flash.c.obj)
+                0x000000003c092d38       0x28 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libbootloader_support.a(bootloader_flash.c.obj)
  .rodata.bootloader_mmap.str1.4
-                0x000000003c092d5c       0x64 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libbootloader_support.a(bootloader_flash.c.obj)
+                0x000000003c092d60       0x64 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libbootloader_support.a(bootloader_flash.c.obj)
  .rodata.str1.4
-                0x000000003c092dc0       0x6f /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libbootloader_support.a(bootloader_flash.c.obj)
- *fill*         0x000000003c092e2f        0x1 
+                0x000000003c092dc4       0x6f /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libbootloader_support.a(bootloader_flash.c.obj)
+ *fill*         0x000000003c092e33        0x1 
  .rodata.image_load.str1.4
-                0x000000003c092e30      0x14e /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libbootloader_support.a(esp_image_format.c.obj)
- *fill*         0x000000003c092f7e        0x2 
+                0x000000003c092e34      0x14e /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libbootloader_support.a(esp_image_format.c.obj)
+ *fill*         0x000000003c092f82        0x2 
  .rodata.process_appended_hash_and_sig.isra.0.constprop.5.str1.4
-                0x000000003c092f80       0x3f /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libbootloader_support.a(esp_image_format.c.obj)
- *fill*         0x000000003c092fbf        0x1 
+                0x000000003c092f84       0x3f /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libbootloader_support.a(esp_image_format.c.obj)
+ *fill*         0x000000003c092fc3        0x1 
  .rodata.process_segments.constprop.3.str1.4
-                0x000000003c092fc0      0x105 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libbootloader_support.a(esp_image_format.c.obj)
- *fill*         0x000000003c0930c5        0x3 
+                0x000000003c092fc4      0x105 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libbootloader_support.a(esp_image_format.c.obj)
+ *fill*         0x000000003c0930c9        0x3 
  .rodata.__func__.3971
-                0x000000003c0930c8       0x17 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libbootloader_support.a(bootloader_sha.c.obj)
- *fill*         0x000000003c0930df        0x1 
+                0x000000003c0930cc       0x17 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libbootloader_support.a(bootloader_sha.c.obj)
+ *fill*         0x000000003c0930e3        0x1 
  .rodata.__func__.3978
-                0x000000003c0930e0       0x19 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libbootloader_support.a(bootloader_sha.c.obj)
- *fill*         0x000000003c0930f9        0x3 
+                0x000000003c0930e4       0x19 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libbootloader_support.a(bootloader_sha.c.obj)
+ *fill*         0x000000003c0930fd        0x3 
  .rodata.bootloader_sha256_data.str1.4
-                0x000000003c0930fc       0x55 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libbootloader_support.a(bootloader_sha.c.obj)
- *fill*         0x000000003c093151        0x3 
+                0x000000003c093100       0x55 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libbootloader_support.a(bootloader_sha.c.obj)
+ *fill*         0x000000003c093155        0x3 
  .rodata.__func__.5277
-                0x000000003c093154       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(partition.c.obj)
- *fill*         0x000000003c093167        0x1 
+                0x000000003c093158       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(partition.c.obj)
+ *fill*         0x000000003c09316b        0x1 
  .rodata.__func__.5326
-                0x000000003c093168       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(partition.c.obj)
- *fill*         0x000000003c09317a        0x2 
+                0x000000003c09316c       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(partition.c.obj)
+ *fill*         0x000000003c09317e        0x2 
  .rodata.__func__.5371
-                0x000000003c09317c       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(partition.c.obj)
- *fill*         0x000000003c09318f        0x1 
+                0x000000003c093180       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(partition.c.obj)
+ *fill*         0x000000003c093193        0x1 
  .rodata.__func__.5381
-                0x000000003c093190       0x14 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(partition.c.obj)
+                0x000000003c093194       0x14 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(partition.c.obj)
  .rodata.__func__.5388
-                0x000000003c0931a4       0x17 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(partition.c.obj)
- *fill*         0x000000003c0931bb        0x1 
+                0x000000003c0931a8       0x17 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(partition.c.obj)
+ *fill*         0x000000003c0931bf        0x1 
  .rodata.__func__.5395
-                0x000000003c0931bc       0x18 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(partition.c.obj)
+                0x000000003c0931c0       0x18 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(partition.c.obj)
  .rodata.__func__.5401
-                0x000000003c0931d4       0x1a /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(partition.c.obj)
- *fill*         0x000000003c0931ee        0x2 
+                0x000000003c0931d8       0x1a /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(partition.c.obj)
+ *fill*         0x000000003c0931f2        0x2 
  .rodata.__func__.5410
-                0x000000003c0931f0       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(partition.c.obj)
- *fill*         0x000000003c093203        0x1 
+                0x000000003c0931f4       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(partition.c.obj)
+ *fill*         0x000000003c093207        0x1 
  .rodata.ensure_partitions_loaded.part.0.str1.4
-                0x000000003c093204       0x8e /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(partition.c.obj)
- *fill*         0x000000003c093292        0x2 
+                0x000000003c093208       0x8e /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(partition.c.obj)
+ *fill*         0x000000003c093296        0x2 
  .rodata.esp_partition_get.str1.4
-                0x000000003c093294       0x11 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(partition.c.obj)
- *fill*         0x000000003c0932a5        0x3 
+                0x000000003c093298       0x11 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(partition.c.obj)
+ *fill*         0x000000003c0932a9        0x3 
  .rodata.esp_partition_next.str1.4
-                0x000000003c0932a8       0x26 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(partition.c.obj)
+                0x000000003c0932ac       0x26 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(partition.c.obj)
                                          0x2a (size before relaxing)
- *fill*         0x000000003c0932ce        0x2 
+ *fill*         0x000000003c0932d2        0x2 
  .rodata.esp_partition_verify.str1.4
-                0x000000003c0932d0       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(partition.c.obj)
- *fill*         0x000000003c0932e2        0x2 
+                0x000000003c0932d4       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(partition.c.obj)
+ *fill*         0x000000003c0932e6        0x2 
  .rodata.__func__.6235
-                0x000000003c0932e4       0x15 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(flash_mmap.c.obj)
- *fill*         0x000000003c0932f9        0x3 
+                0x000000003c0932e8       0x15 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(flash_mmap.c.obj)
+ *fill*         0x000000003c0932fd        0x3 
  .rodata.__func__.6244
-                0x000000003c0932fc       0x11 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(flash_mmap.c.obj)
- *fill*         0x000000003c09330d        0x3 
+                0x000000003c093300       0x11 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(flash_mmap.c.obj)
+ *fill*         0x000000003c093311        0x3 
  .rodata.str1.4
-                0x000000003c093310      0x122 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(flash_mmap.c.obj)
- *fill*         0x000000003c093432        0x2 
+                0x000000003c093314      0x122 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(flash_mmap.c.obj)
+ *fill*         0x000000003c093436        0x2 
  .rodata.__func__.7612
-                0x000000003c093434       0x10 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(flash_ops.c.obj)
+                0x000000003c093438       0x10 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(flash_ops.c.obj)
  .rodata.esp_mspi_get_io.str1.4
-                0x000000003c093444       0x3e /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(flash_ops.c.obj)
- *fill*         0x000000003c093482        0x2 
+                0x000000003c093448       0x3e /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(flash_ops.c.obj)
+ *fill*         0x000000003c093486        0x2 
  .sdata2.s_mspi_io_num_default
-                0x000000003c093484        0x6 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(flash_ops.c.obj)
- *fill*         0x000000003c09348a        0x2 
- .rodata.TAG    0x000000003c09348c        0xa /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(esp_flash_api.c.obj)
- *fill*         0x000000003c093496        0x2 
+                0x000000003c093488        0x6 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(flash_ops.c.obj)
+ *fill*         0x000000003c09348e        0x2 
+ .rodata.TAG    0x000000003c093490        0xa /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(esp_flash_api.c.obj)
+ *fill*         0x000000003c09349a        0x2 
  .rodata.__func__.7176
-                0x000000003c093498       0x17 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(esp_flash_api.c.obj)
- *fill*         0x000000003c0934af        0x1 
+                0x000000003c09349c       0x17 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(esp_flash_api.c.obj)
+ *fill*         0x000000003c0934b3        0x1 
  .rodata.__func__.7248
-                0x000000003c0934b0       0x10 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(esp_flash_api.c.obj)
+                0x000000003c0934b4       0x10 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(esp_flash_api.c.obj)
  .rodata.__func__.7266
-                0x000000003c0934c0       0x1a /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(esp_flash_api.c.obj)
- *fill*         0x000000003c0934da        0x2 
+                0x000000003c0934c4       0x1a /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(esp_flash_api.c.obj)
+ *fill*         0x000000003c0934de        0x2 
  .rodata.str1.4
-                0x000000003c0934dc      0x13d /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(esp_flash_api.c.obj)
- *fill*         0x000000003c093619        0x3 
- .rodata.TAG    0x000000003c09361c        0xa /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(esp_flash_spi_init.c.obj)
- *fill*         0x000000003c093626        0x2 
+                0x000000003c0934e0      0x13d /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(esp_flash_api.c.obj)
+ *fill*         0x000000003c09361d        0x3 
+ .rodata.TAG    0x000000003c093620        0xa /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(esp_flash_spi_init.c.obj)
+ *fill*         0x000000003c09362a        0x2 
  .rodata.esp_flash_init_default_chip.str1.4
-                0x000000003c093628       0x64 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(esp_flash_spi_init.c.obj)
+                0x000000003c09362c       0x64 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(esp_flash_spi_init.c.obj)
  .rodata.__func__.6581
-                0x000000003c09368c       0x1a /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(spi_flash_os_func_app.c.obj)
- *fill*         0x000000003c0936a6        0x2 
+                0x000000003c093690       0x1a /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(spi_flash_os_func_app.c.obj)
+ *fill*         0x000000003c0936aa        0x2 
  .rodata.str1.4
-                0x000000003c0936a8       0x46 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(spi_flash_os_func_app.c.obj)
- *fill*         0x000000003c0936ee        0x2 
+                0x000000003c0936ac       0x46 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/qio_qspi/libspi_flash.a(spi_flash_os_func_app.c.obj)
+ *fill*         0x000000003c0936f2        0x2 
  .rodata.nvs_flash_init.str1.4
-                0x000000003c0936f0        0x4 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libnvs_flash.a(nvs_api.cpp.obj)
+                0x000000003c0936f4        0x4 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libnvs_flash.a(nvs_api.cpp.obj)
  .rodata._ZN3nvs7Storage9writeItemEhNS_8ItemTypeEPKcPKvj.str1.4
-                0x000000003c0936f4       0x61 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libnvs_flash.a(nvs_storage.cpp.obj)
- *fill*         0x000000003c093755        0x3 
+                0x000000003c0936f8       0x61 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libnvs_flash.a(nvs_storage.cpp.obj)
+ *fill*         0x000000003c093759        0x3 
  .rodata._ZZN3nvs7Storage9writeItemEhNS_8ItemTypeEPKcPKvjE19__PRETTY_FUNCTION__
-                0x000000003c093758       0x5c /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libnvs_flash.a(nvs_storage.cpp.obj)
+                0x000000003c09375c       0x5c /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libnvs_flash.a(nvs_storage.cpp.obj)
  .rodata._ZTVN3nvs15NVSHandleSimpleE
-                0x000000003c0937b4       0x3c /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libnvs_flash.a(nvs_handle_simple.cpp.obj)
-                0x000000003c0937b4                vtable for nvs::NVSHandleSimple
+                0x000000003c0937b8       0x3c /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libnvs_flash.a(nvs_handle_simple.cpp.obj)
+                0x000000003c0937b8                vtable for nvs::NVSHandleSimple
  .rodata._ZTVN3nvs12NVSPartitionE
-                0x000000003c0937f0       0x30 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libnvs_flash.a(nvs_partition.cpp.obj)
-                0x000000003c0937f0                vtable for nvs::NVSPartition
+                0x000000003c0937f4       0x30 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libnvs_flash.a(nvs_partition.cpp.obj)
+                0x000000003c0937f4                vtable for nvs::NVSPartition
  .rodata._ZTVN3nvs19NVSPartitionManagerE
-                0x000000003c093820       0x10 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libnvs_flash.a(nvs_partition_manager.cpp.obj)
-                0x000000003c093820                vtable for nvs::NVSPartitionManager
+                0x000000003c093824       0x10 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libnvs_flash.a(nvs_partition_manager.cpp.obj)
+                0x000000003c093824                vtable for nvs::NVSPartitionManager
  .rodata._ZN3nvs4Page11calcEntriesER11nvs_stats_t.str1.4
-                0x000000003c093830       0x1b /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libnvs_flash.a(nvs_page.cpp.obj)
- *fill*         0x000000003c09384b        0x1 
+                0x000000003c093834       0x1b /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libnvs_flash.a(nvs_page.cpp.obj)
+ *fill*         0x000000003c09384f        0x1 
  .rodata._ZN3nvs4Page15pageStateToNameENS0_9PageStateE.str1.4
-                0x000000003c09384c       0x77 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libnvs_flash.a(nvs_page.cpp.obj)
+                0x000000003c093850       0x77 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libnvs_flash.a(nvs_page.cpp.obj)
                                          0x7f (size before relaxing)
- *fill*         0x000000003c0938c3        0x1 
+ *fill*         0x000000003c0938c7        0x1 
  .rodata._ZNK3nvs4Page9debugDumpEv.str1.4
-                0x000000003c0938c4       0xa8 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libnvs_flash.a(nvs_page.cpp.obj)
+                0x000000003c0938c8       0xa8 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libnvs_flash.a(nvs_page.cpp.obj)
                                          0xb2 (size before relaxing)
  .rodata._ZZN3nvs4Page11calcEntriesER11nvs_stats_tE19__PRETTY_FUNCTION__
-                0x000000003c09396c       0x2f /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libnvs_flash.a(nvs_page.cpp.obj)
- *fill*         0x000000003c09399b        0x1 
+                0x000000003c093970       0x2f /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libnvs_flash.a(nvs_page.cpp.obj)
+ *fill*         0x000000003c09399f        0x1 
  .rodata._ZZN3nvs4Page15pageStateToNameENS0_9PageStateEE19__PRETTY_FUNCTION__
-                0x000000003c09399c       0x44 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libnvs_flash.a(nvs_page.cpp.obj)
+                0x000000003c0939a0       0x44 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libnvs_flash.a(nvs_page.cpp.obj)
  .rodata._ZN3nvs11PageManager4loadEPNS_9PartitionEmm.str1.4
-                0x000000003c0939e0       0x5d /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libnvs_flash.a(nvs_pagemanager.cpp.obj)
- *fill*         0x000000003c093a3d        0x3 
+                0x000000003c0939e4       0x5d /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libnvs_flash.a(nvs_pagemanager.cpp.obj)
+ *fill*         0x000000003c093a41        0x3 
  .rodata._ZZN3nvs11PageManager4loadEPNS_9PartitionEmmE19__PRETTY_FUNCTION__
-                0x000000003c093a40       0x46 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libnvs_flash.a(nvs_pagemanager.cpp.obj)
- *fill*         0x000000003c093a86        0x2 
+                0x000000003c093a44       0x46 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libnvs_flash.a(nvs_pagemanager.cpp.obj)
+ *fill*         0x000000003c093a8a        0x2 
  .rodata.__FUNCTION__.5972
-                0x000000003c093a88        0xf /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libpthread.a(pthread.c.obj)
- *fill*         0x000000003c093a97        0x1 
+                0x000000003c093a8c        0xf /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libpthread.a(pthread.c.obj)
+ *fill*         0x000000003c093a9b        0x1 
  .rodata.__FUNCTION__.5990
-                0x000000003c093a98        0xd /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libpthread.a(pthread.c.obj)
- *fill*         0x000000003c093aa5        0x3 
+                0x000000003c093a9c        0xd /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libpthread.a(pthread.c.obj)
+ *fill*         0x000000003c093aa9        0x3 
  .rodata.__func__.6008
-                0x000000003c093aa8       0x16 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libpthread.a(pthread.c.obj)
- *fill*         0x000000003c093abe        0x2 
+                0x000000003c093aac       0x16 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libpthread.a(pthread.c.obj)
+ *fill*         0x000000003c093ac2        0x2 
  .rodata.__func__.6037
-                0x000000003c093ac0       0x15 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libpthread.a(pthread.c.obj)
- *fill*         0x000000003c093ad5        0x3 
+                0x000000003c093ac4       0x15 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libpthread.a(pthread.c.obj)
+ *fill*         0x000000003c093ad9        0x3 
  .rodata.pthread_cancel.str1.4
-                0x000000003c093ad8       0x1f /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libpthread.a(pthread.c.obj)
- *fill*         0x000000003c093af7        0x1 
+                0x000000003c093adc       0x1f /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libpthread.a(pthread.c.obj)
+ *fill*         0x000000003c093afb        0x1 
  .rodata.pthread_create.str1.4
-                0x000000003c093af8       0xd2 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libpthread.a(pthread.c.obj)
- *fill*         0x000000003c093bca        0x2 
+                0x000000003c093afc       0xd2 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libpthread.a(pthread.c.obj)
+ *fill*         0x000000003c093bce        0x2 
  .rodata.pthread_mutex_destroy.str1.4
-                0x000000003c093bcc       0x24 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libpthread.a(pthread.c.obj)
+                0x000000003c093bd0       0x24 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libpthread.a(pthread.c.obj)
  .rodata.pthread_once.str1.4
-                0x000000003c093bf0       0x1e /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libpthread.a(pthread.c.obj)
- *fill*         0x000000003c093c0e        0x2 
+                0x000000003c093bf4       0x1e /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libpthread.a(pthread.c.obj)
+ *fill*         0x000000003c093c12        0x2 
  .rodata.str1.4
-                0x000000003c093c10       0x23 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libpthread.a(pthread.c.obj)
- *fill*         0x000000003c093c33        0x1 
+                0x000000003c093c14       0x23 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libpthread.a(pthread.c.obj)
+ *fill*         0x000000003c093c37        0x1 
  .rodata.__func__.5717
-                0x000000003c093c34       0x2e /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libpthread.a(pthread_local_storage.c.obj)
- *fill*         0x000000003c093c62        0x2 
+                0x000000003c093c38       0x2e /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libpthread.a(pthread_local_storage.c.obj)
+ *fill*         0x000000003c093c66        0x2 
  .rodata.pthread_local_storage_thread_deleted_callback.str1.4
-                0x000000003c093c64       0x3c /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libpthread.a(pthread_local_storage.c.obj)
+                0x000000003c093c68       0x3c /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libpthread.a(pthread_local_storage.c.obj)
  .rodata.__func__.6666
-                0x000000003c093ca0       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(task_wdt.c.obj)
- *fill*         0x000000003c093cb2        0x2 
+                0x000000003c093ca4       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(task_wdt.c.obj)
+ *fill*         0x000000003c093cb6        0x2 
  .rodata.esp_task_wdt_init.str1.4
-                0x000000003c093cb4       0x85 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(task_wdt.c.obj)
- *fill*         0x000000003c093d39        0x3 
+                0x000000003c093cb8       0x85 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(task_wdt.c.obj)
+ *fill*         0x000000003c093d3d        0x3 
  .rodata.task_wdt_isr.str1.4
-                0x000000003c093d3c       0xc6 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(task_wdt.c.obj)
- *fill*         0x000000003c093e02        0x2 
+                0x000000003c093d40       0xc6 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(task_wdt.c.obj)
+ *fill*         0x000000003c093e06        0x2 
  .rodata.str1.4
-                0x000000003c093e04       0xb3 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(cpu_start.c.obj)
- *fill*         0x000000003c093eb7        0x1 
+                0x000000003c093e08       0xb3 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(cpu_start.c.obj)
+ *fill*         0x000000003c093ebb        0x1 
  .rodata.__func__.5786
-                0x000000003c093eb8        0xd /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(clk.c.obj)
- *fill*         0x000000003c093ec5        0x3 
+                0x000000003c093ebc        0xd /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(clk.c.obj)
+ *fill*         0x000000003c093ec9        0x3 
  .rodata.esp_clk_init.str1.4
-                0x000000003c093ec8       0x68 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(clk.c.obj)
- .srodata       0x000000003c093f30        0x4 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(clk.c.obj)
+                0x000000003c093ecc       0x68 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(clk.c.obj)
+ .srodata       0x000000003c093f34        0x4 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(clk.c.obj)
  .rodata.__func__.4383
-                0x000000003c093f34       0x1a /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(reset_reason.c.obj)
- *fill*         0x000000003c093f4e        0x2 
+                0x000000003c093f38       0x1a /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(reset_reason.c.obj)
+ *fill*         0x000000003c093f52        0x2 
  .rodata.str1.4
-                0x000000003c093f50       0x5f /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(reset_reason.c.obj)
- *fill*         0x000000003c093faf        0x1 
+                0x000000003c093f54       0x5f /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(reset_reason.c.obj)
+ *fill*         0x000000003c093fb3        0x1 
  .rodata.esp_panic_handler.str1.4
-                0x000000003c093fb0       0xc3 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic.c.obj)
+                0x000000003c093fb4       0xc3 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic.c.obj)
                                          0xc7 (size before relaxing)
- *fill*         0x000000003c094073        0x1 
+ *fill*         0x000000003c094077        0x1 
  .rodata.__func__.13370
-                0x000000003c094074        0xd /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(startup.c.obj)
- *fill*         0x000000003c094081        0x3 
+                0x000000003c094078        0xd /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(startup.c.obj)
+ *fill*         0x000000003c094085        0x3 
  .rodata.start_cpu0_default.str1.4
-                0x000000003c094084       0xb8 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(startup.c.obj)
+                0x000000003c094088       0xb8 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(startup.c.obj)
                                          0xc0 (size before relaxing)
  .sdata2.g_startup_fn
-                0x000000003c09413c        0x4 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(startup.c.obj)
-                0x000000003c09413c                g_startup_fn
+                0x000000003c094140        0x4 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(startup.c.obj)
+                0x000000003c094140                g_startup_fn
  .rodata.panic_handler.str1.4
-                0x000000003c094140        0x8 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic_handler.c.obj)
+                0x000000003c094144        0x8 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic_handler.c.obj)
  .rodata.print_state.str1.4
-                0x000000003c094148        0x3 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic_handler.c.obj)
- .srodata       0x000000003c094148        0x5 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(brownout.c.obj)
- *fill*         0x000000003c09414d        0x3 
- .rodata        0x000000003c094150       0xdc /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic_arch.c.obj)
+                0x000000003c09414c        0x3 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic_handler.c.obj)
+ .srodata       0x000000003c09414c        0x5 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(brownout.c.obj)
+ *fill*         0x000000003c094151        0x3 
+ .rodata        0x000000003c094154       0xdc /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic_arch.c.obj)
  .rodata.panic_arch_fill_info.str1.4
-                0x000000003c09422c       0x19 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic_arch.c.obj)
- *fill*         0x000000003c094245        0x3 
+                0x000000003c094230       0x19 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic_arch.c.obj)
+ *fill*         0x000000003c094249        0x3 
  .rodata.panic_print_backtrace.str1.4
-                0x000000003c094248       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic_arch.c.obj)
+                0x000000003c09424c       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic_arch.c.obj)
                                          0x1b (size before relaxing)
- *fill*         0x000000003c09425a        0x2 
+ *fill*         0x000000003c09425e        0x2 
  .rodata.panic_print_registers.str1.4
-                0x000000003c09425c       0x23 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic_arch.c.obj)
- *fill*         0x000000003c09427f        0x1 
+                0x000000003c094260       0x23 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic_arch.c.obj)
+ *fill*         0x000000003c094283        0x1 
  .rodata.panic_soc_fill_info.str1.4
-                0x000000003c094280       0x34 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic_arch.c.obj)
+                0x000000003c094284       0x34 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic_arch.c.obj)
  .rodata.print_cache_err_details.str1.4
-                0x000000003c0942b4       0x4b /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic_arch.c.obj)
- *fill*         0x000000003c0942ff        0x1 
+                0x000000003c0942b8       0x4b /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic_arch.c.obj)
+ *fill*         0x000000003c094303        0x1 
  .rodata.print_memprot_err_details.str1.4
-                0x000000003c094300       0xc3 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic_arch.c.obj)
+                0x000000003c094304       0xc3 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic_arch.c.obj)
                                          0xdb (size before relaxing)
- *fill*         0x000000003c0943c3        0x1 
+ *fill*         0x000000003c0943c7        0x1 
  .rodata.pseudo_reason.3586
-                0x000000003c0943c4       0x10 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic_arch.c.obj)
+                0x000000003c0943c8       0x10 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic_arch.c.obj)
  .rodata.reason.3593
-                0x000000003c0943d4       0x40 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic_arch.c.obj)
+                0x000000003c0943d8       0x40 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic_arch.c.obj)
  .rodata.str1.4
-                0x000000003c094414      0x449 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic_arch.c.obj)
+                0x000000003c094418      0x449 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic_arch.c.obj)
  .rodata.test_and_print_register_bits.str1.4
-                0x000000003c09485d        0x3 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic_arch.c.obj)
- *fill*         0x000000003c09485d        0x3 
+                0x000000003c094861        0x3 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_system.a(panic_arch.c.obj)
+ *fill*         0x000000003c094861        0x3 
  .rodata.spi_flash_clk_cfg_reg
-                0x000000003c094860       0x38 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libhal.a(spi_flash_hal.c.obj)
+                0x000000003c094864       0x38 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libhal.a(spi_flash_hal.c.obj)
  .rodata.spi_flash_gpspi_clk_cfg_reg
-                0x000000003c094898       0x38 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libhal.a(spi_flash_hal.c.obj)
+                0x000000003c09489c       0x38 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libhal.a(spi_flash_hal.c.obj)
  .rodata.__func__.6375
-                0x000000003c0948d0        0xf /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs.c.obj)
+                0x000000003c0948d4        0xf /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs.c.obj)
  .rodata.esp_vfs_register_fd_range.str1.4
-                0x000000003c0948df        0x1 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs.c.obj)
- *fill*         0x000000003c0948df        0x1 
+                0x000000003c0948e3        0x1 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs.c.obj)
+ *fill*         0x000000003c0948e3        0x1 
  .rodata.translate_path.str1.4
-                0x000000003c0948e0       0x5a /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs.c.obj)
+                0x000000003c0948e4       0x5a /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs.c.obj)
                                          0x5e (size before relaxing)
- *fill*         0x000000003c09493a        0x2 
+ *fill*         0x000000003c09493e        0x2 
  .rodata.console_open.str1.4
-                0x000000003c09493c       0x1f /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_console.c.obj)
+                0x000000003c094940       0x1f /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_console.c.obj)
                                          0x22 (size before relaxing)
- *fill*         0x000000003c09495b        0x1 
+ *fill*         0x000000003c09495f        0x1 
  .rodata.esp_vfs_dev_console_register.str1.4
-                0x000000003c09495c        0xd /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_console.c.obj)
- *fill*         0x000000003c094969        0x3 
- .rodata.vfs    0x000000003c09496c       0xa4 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_console.c.obj)
+                0x000000003c094960        0xd /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_console.c.obj)
+ *fill*         0x000000003c09496d        0x3 
+ .rodata.vfs    0x000000003c094970       0xa4 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_console.c.obj)
  .rodata.__func__.8012
-                0x000000003c094a10       0x1c /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_usb_serial_jtag.c.obj)
+                0x000000003c094a14       0x1c /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_usb_serial_jtag.c.obj)
  .rodata.usb_serial_jtag_return_char.isra.4.part.5.str1.4
-                0x000000003c094a2c       0x42 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_usb_serial_jtag.c.obj)
- *fill*         0x000000003c094a6e        0x2 
- .rodata.vfs    0x000000003c094a70       0xa4 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_usb_serial_jtag.c.obj)
+                0x000000003c094a30       0x42 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_usb_serial_jtag.c.obj)
+ *fill*         0x000000003c094a72        0x2 
+ .rodata.vfs    0x000000003c094a74       0xa4 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_usb_serial_jtag.c.obj)
  .rodata.__func__.7535
-                0x000000003c094b14        0xb /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_uart.c.obj)
- *fill*         0x000000003c094b1f        0x1 
+                0x000000003c094b18        0xb /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_uart.c.obj)
+ *fill*         0x000000003c094b23        0x1 
  .rodata.__func__.7551
-                0x000000003c094b20       0x11 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_uart.c.obj)
- *fill*         0x000000003c094b31        0x3 
+                0x000000003c094b24       0x11 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_uart.c.obj)
+ *fill*         0x000000003c094b35        0x3 
  .rodata.__func__.7557
-                0x000000003c094b34        0xa /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_uart.c.obj)
- *fill*         0x000000003c094b3e        0x2 
+                0x000000003c094b38        0xa /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_uart.c.obj)
+ *fill*         0x000000003c094b42        0x2 
  .rodata.__func__.7569
-                0x000000003c094b40        0xb /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_uart.c.obj)
- *fill*         0x000000003c094b4b        0x1 
+                0x000000003c094b44        0xb /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_uart.c.obj)
+ *fill*         0x000000003c094b4f        0x1 
  .rodata.__func__.7573
-                0x000000003c094b4c        0xb /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_uart.c.obj)
- *fill*         0x000000003c094b57        0x1 
+                0x000000003c094b50        0xb /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_uart.c.obj)
+ *fill*         0x000000003c094b5b        0x1 
  .rodata.__func__.7579
-                0x000000003c094b58        0xb /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_uart.c.obj)
- *fill*         0x000000003c094b63        0x1 
+                0x000000003c094b5c        0xb /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_uart.c.obj)
+ *fill*         0x000000003c094b67        0x1 
  .rodata.__func__.7589
-                0x000000003c094b64        0xb /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_uart.c.obj)
- *fill*         0x000000003c094b6f        0x1 
+                0x000000003c094b68        0xb /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_uart.c.obj)
+ *fill*         0x000000003c094b73        0x1 
  .rodata.uart_access.str1.4
-                0x000000003c094b70        0x7 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_uart.c.obj)
+                0x000000003c094b74        0x7 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_uart.c.obj)
                                           0xb (size before relaxing)
- *fill*         0x000000003c094b77        0x1 
+ *fill*         0x000000003c094b7b        0x1 
  .rodata.uart_fcntl.str1.4
-                0x000000003c094b78       0x33 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_uart.c.obj)
- *fill*         0x000000003c094bab        0x1 
+                0x000000003c094b7c       0x33 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_uart.c.obj)
+ *fill*         0x000000003c094baf        0x1 
  .rodata.uart_fsync.str1.4
-                0x000000003c094bac       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_uart.c.obj)
- *fill*         0x000000003c094bbe        0x2 
+                0x000000003c094bb0       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_uart.c.obj)
+ *fill*         0x000000003c094bc2        0x2 
  .rodata.uart_return_char.part.7.str1.4
-                0x000000003c094bc0       0x1d /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_uart.c.obj)
- *fill*         0x000000003c094bdd        0x3 
- .rodata.vfs    0x000000003c094be0       0xa4 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_uart.c.obj)
- .sdata2.s_ctx  0x000000003c094c84        0x8 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_uart.c.obj)
+                0x000000003c094bc4       0x1d /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_uart.c.obj)
+ *fill*         0x000000003c094be1        0x3 
+ .rodata.vfs    0x000000003c094be4       0xa4 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_uart.c.obj)
+ .sdata2.s_ctx  0x000000003c094c88        0x8 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libvfs.a(vfs_uart.c.obj)
  .rodata.str1.4
-                0x000000003c094c8c        0xa /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_eth.a(esp_eth.c.obj)
- *fill*         0x000000003c094c96        0x2 
+                0x000000003c094c90        0xa /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_eth.a(esp_eth.c.obj)
+ *fill*         0x000000003c094c9a        0x2 
  .rodata.__FUNCTION__.7623
-                0x000000003c094c98       0x1b /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_handlers.c.obj)
- *fill*         0x000000003c094cb3        0x1 
+                0x000000003c094c9c       0x1b /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_handlers.c.obj)
+ *fill*         0x000000003c094cb7        0x1 
  .rodata.esp_netif_action_connected.str1.4
-                0x000000003c094cb4       0xaa /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_handlers.c.obj)
- *fill*         0x000000003c094d5e        0x2 
+                0x000000003c094cb8       0xaa /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_handlers.c.obj)
+ *fill*         0x000000003c094d62        0x2 
  .rodata.__func__.7453
-                0x000000003c094d60       0x1b /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_objects.c.obj)
- *fill*         0x000000003c094d7b        0x1 
+                0x000000003c094d64       0x1b /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_objects.c.obj)
+ *fill*         0x000000003c094d7f        0x1 
  .rodata.esp_netif_next.str1.4
-                0x000000003c094d7c       0x46 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_objects.c.obj)
- *fill*         0x000000003c094dc2        0x2 
+                0x000000003c094d80       0x46 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_objects.c.obj)
+ *fill*         0x000000003c094dc6        0x2 
  .rodata.esp_netif_remove_from_list.str1.4
-                0x000000003c094dc4       0x46 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_objects.c.obj)
- *fill*         0x000000003c094e0a        0x2 
+                0x000000003c094dc8       0x46 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_objects.c.obj)
+ *fill*         0x000000003c094e0e        0x2 
  .rodata.str1.4
-                0x000000003c094e0c        0x9 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_objects.c.obj)
- *fill*         0x000000003c094e15        0x3 
+                0x000000003c094e10        0x9 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_objects.c.obj)
+ *fill*         0x000000003c094e19        0x3 
  .rodata._g_esp_netif_inherent_ap_config
-                0x000000003c094e18       0x24 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_defaults.c.obj)
-                0x000000003c094e18                _g_esp_netif_inherent_ap_config
+                0x000000003c094e1c       0x24 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_defaults.c.obj)
+                0x000000003c094e1c                _g_esp_netif_inherent_ap_config
  .rodata._g_esp_netif_inherent_sta_config
-                0x000000003c094e3c       0x24 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_defaults.c.obj)
-                0x000000003c094e3c                _g_esp_netif_inherent_sta_config
+                0x000000003c094e40       0x24 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_defaults.c.obj)
+                0x000000003c094e40                _g_esp_netif_inherent_sta_config
  .rodata._g_esp_netif_soft_ap_ip
-                0x000000003c094e60        0xc /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_defaults.c.obj)
-                0x000000003c094e60                _g_esp_netif_soft_ap_ip
+                0x000000003c094e64        0xc /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_defaults.c.obj)
+                0x000000003c094e64                _g_esp_netif_soft_ap_ip
  .rodata.str1.4
-                0x000000003c094e6c       0x60 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_defaults.c.obj)
+                0x000000003c094e70       0x60 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_defaults.c.obj)
  .rodata.__func__.9245
-                0x000000003c094ecc        0xe /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
- *fill*         0x000000003c094eda        0x2 
+                0x000000003c094ed0        0xe /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
+ *fill*         0x000000003c094ede        0x2 
  .rodata.__func__.9303
-                0x000000003c094edc       0x14 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
+                0x000000003c094ee0       0x14 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
  .rodata.esp_netif_attach.str1.4
-                0x000000003c094ef0       0x3e /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
- *fill*         0x000000003c094f2e        0x2 
+                0x000000003c094ef4       0x3e /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
+ *fill*         0x000000003c094f32        0x2 
  .rodata.esp_netif_dhcpc_cb.str1.4
-                0x000000003c094f30       0x37 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
- *fill*         0x000000003c094f67        0x1 
+                0x000000003c094f34       0x37 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
+ *fill*         0x000000003c094f6b        0x1 
  .rodata.esp_netif_dhcpc_start_api.str1.4
-                0x000000003c094f68       0x25 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
- *fill*         0x000000003c094f8d        0x3 
+                0x000000003c094f6c       0x25 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
+ *fill*         0x000000003c094f91        0x3 
  .rodata.esp_netif_dhcpc_stop_api.str1.4
-                0x000000003c094f90       0x32 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
- *fill*         0x000000003c094fc2        0x2 
+                0x000000003c094f94       0x32 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
+ *fill*         0x000000003c094fc6        0x2 
  .rodata.esp_netif_dhcps_cb.str1.4
-                0x000000003c094fc4       0x44 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
+                0x000000003c094fc8       0x44 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
  .rodata.esp_netif_dhcps_option_api.str1.4
-                0x000000003c095008       0x50 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
+                0x000000003c09500c       0x50 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
  .rodata.esp_netif_dhcps_start_api.str1.4
-                0x000000003c095058       0x3a /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
- *fill*         0x000000003c095092        0x2 
+                0x000000003c09505c       0x3a /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
+ *fill*         0x000000003c095096        0x2 
  .rodata.esp_netif_init.str1.4
-                0x000000003c095094       0xc5 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
- *fill*         0x000000003c095159        0x3 
+                0x000000003c095098       0xc5 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
+ *fill*         0x000000003c09515d        0x3 
  .rodata.esp_netif_ip_lost_timer.str1.4
-                0x000000003c09515c       0x3d /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
- *fill*         0x000000003c095199        0x3 
+                0x000000003c095160       0x3d /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
+ *fill*         0x000000003c09519d        0x3 
  .rodata.esp_netif_new.str1.4
-                0x000000003c09519c       0xea /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
- *fill*         0x000000003c095286        0x2 
+                0x000000003c0951a0       0xea /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
+ *fill*         0x000000003c09528a        0x2 
  .rodata.esp_netif_set_hostname_api.str1.4
-                0x000000003c095288        0xa /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
- *fill*         0x000000003c095292        0x2 
+                0x000000003c09528c        0xa /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
+ *fill*         0x000000003c095296        0x2 
  .rodata.esp_netif_set_ip_info_api.str1.4
-                0x000000003c095294       0x3a /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
- *fill*         0x000000003c0952ce        0x2 
+                0x000000003c095298       0x3a /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
+ *fill*         0x000000003c0952d2        0x2 
  .rodata.esp_netif_start_api.str1.4
-                0x000000003c0952d0      0x1ca /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
- *fill*         0x000000003c09549a        0x2 
+                0x000000003c0952d4      0x1ca /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip.c.obj)
+ *fill*         0x000000003c09549e        0x2 
  .sdata2.s_wifi_netif_config_ap
-                0x000000003c09549c        0x8 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip_defaults.c.obj)
+                0x000000003c0954a0        0x8 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip_defaults.c.obj)
  .sdata2.s_wifi_netif_config_sta
-                0x000000003c0954a4        0x8 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip_defaults.c.obj)
- .rodata        0x000000003c0954ac       0x14 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(default_event_loop.c.obj)
+                0x000000003c0954a8        0x8 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_netif.a(esp_netif_lwip_defaults.c.obj)
+ .rodata        0x000000003c0954b0       0x14 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(default_event_loop.c.obj)
  .rodata.str1.4
-                0x000000003c0954c0        0x8 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(default_event_loop.c.obj)
+                0x000000003c0954c4        0x8 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(default_event_loop.c.obj)
  .rodata.__func__.7862
-                0x000000003c0954c8       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(esp_event.c.obj)
- *fill*         0x000000003c0954db        0x1 
+                0x000000003c0954cc       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(esp_event.c.obj)
+ *fill*         0x000000003c0954df        0x1 
  .rodata.__func__.7903
-                0x000000003c0954dc       0x16 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(esp_event.c.obj)
- *fill*         0x000000003c0954f2        0x2 
+                0x000000003c0954e0       0x16 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(esp_event.c.obj)
+ *fill*         0x000000003c0954f6        0x2 
  .rodata.__func__.7928
-                0x000000003c0954f4       0x29 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(esp_event.c.obj)
- *fill*         0x000000003c09551d        0x3 
+                0x000000003c0954f8       0x29 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(esp_event.c.obj)
+ *fill*         0x000000003c095521        0x3 
  .rodata.__func__.7960
-                0x000000003c095520       0x2b /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(esp_event.c.obj)
- *fill*         0x000000003c09554b        0x1 
+                0x000000003c095524       0x2b /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(esp_event.c.obj)
+ *fill*         0x000000003c09554f        0x1 
  .rodata.__func__.7993
-                0x000000003c09554c       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(esp_event.c.obj)
- *fill*         0x000000003c09555e        0x2 
+                0x000000003c095550       0x12 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(esp_event.c.obj)
+ *fill*         0x000000003c095562        0x2 
  .rodata.__func__.8006
-                0x000000003c095560       0x16 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(esp_event.c.obj)
- *fill*         0x000000003c095576        0x2 
+                0x000000003c095564       0x16 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(esp_event.c.obj)
+ *fill*         0x000000003c09557a        0x2 
  .rodata.base_node_add_handler.str1.4
-                0x000000003c095578       0x29 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(esp_event.c.obj)
+                0x000000003c09557c       0x29 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(esp_event.c.obj)
                                          0x31 (size before relaxing)
- *fill*         0x000000003c0955a1        0x3 
+ *fill*         0x000000003c0955a5        0x3 
  .rodata.esp_event_handler_register_with_internal.str1.4
-                0x000000003c0955a4       0x83 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(esp_event.c.obj)
- *fill*         0x000000003c095627        0x1 
+                0x000000003c0955a8       0x83 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(esp_event.c.obj)
+ *fill*         0x000000003c09562b        0x1 
  .rodata.esp_event_handler_unregister_with_internal.str1.4
-                0x000000003c095628       0x55 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(esp_event.c.obj)
- *fill*         0x000000003c09567d        0x3 
+                0x000000003c09562c       0x55 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(esp_event.c.obj)
+ *fill*         0x000000003c095681        0x3 
  .rodata.esp_event_loop_create.str1.4
-                0x000000003c095680       0xf0 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(esp_event.c.obj)
+                0x000000003c095684       0xf0 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(esp_event.c.obj)
                                          0xf1 (size before relaxing)
  .rodata.esp_event_loop_run.str1.4
-                0x000000003c095770       0x32 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(esp_event.c.obj)
- *fill*         0x000000003c0957a2        0x2 
+                0x000000003c095774       0x32 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(esp_event.c.obj)
+ *fill*         0x000000003c0957a6        0x2 
  .rodata.esp_event_loop_run_task.str1.4
-                0x000000003c0957a4       0x27 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(esp_event.c.obj)
- *fill*         0x000000003c0957cb        0x1 
+                0x000000003c0957a8       0x27 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(esp_event.c.obj)
+ *fill*         0x000000003c0957cf        0x1 
  .rodata.loop_node_add_handler.str1.4
-                0x000000003c0957cc       0x33 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(esp_event.c.obj)
- *fill*         0x000000003c0957ff        0x1 
+                0x000000003c0957d0       0x33 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(esp_event.c.obj)
+ *fill*         0x000000003c095803        0x1 
  .rodata.esp_event_send_internal.str1.4
-                0x000000003c095800       0x7a /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(event_send.c.obj)
- *fill*         0x000000003c09587a        0x2 
+                0x000000003c095804       0x7a /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libesp_event.a(event_send.c.obj)
+ *fill*         0x000000003c09587e        0x2 
  .rodata.g_wifi_default_wpa_crypto_funcs
-                0x000000003c09587c       0x6c /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libwpa_supplicant.a(crypto_ops.c.obj)
-                0x000000003c09587c                g_wifi_default_wpa_crypto_funcs
+                0x000000003c095880       0x6c /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libwpa_supplicant.a(crypto_ops.c.obj)
+                0x000000003c095880                g_wifi_default_wpa_crypto_funcs
  .rodata.eap_peer_sm_deinit.str1.4
-                0x000000003c0958e8        0xb /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libwpa_supplicant.a(esp_wpa2.c.obj)
- *fill*         0x000000003c0958f3        0x1 
+                0x000000003c0958ec        0xb /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libwpa_supplicant.a(esp_wpa2.c.obj)
+ *fill*         0x000000003c0958f7        0x1 
  .rodata.wpa_supplicant_process_1_of_4.str1.4
-                0x000000003c0958f4       0x17 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libwpa_supplicant.a(wpa.c.obj)
- *fill*         0x000000003c09590b        0x1 
+                0x000000003c0958f8       0x17 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libwpa_supplicant.a(wpa.c.obj)
+ *fill*         0x000000003c09590f        0x1 
  .rodata.__func__.9955
-                0x000000003c09590c       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libwpa_supplicant.a(wpa_ie.c.obj)
- *fill*         0x000000003c09591f        0x1 
+                0x000000003c095910       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libwpa_supplicant.a(wpa_ie.c.obj)
+ *fill*         0x000000003c095923        0x1 
  .rodata.__func__.9970
-                0x000000003c095920       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libwpa_supplicant.a(wpa_ie.c.obj)
- *fill*         0x000000003c095933        0x1 
+                0x000000003c095924       0x13 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libwpa_supplicant.a(wpa_ie.c.obj)
+ *fill*         0x000000003c095937        0x1 
  .rodata.wpa_gen_wpa_ie.str1.4
-                0x000000003c095934       0x86 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libwpa_supplicant.a(wpa_ie.c.obj)
- *fill*         0x000000003c0959ba        0x2 
+                0x000000003c095938       0x86 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libwpa_supplicant.a(wpa_ie.c.obj)
+ *fill*         0x000000003c0959be        0x2 
  .rodata.__func__.4232
-                0x000000003c0959bc        0xc /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libwpa_supplicant.a(fastpbkdf2.c.obj)
+                0x000000003c0959c0        0xc /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libwpa_supplicant.a(fastpbkdf2.c.obj)
  .rodata.fastpbkdf2_hmac_sha1.str1.4
-                0x000000003c0959c8       0x50 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libwpa_supplicant.a(fastpbkdf2.c.obj)
- .rodata        0x000000003c095a18        0xc /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libwpa_supplicant.a(wpa_common.c.obj)
+                0x000000003c0959cc       0x50 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libwpa_supplicant.a(fastpbkdf2.c.obj)
+ .rodata        0x000000003c095a1c        0xc /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libwpa_supplicant.a(wpa_common.c.obj)
  .rodata.rsn_pmkid.str1.4
-                0x000000003c095a24        0x9 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libwpa_supplicant.a(wpa_common.c.obj)
- *fill*         0x000000003c095a2d        0x3 
+                0x000000003c095a28        0x9 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libwpa_supplicant.a(wpa_common.c.obj)
+ *fill*         0x000000003c095a31        0x3 
  .rodata.pmksa_cache_init.str1.4
-                0x000000003c095a30       0x14 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libwpa_supplicant.a(pmksa_cache.c.obj)
- *fill*         0x000000003c095a44        0x4 
+                0x000000003c095a34       0x14 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libwpa_supplicant.a(pmksa_cache.c.obj)
  .rodata.pmksa_cache_set_expiration.cst8
                 0x000000003c095a48        0x8 /Users/4noha/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32c3/lib/libwpa_supplicant.a(pmksa_cache.c.obj)
  .rodata.handler_got_ssid_passwd.str1.4

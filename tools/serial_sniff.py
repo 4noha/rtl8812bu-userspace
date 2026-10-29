@@ -46,7 +46,7 @@ def frames_from_line(line: str) -> dict | None:
         raw = bytes.fromhex(hexpart)
     except ValueError:
         return None
-    if len(raw) < 28:
+    if len(raw) < 12:      # 制御フレーム（ACK は 14B + FCS）も通す
         return None
     frame = raw[:-4]          # FCS を落とす
     info = ieee80211.parse(frame)
@@ -56,6 +56,8 @@ def frames_from_line(line: str) -> dict | None:
         info["sig_mode"] = sig_mode
         info["rate"] = rate
     info["ts"] = time.time()
+    if info.get("type") == "data":
+        info["hex"] = frame.hex()      # TCP 解析用にデータフレームの生バイトを残す
     return info
 
 
